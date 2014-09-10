@@ -37,6 +37,7 @@ simulator {
 config_pri_assets {
     OTHER_FILES += \
         $$quote($$BASEDIR/assets/DetailsPage.qml) \
+        $$quote($$BASEDIR/assets/InformationPage.qml) \
         $$quote($$BASEDIR/assets/ItemPage.qml) \
         $$quote($$BASEDIR/assets/LearningPage.qml) \
         $$quote($$BASEDIR/assets/LoginSheet.qml) \
