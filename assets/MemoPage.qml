@@ -14,13 +14,13 @@ NavigationPane {
                     
                     if (indexPath.length > 1) {
                         var chosenItem = dataModel.data(indexPath);
-                        var contentpage = itemPageDefinition.createObject();
+                        var contentpage = memoDetial.createObject();
                         
-                        contentpage.itemPageTitle = chosenItem.name
-                        nav.push(contentpage);
+                        contentpage.detailTitle = chosenItem.name
+                        navigationPane.push(contentpage);
                     }
                 }
-                accessibility.name: "Listing"
+                accessibility.name: "memolist"
             }
         }
         
@@ -51,8 +51,12 @@ NavigationPane {
     }
     attachedObjects: [
         ComponentDefinition {
-            id: itemPageDefinition
-            source: "ItemPage.qml"
+            id: memoDetail
+            source: "MemoDetailPage.qml"
         }
     ]
+    
+    onPopTransitionEnded: {
+        page.destroy();
+    }
 }

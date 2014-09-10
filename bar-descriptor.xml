@@ -70,7 +70,7 @@
     <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
     <name>NicoMe</name>
     <splashScreens>
-       <image>c9180245-16d1.jpg</image>
+       <image>splash.png</image>
     </splashScreens>
     <icon>
        <image>icon.png</image>
@@ -95,15 +95,15 @@
     <asset path="translations" dest="qm">
         <include name="*.qm"/>
     </asset>
-    <asset path="c9180245-16d1.jpg">c9180245-16d1.jpg</asset>
+    <asset path="splash.png">splash.png</asset>
 
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>
     <permission>access_shared</permission>
-    <permission>use_camera</permission>
     <permission system="true">_sys_use_consumer_push</permission>
     <permission>post_notification</permission>
+    <permission>access_internet</permission>
     <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
-    <env var="CASCADES_THEME" value="dark"/>
+    <env var="CASCADES_THEME" value="bright"/>
 
 </qnx>

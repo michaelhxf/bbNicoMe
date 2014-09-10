@@ -36,7 +36,6 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
-        $$quote($$BASEDIR/assets/DetailsPage.qml) \
         $$quote($$BASEDIR/assets/HelpPage.qml) \
         $$quote($$BASEDIR/assets/InformationPage.qml) \
         $$quote($$BASEDIR/assets/ItemPage.qml) \
@@ -66,6 +65,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/light_bulb-128.png) \
         $$quote($$BASEDIR/assets/images/lighthouse-128.png) \
         $$quote($$BASEDIR/assets/images/link-128.png) \
+        $$quote($$BASEDIR/assets/images/login.png) \
         $$quote($$BASEDIR/assets/images/medal-128.png) \
         $$quote($$BASEDIR/assets/images/money_bag-128.png) \
         $$quote($$BASEDIR/assets/images/music-128.png) \
@@ -76,6 +76,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/search-128.png) \
         $$quote($$BASEDIR/assets/images/speed-128.png) \
         $$quote($$BASEDIR/assets/images/trophy-128.png) \
+        $$quote($$BASEDIR/assets/images/user.png) \
         $$quote($$BASEDIR/assets/images/wristwatch-128.png) \
         $$quote($$BASEDIR/assets/main.qml)
 }

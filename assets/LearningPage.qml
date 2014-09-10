@@ -14,13 +14,13 @@ NavigationPane {
 
                     if (indexPath.length > 1) {
                         var chosenItem = dataModel.data(indexPath);
-                        var contentpage = itemPageDefinition.createObject();
+                        var contentpage = wordDetail.createObject();
 
-                        contentpage.itemPageTitle = chosenItem.name
+                        contentpage.detailTitle = chosenItem.name
                         navigationPane.push(contentpage);
                     }
                 }
-                accessibility.name: "Listing"
+                accessibility.name: "wordlist"
             }
         }
 
@@ -76,9 +76,12 @@ NavigationPane {
     }
     attachedObjects: [
         ComponentDefinition {
-            id: itemPageDefinition
-            source: "ItemPage.qml"
+            id: wordDetail
+            source: "WordDetailPage.qml"
         }
     ]
 
+    onPopTransitionEnded: {
+        page.destroy();
+    }
 }

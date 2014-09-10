@@ -14,6 +14,57 @@ NavigationPane {
         Container {
             background: Color.White
 
+            Container {
+                id: personalInfo
+                verticalAlignment: VerticalAlignment.Center
+                horizontalAlignment: HorizontalAlignment.Center
+                ImageView {
+                    id: userpic
+                    imageSource: "asset:///images/user.png"
+                    verticalAlignment: VerticalAlignment.Center
+                    horizontalAlignment: HorizontalAlignment.Center
+                    accessibility.name: "TODO: Add property content"
+                }
+                Label {
+                    id: username
+                    text: "username"
+                    textStyle.color: Color.Black
+                }
+
+            }
+            
+            Divider {
+                accessibility.name: "TODO: Add property content"
+
+            }
+            
+            Container {
+                Label {
+                    text: "Learning Report"
+                }
+            }
+            
+            Divider {
+                accessibility.name: "TODO: Add property content"
+
+            }
+            
+            Container {
+                Label {
+                    text: "Attendance Report"
+                }
+            }
+            
+            Divider {
+                accessibility.name: "TODO: Add property content"
+
+            }
+            
+            Container {
+                Label {
+                    text: "Memo Recent"
+                }
+            }
         }
 
         actions: [
@@ -56,7 +107,7 @@ NavigationPane {
         ]
 
     }
-    
+
     attachedObjects: [
         Notification {
             id: notification

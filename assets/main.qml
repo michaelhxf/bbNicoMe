@@ -32,23 +32,22 @@ TabbedPane {
         }
     }
     //showTabsOnActionBar: true
-    Tab { //First tab
-        // Localized text with the dynamic translation and locale updates support
+    Tab { 
         title: qsTr("Personal Page") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/id-128.png"
         PersonalPage {
             id:personalPage
         }
         
-    } //End of first tab
-    Tab { //Second tab
+    } 
+    Tab { 
         title: qsTr("Learning") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/laboratory-128.png"
         LearningPage {
             id: learningPage
         }
-    } //End of second tab
-    Tab { //Second tab
+    } 
+    Tab { 
         title: qsTr("Attendance") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/wristwatch-128.png"
         NavigationPane {
@@ -80,15 +79,15 @@ TabbedPane {
                 ]
             }
         }
-    } //End of second tab
-    Tab { //Second tab
+    } 
+    Tab { 
         title: qsTr("Memo") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/notepad_pencil-128.png"
         MemoPage {
             id: memoPage
         }
-    } //End of second tab
-    Tab { //Second tab
+    } 
+    Tab { 
         title: qsTr("Todo") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/clipboard-128.png"
         Page {
@@ -98,8 +97,8 @@ TabbedPane {
                 }
             }
         }
-    } //End of second tab
-    Tab { //Second tab
+    } 
+    Tab { 
         title: qsTr("Project") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/graph-128.png"
         Page {
