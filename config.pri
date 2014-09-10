@@ -37,13 +37,15 @@ simulator {
 config_pri_assets {
     OTHER_FILES += \
         $$quote($$BASEDIR/assets/DetailsPage.qml) \
+        $$quote($$BASEDIR/assets/HelpPage.qml) \
         $$quote($$BASEDIR/assets/InformationPage.qml) \
         $$quote($$BASEDIR/assets/ItemPage.qml) \
         $$quote($$BASEDIR/assets/LearningPage.qml) \
-        $$quote($$BASEDIR/assets/LoginSheet.qml) \
+        $$quote($$BASEDIR/assets/LoginPage.qml) \
         $$quote($$BASEDIR/assets/MemoDetailPage.qml) \
         $$quote($$BASEDIR/assets/MemoPage.qml) \
         $$quote($$BASEDIR/assets/PersonalPage.qml) \
+        $$quote($$BASEDIR/assets/SettingsPage.qml) \
         $$quote($$BASEDIR/assets/WordDetailPage.qml) \
         $$quote($$BASEDIR/assets/data.xml) \
         $$quote($$BASEDIR/assets/images/binoculars-128.png) \

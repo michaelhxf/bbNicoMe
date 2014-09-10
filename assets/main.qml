@@ -17,6 +17,20 @@
 import bb.cascades 1.2
 
 TabbedPane {
+    Menu.definition: MenuDefinition {
+        settingsAction: SettingsActionItem {
+            title: "Settings"
+            onTriggered: {
+                console.log("settings click");
+            }
+        }
+        helpAction: HelpActionItem {
+            title: "Help"
+            onTriggered: {
+                
+            }
+        }
+    }
     //showTabsOnActionBar: true
     Tab { //First tab
         // Localized text with the dynamic translation and locale updates support
@@ -25,6 +39,7 @@ TabbedPane {
         PersonalPage {
             id:personalPage
         }
+        
     } //End of first tab
     Tab { //Second tab
         title: qsTr("Learning") + Retranslate.onLocaleOrLanguageChanged
@@ -128,5 +143,4 @@ TabbedPane {
             }
         }
     } //End of second tab
-
 }

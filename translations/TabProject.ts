@@ -81,60 +81,60 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="23"/>
+        <location filename="../assets/main.qml" line="37"/>
         <source>Personal Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="30"/>
+        <location filename="../assets/main.qml" line="45"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="37"/>
+        <location filename="../assets/main.qml" line="52"/>
         <source>Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="70"/>
+        <location filename="../assets/main.qml" line="85"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="77"/>
-        <location filename="../assets/main.qml" line="82"/>
+        <location filename="../assets/main.qml" line="92"/>
+        <location filename="../assets/main.qml" line="97"/>
         <source>Todo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="88"/>
+        <location filename="../assets/main.qml" line="103"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="93"/>
+        <location filename="../assets/main.qml" line="108"/>
         <source>Proejct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="99"/>
-        <location filename="../assets/main.qml" line="104"/>
+        <location filename="../assets/main.qml" line="114"/>
+        <location filename="../assets/main.qml" line="119"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="110"/>
+        <location filename="../assets/main.qml" line="125"/>
         <source>SysInfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="115"/>
+        <location filename="../assets/main.qml" line="130"/>
         <source>System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="121"/>
-        <location filename="../assets/main.qml" line="126"/>
+        <location filename="../assets/main.qml" line="136"/>
+        <location filename="../assets/main.qml" line="141"/>
         <source>Management</source>
         <translation type="unfinished"></translation>
     </message>

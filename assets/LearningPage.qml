@@ -17,7 +17,7 @@ NavigationPane {
                         var contentpage = itemPageDefinition.createObject();
 
                         contentpage.itemPageTitle = chosenItem.name
-                        nav.push(contentpage);
+                        navigationPane.push(contentpage);
                     }
                 }
                 accessibility.name: "Listing"
@@ -60,7 +60,9 @@ NavigationPane {
                         verticalAlignment: VerticalAlignment.Center
                     }
                     TextField {
+                        id: searchTextField
                         verticalAlignment: VerticalAlignment.Center
+                        accessibility.name: "TODO: Add property content"
 
                     }
                     Label {

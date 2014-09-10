@@ -1,7 +1,8 @@
 1
-39
+42
 data.xml
 DetailsPage.qml
+HelpPage.qml
 images/binoculars-128.png
 images/camera-128.png
 images/card-128.png
@@ -31,11 +32,13 @@ images/search-128.png
 images/speed-128.png
 images/trophy-128.png
 images/wristwatch-128.png
+InformationPage.qml
 ItemPage.qml
 LearningPage.qml
-LoginSheet.qml
+LoginPage.qml
 main.qml
 MemoDetailPage.qml
 MemoPage.qml
 PersonalPage.qml
+SettingsPage.qml
 WordDetailPage.qml
