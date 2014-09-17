@@ -17,6 +17,11 @@
 import bb.cascades 1.2
 
 TabbedPane {
+    id: mainPage
+    property string userName
+    property string userId
+    property string secToken
+    
     Menu.definition: MenuDefinition {
         settingsAction: SettingsActionItem {
             title: "Settings"

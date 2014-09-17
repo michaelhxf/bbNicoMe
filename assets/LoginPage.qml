@@ -3,6 +3,29 @@ import bb.cascades 1.2
 Page {
     id: loginPage
 
+    function getToken() {
+        
+        var getString = "http://nico-michaelhxf.rhcloud.com/api/loguser/get_token/name=" + usrname.text + "&password=" + usrpasswd.text;
+        var request = new XMLHttpRequest();
+        
+        request.onreadystatechange = function() {
+
+            if (request.readyState === XMLHttpRequest.DONE) {
+                
+               // if (request.status === 200) {
+                    console.log("request:"+getString);
+                    console.log("response:"+request.responseText.toMap["data"].toMap["token"]);
+                    console.log("login:"+request.responseText);
+                   Application.setScene(testPage.createObject());
+                //}
+            }
+        }
+        
+        request.open("GET", getString, true); // only async supported 
+        request.send()
+    }
+    
+    
     titleBar: TitleBar {
         title: "Welcome to NicoMe"
         appearance: TitleBarAppearance.Branded
@@ -104,16 +127,23 @@ Page {
             ActionBar.placement: ActionBarPlacement.OnBar
 
             onTriggered: {
-                console.log("login");
-                Application.setScene(mainPage.createObject());
+                getToken();
             }
             imageSource: "asset:///images/login.png"
 
         }
     ]
 
-    attachedObjects: ComponentDefinition {
-        id: mainPage
-        source: "main.qml"
-    }
+    attachedObjects: [
+        ComponentDefinition {
+            id: mainPage
+            source: "main.qml"
+        },
+        
+        ComponentDefinition {
+            id: testPage
+            source: "testPage.qml"
+        }
+    ]
+
 }

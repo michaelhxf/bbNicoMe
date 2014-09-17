@@ -1,5 +1,5 @@
 1
-43
+44
 data.xml
 HelpPage.qml
 images/binoculars-128.png
@@ -17,8 +17,8 @@ images/graph-128.png
 images/hands-128.png
 images/id-128.png
 images/laboratory-128.png
-images/light_bulb-128.png
 images/lighthouse-128.png
+images/light_bulb-128.png
 images/link-128.png
 images/login.png
 images/medal-128.png
@@ -42,4 +42,5 @@ MemoDetailPage.qml
 MemoPage.qml
 PersonalPage.qml
 SettingsPage.qml
+testPage.qml
 WordDetailPage.qml

@@ -78,7 +78,8 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/trophy-128.png) \
         $$quote($$BASEDIR/assets/images/user.png) \
         $$quote($$BASEDIR/assets/images/wristwatch-128.png) \
-        $$quote($$BASEDIR/assets/main.qml)
+        $$quote($$BASEDIR/assets/main.qml) \
+        $$quote($$BASEDIR/assets/testPage.qml)
 }
 
 config_pri_source_group1 {
@@ -88,8 +89,6 @@ config_pri_source_group1 {
 
     HEADERS += $$quote($$BASEDIR/src/applicationui.hpp)
 }
-
-INCLUDEPATH += $$quote($$BASEDIR/src)
 
 CONFIG += precompile_header
 
