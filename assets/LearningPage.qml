@@ -1,87 +1,93 @@
 import bb.cascades 1.2
+import bb.data 1.0
 
 NavigationPane {
     id: navigationPane
 
     Page {
-        Container {
-            background: Color.White
-            ListView {
-                dataModel: XmlDataModel {
-                    source: "data.xml"
-                }
-                onTriggered: {
-
-                    if (indexPath.length > 1) {
-                        var chosenItem = dataModel.data(indexPath);
-                        var contentpage = wordDetail.createObject();
-
-                        contentpage.detailTitle = chosenItem.name
-                        navigationPane.push(contentpage);
-                    }
-                }
-                accessibility.name: "wordlist"
-            }
-        }
-
+        id: pgDetail
+        
         actions: [
             ActionItem {
-                title: qsTr("New Word")
-                ActionBar.placement: ActionBarPlacement.OnBar
-                imageSource: "asset:///images/laboratory-128.png"
-
-            },
-            ActionItem {
-                title: qsTr("Search")
-                ActionBar.placement: ActionBarPlacement.OnBar
-                imageSource: "asset:///images/search-128.png"
-
-            },
-            ActionItem {
-                title: qsTr("Recent")
-                ActionBar.placement: ActionBarPlacement.OnBar
-                imageSource: "asset:///images/film-128.png"
+                title: qsTr("Refresh")
+                onTriggered: {
+                    dataSource.load()
+                }
             }
         ]
-        titleBar: TitleBar {
-            title: "Learning"
-            appearance: TitleBarAppearance.Branded
-            scrollBehavior: TitleBarScrollBehavior.Sticky
-            kind: TitleBarKind.FreeForm
-            kindProperties: FreeFormTitleBarKindProperties {
-                Container {
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
-
-                    }
-                    verticalAlignment: VerticalAlignment.Center
-                    Label {
-                        text: " Search:"
-                        verticalAlignment: VerticalAlignment.Center
-                    }
-                    TextField {
-                        id: searchTextField
-                        verticalAlignment: VerticalAlignment.Center
-                        accessibility.name: "TODO: Add property content"
-
-                    }
-                    Label {
-                        text: " "
-                    }
+        paneProperties: NavigationPaneProperties {
+            backButton: ActionItem {
+                onTriggered: {
+                    navigationPane.pop()
                 }
-
             }
-
         }
-    }
-    attachedObjects: [
-        ComponentDefinition {
-            id: wordDetail
-            source: "WordDetailPage.qml"
+        Container {
+            ListView {
+                dataModel: dataModel
+                
+                listItemComponents: [
+                    ListItemComponent {
+                        type: "item"
+                        
+                        StandardListItem {
+                            title: convertDate(ListItemData.someDateField) // call a function
+                            description: ListItemData.someField
+                            imageSpaceReserved: false
+                            
+                            function convertDate(toBeConvertedDate) {
+                                console.debug("registration date: " + toBeConvertedDate);
+                                console.debug("type of registration date: " + typeof toBeConvertedDate);
+                                var workingDate = new Date();
+                                workingDate.setFullYear(toBeConvertedDate.substring(0,4));
+                                console.debug("year: " + toBeConvertedDate.substring(0,4));
+                                workingDate.setMonth(toBeConvertedDate.substring(5,7) - 1);
+                                console.debug("month: " + toBeConvertedDate.substring(5,7));
+                                workingDate.setDate(toBeConvertedDate.substring(8,10));
+                                console.debug("date: " + toBeConvertedDate.substring(8,10));
+                                
+                                workingDate.setHours(toBeConvertedDate.substring(11, 13));
+                                console.debug("hours: " + toBeConvertedDate.substring(11, 13));
+                                workingDate.setMinutes(toBeConvertedDate.substring(14,16));
+                                console.debug("minutes: " + toBeConvertedDate.substring(14,16));
+                                workingDate.setSeconds(toBeConvertedDate.substring(17,19));
+                                console.debug("seconds: " + toBeConvertedDate.substring(17,19));
+                                
+                                //var toBeReturnedDate = Qt.formatDateTime(workingDate, "yyyy/MM/dd HH:mm:ss");
+                                var toBeReturnedDate = Qt.formatDateTime(workingDate, "ddd dd MMM yyyy");
+                                
+                                console.debug("toBeReturnedDate: " + toBeReturnedDate);
+                                return toBeReturnedDate;
+                            }
+                        }
+                    
+                    }
+                ]
+                accessibility.name: "TODO: Add property content"
+            }
         }
-    ]
-
-    onPopTransitionEnded: {
-        page.destroy();
+        
+        attachedObjects: [
+            GroupDataModel {
+                id: dataModel
+                sortingKeys: ["someImportantFieldName"]
+                sortedAscending: false
+                grouping: ItemGrouping.None
+            },
+            DataSource {
+                id: dataSource
+                source: "http://some.url.that.returns.json"
+                type: DataSourceType.Json
+                
+                onDataLoaded: {
+                    dataModel.clear()
+                    dataModel.insertList(data)
+                }
+            }
+        ]
+        
+        onCreationCompleted: {
+            dataSource.load()
+        }
     }
 }

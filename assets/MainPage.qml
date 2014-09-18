@@ -17,17 +17,17 @@
 import bb.cascades 1.2
 
 TabbedPane {
+
     property string userName
     property string userId
     property string secToken
-    
-    function setUserToken(uid, token)
-    {
+
+    function setUserToken(uid, token) {
         userId = uid;
         secToken = token;
-        personalTab.title = userId;
+
     }
-    
+
     Menu.definition: MenuDefinition {
         settingsAction: SettingsActionItem {
             title: "Settings"
@@ -38,28 +38,28 @@ TabbedPane {
         helpAction: HelpActionItem {
             title: "Help"
             onTriggered: {
-                
+
             }
         }
     }
+
     //showTabsOnActionBar: true
-    Tab { 
-        id: personalTab
+    Tab {
         title: qsTr("Personal Page") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/id-128.png"
         PersonalPage {
-            id:personalPage
+            id: personalPage
         }
-        
-    } 
-    Tab { 
+
+    }
+    Tab {
         title: qsTr("Learning") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/laboratory-128.png"
         LearningPage {
             id: learningPage
         }
-    } 
-    Tab { 
+    }
+    Tab {
         title: qsTr("Attendance") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/wristwatch-128.png"
         NavigationPane {
@@ -91,15 +91,15 @@ TabbedPane {
                 ]
             }
         }
-    } 
-    Tab { 
+    }
+    Tab {
         title: qsTr("Memo") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/notepad_pencil-128.png"
         MemoPage {
             id: memoPage
         }
-    } 
-    Tab { 
+    }
+    Tab {
         title: qsTr("Todo") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/clipboard-128.png"
         Page {
@@ -109,8 +109,8 @@ TabbedPane {
                 }
             }
         }
-    } 
-    Tab { 
+    }
+    Tab {
         title: qsTr("Project") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/graph-128.png"
         Page {
@@ -154,8 +154,6 @@ TabbedPane {
             }
         }
     } //End of second tab
-    
-    onCreationCompleted: {
-        console.log("debug:main:"+secToken);
-    }
+
+       
 }

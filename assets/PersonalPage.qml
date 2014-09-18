@@ -6,6 +6,8 @@ NavigationPane {
     id: navigationPane
 
     Page {
+        
+        
         titleBar: TitleBar {
             title: "Personal Page"
             appearance: TitleBarAppearance.Branded
@@ -72,13 +74,12 @@ NavigationPane {
                 title: qsTr("New Word")
                 ActionBar.placement: ActionBarPlacement.OnBar
                 imageSource: "asset:///images/laboratory-128.png"
-
             },
             ActionItem {
                 title: qsTr("New Attendance")
                 ActionBar.placement: ActionBarPlacement.OnBar
                 imageSource: "asset:///images/wristwatch-128.png"
-
+                
             },
             ActionItem {
                 title: qsTr("New Memo")

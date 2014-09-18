@@ -22,60 +22,60 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../assets/MainPage.qml" line="48"/>
+        <location filename="../assets/MainPage.qml" line="47"/>
         <source>Personal Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="56"/>
+        <location filename="../assets/MainPage.qml" line="55"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="63"/>
+        <location filename="../assets/MainPage.qml" line="62"/>
         <source>Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="96"/>
+        <location filename="../assets/MainPage.qml" line="95"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="103"/>
-        <location filename="../assets/MainPage.qml" line="108"/>
+        <location filename="../assets/MainPage.qml" line="102"/>
+        <location filename="../assets/MainPage.qml" line="107"/>
         <source>Todo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="114"/>
+        <location filename="../assets/MainPage.qml" line="113"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="119"/>
+        <location filename="../assets/MainPage.qml" line="118"/>
         <source>Proejct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="125"/>
-        <location filename="../assets/MainPage.qml" line="130"/>
+        <location filename="../assets/MainPage.qml" line="124"/>
+        <location filename="../assets/MainPage.qml" line="129"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="136"/>
+        <location filename="../assets/MainPage.qml" line="135"/>
         <source>SysInfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="141"/>
+        <location filename="../assets/MainPage.qml" line="140"/>
         <source>System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="147"/>
-        <location filename="../assets/MainPage.qml" line="152"/>
+        <location filename="../assets/MainPage.qml" line="146"/>
+        <location filename="../assets/MainPage.qml" line="151"/>
         <source>Management</source>
         <translation type="unfinished"></translation>
     </message>
@@ -101,32 +101,32 @@
 <context>
     <name>PersonalPage</name>
     <message>
-        <location filename="../assets/PersonalPage.qml" line="72"/>
+        <location filename="../assets/PersonalPage.qml" line="74"/>
         <source>New Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PersonalPage.qml" line="78"/>
+        <location filename="../assets/PersonalPage.qml" line="83"/>
         <source>New Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PersonalPage.qml" line="84"/>
+        <location filename="../assets/PersonalPage.qml" line="89"/>
         <source>New Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PersonalPage.qml" line="89"/>
+        <location filename="../assets/PersonalPage.qml" line="94"/>
         <source>Search All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PersonalPage.qml" line="94"/>
+        <location filename="../assets/PersonalPage.qml" line="99"/>
         <source>Personal Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PersonalPage.qml" line="99"/>
+        <location filename="../assets/PersonalPage.qml" line="104"/>
         <source>Sign Out</source>
         <translation type="unfinished"></translation>
     </message>

@@ -4,10 +4,110 @@ BASEDIR = $$quote($$_PRO_FILE_PWD_)
 device {
     CONFIG(debug, debug|release) {
         profile {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            LIBS += -lpng14 \
+                -lbbcascadesdatamanager \
+                -lscreen \
+                -lpng16 \
+                -ljpeg \
+                -lQtGui \
+                -lQtSql \
+                -lwebkit \
+                -lglview \
+                -lGLESv1_CM \
+                -lssl \
+                -lbbsystem \
+                -lbbdata \
+                -lGLESv2 \
+                -lbbplatform \
+                -lEGL \
+                -lbbdevice \
+                -lQtXml \
+                -lQtOpenGL \
+                -lpng \
+                -lsqlite3 \
+                -lcsm \
+                -lsocket
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
         } else {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            LIBS += -lpng14 \
+                -lbbcascadesdatamanager \
+                -lscreen \
+                -lpng16 \
+                -ljpeg \
+                -lQtGui \
+                -lQtSql \
+                -lwebkit \
+                -lglview \
+                -lGLESv1_CM \
+                -lssl \
+                -lbbsystem \
+                -lbbdata \
+                -lGLESv2 \
+                -lbbplatform \
+                -lEGL \
+                -lbbdevice \
+                -lQtXml \
+                -lQtOpenGL \
+                -lpng \
+                -lsqlite3 \
+                -lcsm \
+                -lsocket
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
@@ -17,6 +117,56 @@ device {
 
     CONFIG(release, debug|release) {
         !profile {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            LIBS += -lpng14 \
+                -lbbcascadesdatamanager \
+                -lscreen \
+                -lpng16 \
+                -ljpeg \
+                -lQtGui \
+                -lQtSql \
+                -lwebkit \
+                -lglview \
+                -lGLESv1_CM \
+                -lssl \
+                -lbbsystem \
+                -lbbdata \
+                -lGLESv2 \
+                -lbbplatform \
+                -lEGL \
+                -lbbdevice \
+                -lQtXml \
+                -lQtOpenGL \
+                -lpng \
+                -lsqlite3 \
+                -lcsm \
+                -lsocket
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
@@ -27,6 +177,56 @@ device {
 simulator {
     CONFIG(debug, debug|release) {
         !profile {
+            INCLUDEPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            DEPENDPATH += $$quote(${QNX_TARGET}/usr/include/bb/device) \
+                $$quote(${QNX_TARGET}/usr/include/bb/platform) \
+                $$quote(${QNX_TARGET}/usr/include/bb/cascades/datamanager) \
+                $$quote(${QNX_TARGET}/usr/include/libpng16) \
+                $$quote(${QNX_TARGET}/usr/include/libpng14) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtSql) \
+                $$quote(${QNX_TARGET}/usr/include/openssl) \
+                $$quote(${QNX_TARGET}/usr/include/bb/data) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtOpenGL) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtGui) \
+                $$quote(${QNX_TARGET}/usr/include/qt4/QtXml) \
+                $$quote(${QNX_TARGET}/usr/include/bb/system)
+
+            LIBS += -lpng14 \
+                -lbbcascadesdatamanager \
+                -lscreen \
+                -lpng16 \
+                -ljpeg \
+                -lQtGui \
+                -lQtSql \
+                -lwebkit \
+                -lglview \
+                -lGLESv1_CM \
+                -lssl \
+                -lbbsystem \
+                -lbbdata \
+                -lGLESv2 \
+                -lbbplatform \
+                -lEGL \
+                -lbbdevice \
+                -lQtXml \
+                -lQtOpenGL \
+                -lpng \
+                -lsqlite3 \
+                -lcsm \
+                -lsocket
+
             CONFIG += \
                 config_pri_assets \
                 config_pri_source_group1
