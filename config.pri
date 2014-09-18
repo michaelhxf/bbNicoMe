@@ -41,6 +41,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/ItemPage.qml) \
         $$quote($$BASEDIR/assets/LearningPage.qml) \
         $$quote($$BASEDIR/assets/LoginPage.qml) \
+        $$quote($$BASEDIR/assets/MainPage.qml) \
         $$quote($$BASEDIR/assets/MemoDetailPage.qml) \
         $$quote($$BASEDIR/assets/MemoPage.qml) \
         $$quote($$BASEDIR/assets/PersonalPage.qml) \
@@ -78,7 +79,6 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/trophy-128.png) \
         $$quote($$BASEDIR/assets/images/user.png) \
         $$quote($$BASEDIR/assets/images/wristwatch-128.png) \
-        $$quote($$BASEDIR/assets/main.qml) \
         $$quote($$BASEDIR/assets/testPage.qml)
 }
 

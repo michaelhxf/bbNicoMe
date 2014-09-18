@@ -17,8 +17,8 @@ images/graph-128.png
 images/hands-128.png
 images/id-128.png
 images/laboratory-128.png
-images/lighthouse-128.png
 images/light_bulb-128.png
+images/lighthouse-128.png
 images/link-128.png
 images/login.png
 images/medal-128.png
@@ -37,7 +37,7 @@ InformationPage.qml
 ItemPage.qml
 LearningPage.qml
 LoginPage.qml
-main.qml
+MainPage.qml
 MemoDetailPage.qml
 MemoPage.qml
 PersonalPage.qml

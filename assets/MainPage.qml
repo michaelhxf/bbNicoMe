@@ -17,10 +17,16 @@
 import bb.cascades 1.2
 
 TabbedPane {
-    id: mainPage
     property string userName
     property string userId
     property string secToken
+    
+    function setUserToken(uid, token)
+    {
+        userId = uid;
+        secToken = token;
+        personalTab.title = userId;
+    }
     
     Menu.definition: MenuDefinition {
         settingsAction: SettingsActionItem {
@@ -38,6 +44,7 @@ TabbedPane {
     }
     //showTabsOnActionBar: true
     Tab { 
+        id: personalTab
         title: qsTr("Personal Page") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/id-128.png"
         PersonalPage {
@@ -147,4 +154,8 @@ TabbedPane {
             }
         }
     } //End of second tab
+    
+    onCreationCompleted: {
+        console.log("debug:main:"+secToken);
+    }
 }

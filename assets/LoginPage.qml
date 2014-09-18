@@ -1,30 +1,40 @@
 import bb.cascades 1.2
+import bb.system 1.2
 
 Page {
-    id: loginPage
-
-    function getToken() {
-        
-        var getString = "http://nico-michaelhxf.rhcloud.com/api/loguser/get_token/name=" + usrname.text + "&password=" + usrpasswd.text;
-        var request = new XMLHttpRequest();
-        
+    
+    function login() {
+        var request = new XMLHttpRequest()
         request.onreadystatechange = function() {
-
-            if (request.readyState === XMLHttpRequest.DONE) {
-                
-               // if (request.status === 200) {
-                    console.log("request:"+getString);
-                    console.log("response:"+request.responseText.toMap["data"].toMap["token"]);
-                    console.log("login:"+request.responseText);
-                   Application.setScene(testPage.createObject());
+            if (request.readyState == 4) {
+                var response = request.responseText
+                var jsontxt = JSON.parse(response)
+                //var addressComponents = response.results[0].address_components
+                //for (var i = 0; i < addressComponents.length; i ++) {
+                //    var option = optionControlDefinition.createObject();
+                //    option.text = addressComponents[i].long_name
+                //    dropDown.add(option)
                 //}
+                
+                console.log("debug:"+request.responseText);
+                var token = jsontxt.data.token;
+                var uid = jsontxt.data.uid;
+                
+                if(jsontxt.err_code == 0)
+                {
+                    //console.log("token:"+token);
+                   // console.log("uid:"+uid);
+                   // mainPage.setUserToken(uid, token);
+                   mainPage.setUserToken(uid, token);
+                    Application.setScene(mainPage);
+                }
             }
         }
         
-        request.open("GET", getString, true); // only async supported 
+        // I have used goole's web service url, you can replace with your url
+        request.open("GET", "https://nico-michaelhxf.rhcloud.com/api/loguser/get_token/name="+ usrname.text +"&password=" + usrpasswd.text, true)
         request.send()
     }
-    
     
     titleBar: TitleBar {
         title: "Welcome to NicoMe"
@@ -62,6 +72,7 @@ Page {
                 accessibility.name: "TODO: Add property content"
                 verticalAlignment: VerticalAlignment.Center
                 textFormat: TextFormat.Plain
+                text: "test"
 
             }
             Label {
@@ -84,6 +95,7 @@ Page {
             }
             TextField {
                 id: usrpasswd
+                text: "test"
                 inputMode: TextFieldInputMode.Password
                 input.masking: TextInputMasking.Masked
                 maximumLength: 16
@@ -127,7 +139,7 @@ Page {
             ActionBar.placement: ActionBarPlacement.OnBar
 
             onTriggered: {
-                getToken();
+                login();
             }
             imageSource: "asset:///images/login.png"
 
@@ -135,15 +147,11 @@ Page {
     ]
 
     attachedObjects: [
-        ComponentDefinition {
+        MainPage {
             id: mainPage
-            source: "main.qml"
-        },
-        
-        ComponentDefinition {
-            id: testPage
-            source: "testPage.qml"
         }
     ]
+        
+    
 
 }
