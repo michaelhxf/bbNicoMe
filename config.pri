@@ -242,8 +242,9 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/LearningPage.qml) \
         $$quote($$BASEDIR/assets/LoginPage.qml) \
         $$quote($$BASEDIR/assets/MainPage.qml) \
-        $$quote($$BASEDIR/assets/MemoDetailPage.qml) \
+        $$quote($$BASEDIR/assets/MemoDetail.qml) \
         $$quote($$BASEDIR/assets/MemoPage.qml) \
+        $$quote($$BASEDIR/assets/NewMemo.qml) \
         $$quote($$BASEDIR/assets/PersonalPage.qml) \
         $$quote($$BASEDIR/assets/SettingsPage.qml) \
         $$quote($$BASEDIR/assets/WordDetailPage.qml) \
@@ -278,8 +279,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/speed-128.png) \
         $$quote($$BASEDIR/assets/images/trophy-128.png) \
         $$quote($$BASEDIR/assets/images/user.png) \
-        $$quote($$BASEDIR/assets/images/wristwatch-128.png) \
-        $$quote($$BASEDIR/assets/testPage.qml)
+        $$quote($$BASEDIR/assets/images/wristwatch-128.png)
 }
 
 config_pri_source_group1 {

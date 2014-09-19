@@ -15,44 +15,268 @@
  */
 
 import bb.cascades 1.2
+import bb.data 1.0
 
 TabbedPane {
-
-    property string userName
+    id: tabPanel
     property string userId
     property string secToken
+    property string loginUrl
 
     function setUserToken(uid, token) {
         userId = uid;
         secToken = token;
+        tabPanel.activeTab = personalTab;
+        tabPanel.remove(maskTab);
 
+    }
+
+    ///////////////////////////////login function
+    //    function login() {
+    //        //disable it, will not touch again
+    //        loginButton.enabled = false
+    //
+    //        var request = new XMLHttpRequest()
+    //        request.onreadystatechange = function() {
+    //            if (request.readyState == 4) {
+    //                var response = request.responseText
+    //                var jsontxt = JSON.parse(response)
+    //
+    //                console.log("debug:" + request.responseText);
+    //                var token = jsontxt.data.token;
+    //                var uid = jsontxt.data.uid;
+    //
+    //                if (jsontxt.err_code == 0) {
+    //                    //console.log("token:"+token);
+    //                    //console.log("uid:"+uid);
+    //                    loginSheet.close();
+    //                    setUserToken(uid, token);
+    //                }
+    //            } else {
+    //                //make it happend
+    //                loginButton.enabled = true
+    //            }
+    //        }
+    //
+    //        request.open("GET", "http://nico-michaelhxf.rhcloud.com/api/loguser/get_token/name=" + usrname.text + "&password=" + usrpasswd.text, true)
+    //        request.send()
+    //    }
+
+    function login() {
+        tabPanel.loginUrl = "http://nico-michaelhxf.rhcloud.com/api/loguser/get_token/name=" + usrname.text + "&password=" + usrpasswd.text;
+        loginDataSource.source = tabPanel.loginUrl
+        loginDataSource.type = DataSourceType.Json
+        loginDataSource.load()
+    }
+
+    attachedObjects: [
+        DataSource {
+            id: loginDataSource
+            source: loginUrl
+            remote: true
+            type: DataSourceType.Json
+            
+            onDataLoaded: {
+                if (data.err_code == 0) {
+                    setUserToken(data.data.uid, data.data.token)
+                    console.log("debug:" + data.data.token);
+                    loginDataSource.destroy();
+                    loginSheet.close()
+                }
+            }
+
+        },
+        //login sheet
+        Sheet {
+            id: loginSheet
+            content: Page {
+                titleBar: TitleBar {
+                    title: "NicoMe"
+                    scrollBehavior: TitleBarScrollBehavior.NonSticky
+                    appearance: TitleBarAppearance.Branded
+
+                }
+
+                actions: [
+                    ActionItem {
+                        id: loginButton
+                        title: "Sign In"
+                        ActionBar.placement: ActionBarPlacement.OnBar
+                        onTriggered: {
+                            login();
+                        }
+
+                    }
+                ]
+
+                Container {
+                    layoutProperties: FlowListLayoutProperties {
+
+                    }
+                    Label {
+                        text: " "
+                    }
+                    Label {
+                        text: " "
+                    }
+
+                    Container {
+                        verticalAlignment: VerticalAlignment.Center
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+
+                        }
+                        Label {
+                            text: "  User Name:"
+                            verticalAlignment: VerticalAlignment.Center
+                        }
+                        TextField {
+                            id: usrname
+                            input.masking: TextInputMasking.Masked
+                            maximumLength: 16
+                            accessibility.name: "TODO: Add property content"
+                            verticalAlignment: VerticalAlignment.Center
+                            textFormat: TextFormat.Plain
+                            text: "test"
+
+                        }
+                        Label {
+                            text: " "
+                        }
+                    }
+                    Divider {
+                        accessibility.name: "TODO: Add property content"
+
+                    }
+                    Container {
+                        verticalAlignment: VerticalAlignment.Center
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+
+                        }
+                        Label {
+                            text: "     Password:"
+                            verticalAlignment: VerticalAlignment.Center
+                        }
+                        TextField {
+                            id: usrpasswd
+                            text: "test"
+                            inputMode: TextFieldInputMode.Password
+                            input.masking: TextInputMasking.Masked
+                            maximumLength: 16
+                            accessibility.name: "TODO: Add property content"
+                            verticalAlignment: VerticalAlignment.Center
+                            textFormat: TextFormat.Plain
+
+                        }
+                        Label {
+                            text: " "
+                        }
+
+                    }
+                    Label {
+                        text: " "
+                    }
+                    Container {
+                        verticalAlignment: VerticalAlignment.Center
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+
+                        }
+                        horizontalAlignment: HorizontalAlignment.Right
+                        Label {
+                            text: qsTr("Auto")
+                            verticalAlignment: VerticalAlignment.Center
+                        }
+                        ToggleButton {
+                            accessibility.name: "TODO: Add property content"
+                            checked: true
+                            verticalAlignment: VerticalAlignment.Center
+                            horizontalAlignment: HorizontalAlignment.Right
+
+                        }
+                    }
+                }
+            }
+        },
+
+        //////////////////////////help sheet
+        Sheet {
+            id: helpSheet
+            content: Page {
+                titleBar: TitleBar {
+                    title: "Help"
+                }
+
+                Container {
+                    Button {
+                        text: "close"
+                        onClicked: {
+                            helpSheet.close();
+                        }
+                    }
+                }
+            }
+        },
+
+        /////////////////////////settings
+        Sheet {
+            id: settingSheet
+            content: Page {
+                titleBar: TitleBar {
+                    title: "Setting"
+                }
+
+                Container {
+                    Button {
+                        text: "close"
+                        onClicked: {
+                            settingSheet.close();
+                        }
+                    }
+                }
+            }
+        }
+    ]
+
+    onCreationCompleted: {
+        console.log("============show login");
+        loginSheet.open();
     }
 
     Menu.definition: MenuDefinition {
         settingsAction: SettingsActionItem {
             title: "Settings"
             onTriggered: {
+                settingSheet.open();
                 console.log("settings click");
             }
         }
         helpAction: HelpActionItem {
             title: "Help"
             onTriggered: {
-
+                helpSheet.open();
             }
         }
     }
 
+    //////////////////////////////////tabs
     //showTabsOnActionBar: true
     Tab {
+        id: maskTab
+    }
+    Tab {
+        id: personalTab
         title: qsTr("Personal Page") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/id-128.png"
         PersonalPage {
             id: personalPage
+
         }
 
     }
     Tab {
+        id: learningTab
         title: qsTr("Learning") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/laboratory-128.png"
         LearningPage {
@@ -93,7 +317,8 @@ TabbedPane {
         }
     }
     Tab {
-        title: qsTr("Memo") + Retranslate.onLocaleOrLanguageChanged
+        id: memoTab
+        title: qsTr("Memo")
         imageSource: "asset:///images/notepad_pencil-128.png"
         MemoPage {
             id: memoPage
@@ -155,5 +380,14 @@ TabbedPane {
         }
     } //End of second tab
 
-       
+    onActivePaneChanged: {
+        if (tabPanel.activeTab == learningTab) {
+            console.log("##change to learning tab:" + tabPanel.secToken)
+            learningPage.loadData(tabPanel.userId, tabPanel.secToken);
+        } else if (tabPanel.activeTab == memoTab) {
+            console.log("##change to memo tab:" + tabPanel.secToken)
+            memoPage.loadData(tabPanel.userId, tabPanel.secToken);
+        }
+    }
+
 }

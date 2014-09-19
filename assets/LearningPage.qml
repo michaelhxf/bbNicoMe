@@ -2,7 +2,10 @@ import bb.cascades 1.2
 import bb.data 1.0
 
 NavigationPane {
-    id: navigationPane
+    id: navPanel
+
+    property string userId;
+    property string secToken;
 
     Page {
         id: pgDetail
@@ -18,7 +21,7 @@ NavigationPane {
         paneProperties: NavigationPaneProperties {
             backButton: ActionItem {
                 onTriggered: {
-                    navigationPane.pop()
+                    navPanel.pop()
                 }
             }
         }
@@ -76,7 +79,7 @@ NavigationPane {
             },
             DataSource {
                 id: dataSource
-                source: "http://some.url.that.returns.json"
+                source: "http://nico-michaelhxf.rhcloud.com/api/learning/list/token="+secToken
                 type: DataSourceType.Json
                 
                 onDataLoaded: {
@@ -87,7 +90,20 @@ NavigationPane {
         ]
         
         onCreationCompleted: {
-            dataSource.load()
+            //dataSource.load()
         }
+        
+        titleBar: TitleBar {
+        title: "Learning"
+        }
+    }
+    
+    function loadData(uid, token){
+        console.log("loading data");
+        
+        userId=uid;
+        secToken = token;
+        
+        dataSource.load();
     }
 }

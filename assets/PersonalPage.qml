@@ -3,7 +3,7 @@ import bb.system 1.2
 import bb.platform 1.2
 
 NavigationPane {
-    id: navigationPane
+    id: navPanel
 
     Page {
         
@@ -85,6 +85,9 @@ NavigationPane {
                 title: qsTr("New Memo")
                 ActionBar.placement: ActionBarPlacement.OnBar
                 imageSource: "asset:///images/notepad_pencil-128.png"
+                onTriggered: {
+                    navPanel.push(newMemo);
+                }
             },
             ActionItem {
                 title: qsTr("Search All")
@@ -114,6 +117,9 @@ NavigationPane {
             id: notification
             title: "title"
             body: "body"
+        },
+        NewMemo {
+            id: newMemo
         }
     ]
 

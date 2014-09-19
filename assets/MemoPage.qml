@@ -1,62 +1,133 @@
 import bb.cascades 1.2
+import bb.data 1.0
 
 NavigationPane {
-    id: navigationPane
-    
-    Page {
-        Container {
-            background: Color.White
-            ListView {
-                dataModel: XmlDataModel {
-                    source: "data.xml"
-                }
-                onTriggered: {
-                    
-                    if (indexPath.length > 1) {
-                        var chosenItem = dataModel.data(indexPath);
-                        var contentpage = memoDetial.createObject();
-                        
-                        contentpage.detailTitle = chosenItem.name
-                        navigationPane.push(contentpage);
-                    }
-                }
-                accessibility.name: "memolist"
+    id: memoNavPanel
+
+    property string userId
+    property string secToken
+    property string memoListUrl
+
+    paneProperties: NavigationPaneProperties {
+        backButton: ActionItem {
+            onTriggered: {
+                memoNavPanel.pop()
             }
         }
-        
+    }
+
+    Page {
+
         actions: [
             ActionItem {
+                title: qsTr("Refresh")
+                onTriggered: {
+                    dataSource.load()
+                }
+            },
+            ActionItem {
                 title: qsTr("New Memo")
+                onTriggered: {
+                }
                 ActionBar.placement: ActionBarPlacement.OnBar
-                imageSource: "asset:///images/laboratory-128.png"
-            
             },
             ActionItem {
                 title: qsTr("Search")
                 ActionBar.placement: ActionBarPlacement.OnBar
-                imageSource: "asset:///images/search-128.png"
-            
+
             },
             ActionItem {
                 title: qsTr("Recent")
+                onTriggered: {
+                }
                 ActionBar.placement: ActionBarPlacement.OnBar
-                imageSource: "asset:///images/flask-128.png"
             }
         ]
+
+        Container {
+            ListView {
+                dataModel: dataModel
+
+                listItemComponents: [
+                    ListItemComponent {
+                        type: "item"
+
+                        StandardListItem {
+                            title: ListItemData.title
+                            description: ListItemData.text
+                            imageSpaceReserved: false
+                            
+                        }
+
+                    }
+                ]
+                accessibility.name: "TODO: Add property content"
+            }
+        }
         titleBar: TitleBar {
             title: "Memo"
-            appearance: TitleBarAppearance.Branded
-        
+            kind: TitleBarKind.FreeForm
+            kindProperties: FreeFormTitleBarKindProperties {
+                Container {
+                    verticalAlignment: VerticalAlignment.Center
+                    layoutProperties: StackLayoutProperties {
+
+                    }
+                    layout: StackLayout {
+                        orientation: LayoutOrientation.LeftToRight
+
+                    }
+                    Label {
+                        text: "Memo"
+                        textStyle.fontSize: FontSize.XLarge
+                        verticalAlignment: VerticalAlignment.Center
+                        textStyle.color: Color.White
+                    }
+                    TextField {
+                        verticalAlignment: VerticalAlignment.Center
+                        text: ""
+                        hintText: "Search Keyword"
+
+                    }
+                }
+            }
         }
+
     }
+
     attachedObjects: [
-        ComponentDefinition {
-            id: memoDetail
-            source: "MemoDetailPage.qml"
+        GroupDataModel {
+            id: dataModel
+            sortingKeys: [ "mtime", "ctime" ]
+            sortedAscending: false
+            grouping: ItemGrouping.None
+            
+        },
+        DataSource {
+            id: dataSource
+            source: memoNavPanel.memoListUrl
+            type: DataSourceType.Json
+            remote: true
+
+            onDataLoaded: {
+                dataModel.clear()
+                //dataModel.insertList(data)
+                console.log(""+data.err_code+":"+data.err_msg);
+            }
+            onError: {
+                console.log("JSON Load Error: [" + errorType + "]: " + errorMessage);
+            }
         }
     ]
-    
-    onPopTransitionEnded: {
-        page.destroy();
+
+    function loadData(uid, token) {
+
+        memoNavPanel.userId = uid;
+        memoNavPanel.secToken = token;
+        memoNavPanel.memoListUrl= "http://nico-michaelhxf.rhcloud.com/api/memo/list/token=" + memoNavPanel.secToken.toString()
+        dataSource.source = memoNavPanel.memoListUrl
+        console.log("loading data: " + memoNavPanel.memoListUrl);
+        
+        dataSource.load();
     }
 }
