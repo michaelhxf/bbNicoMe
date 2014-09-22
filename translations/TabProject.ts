@@ -12,65 +12,65 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../assets/MainPage.qml" line="188"/>
+        <location filename="../assets/MainPage.qml" line="191"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="270"/>
+        <location filename="../assets/MainPage.qml" line="273"/>
         <source>Personal Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="280"/>
+        <location filename="../assets/MainPage.qml" line="283"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="287"/>
+        <location filename="../assets/MainPage.qml" line="290"/>
         <source>Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="321"/>
+        <location filename="../assets/MainPage.qml" line="324"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="328"/>
-        <location filename="../assets/MainPage.qml" line="333"/>
+        <location filename="../assets/MainPage.qml" line="331"/>
+        <location filename="../assets/MainPage.qml" line="336"/>
         <source>Todo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="339"/>
+        <location filename="../assets/MainPage.qml" line="342"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="344"/>
+        <location filename="../assets/MainPage.qml" line="347"/>
         <source>Proejct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="350"/>
-        <location filename="../assets/MainPage.qml" line="355"/>
+        <location filename="../assets/MainPage.qml" line="353"/>
+        <location filename="../assets/MainPage.qml" line="358"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="361"/>
+        <location filename="../assets/MainPage.qml" line="364"/>
         <source>SysInfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="366"/>
+        <location filename="../assets/MainPage.qml" line="369"/>
         <source>System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/MainPage.qml" line="372"/>
-        <location filename="../assets/MainPage.qml" line="377"/>
+        <location filename="../assets/MainPage.qml" line="375"/>
+        <location filename="../assets/MainPage.qml" line="380"/>
         <source>Management</source>
         <translation type="unfinished"></translation>
     </message>

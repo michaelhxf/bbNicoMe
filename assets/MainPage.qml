@@ -20,12 +20,11 @@ import bb.data 1.0
 TabbedPane {
     id: tabPanel
     property string userId
-    property string secToken
-    property string loginUrl
 
-    function setUserToken(uid, token) {
-        userId = uid;
-        secToken = token;
+    function closeLogin() {
+        console.log("data:"+loginDataModel.size());
+        //userId = uid;
+        loginSheet.close();
         tabPanel.activeTab = personalTab;
         tabPanel.remove(maskTab);
 
@@ -62,30 +61,34 @@ TabbedPane {
     //        request.send()
     //    }
 
-    function login() {
-        tabPanel.loginUrl = "http://nico-michaelhxf.rhcloud.com/api/loguser/get_token/name=" + usrname.text + "&password=" + usrpasswd.text;
-        loginDataSource.source = tabPanel.loginUrl
-        loginDataSource.type = DataSourceType.Json
+    function loginAction() {
         loginDataSource.load()
     }
 
     attachedObjects: [
         DataSource {
             id: loginDataSource
-            source: loginUrl
-            remote: true
-            type: DataSourceType.Json
+            source: "asset:///data/nicome.db"
+            query: "select id from loguser where name='"+usrname.text+"' and password='"+usrpasswd.text+"'";
+            remote: false
+            type: DataSourceType.Sql
             
-            onDataLoaded: {
-                if (data.err_code == 0) {
-                    setUserToken(data.data.uid, data.data.token)
-                    console.log("debug:" + data.data.token);
-                    loginDataSource.destroy();
-                    loginSheet.close()
+            onDataLoaded: {            
+                if (data.length > 0) {
+                    loginDataModel.clear();
+                    loginDataModel.insertList(data);
+                    closeLogin()
                 }
             }
 
         },
+        GroupDataModel {
+            id: loginDataModel
+            sortingKeys: ["id"]
+            sortedAscending: false
+            grouping: ItemGrouping.None
+        },
+        
         //login sheet
         Sheet {
             id: loginSheet
@@ -103,7 +106,7 @@ TabbedPane {
                         title: "Sign In"
                         ActionBar.placement: ActionBarPlacement.OnBar
                         onTriggered: {
-                            login();
+                            loginAction();
                         }
 
                     }

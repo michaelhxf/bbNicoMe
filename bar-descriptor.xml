@@ -69,9 +69,6 @@
 
     <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
     <name>NicoMe</name>
-    <splashScreens>
-       <image>splash.png</image>
-    </splashScreens>
     <icon>
        <image>icon.png</image>
     </icon>

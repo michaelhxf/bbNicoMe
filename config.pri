@@ -248,6 +248,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/PersonalPage.qml) \
         $$quote($$BASEDIR/assets/SettingsPage.qml) \
         $$quote($$BASEDIR/assets/WordDetailPage.qml) \
+        $$quote($$BASEDIR/assets/data/nicome.db) \
         $$quote($$BASEDIR/assets/data.xml) \
         $$quote($$BASEDIR/assets/images/binoculars-128.png) \
         $$quote($$BASEDIR/assets/images/camera-128.png) \
@@ -304,6 +305,9 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../assets/*.qml) \
         $$quote($$BASEDIR/../assets/*.js) \
         $$quote($$BASEDIR/../assets/*.qs) \
+        $$quote($$BASEDIR/../assets/data/*.qml) \
+        $$quote($$BASEDIR/../assets/data/*.js) \
+        $$quote($$BASEDIR/../assets/data/*.qs) \
         $$quote($$BASEDIR/../assets/images/*.qml) \
         $$quote($$BASEDIR/../assets/images/*.js) \
         $$quote($$BASEDIR/../assets/images/*.qs)
