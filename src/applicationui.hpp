@@ -40,7 +40,6 @@ class ApplicationUI : public QObject
 public:
     ApplicationUI();
     virtual ~ApplicationUI() {}
-
 private slots:
     void onSystemLanguageChanged();
 private:

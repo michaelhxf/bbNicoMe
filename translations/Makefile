@@ -1,4 +1,4 @@
-QMAKE_TARGET  = TabProject
+QMAKE_TARGET  = NicomeBB
 LUPDATE       = $(QNX_HOST)/usr/bin/lupdate
 LRELEASE      = $(QNX_HOST)/usr/bin/lrelease
 

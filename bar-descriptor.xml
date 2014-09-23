@@ -26,27 +26,28 @@
 
     <!-- A universally unique application identifier. Must be unique across all BlackBerry 10 applications.
          Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-    <id>com.nicolashan.NicoMe</id>
+    <id>com.example.NicomeBB</id>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7-g/TabProject" entry="true" type="Qnx/Elf">TabProject</asset>
+       <asset path="arm/o.le-v7-g/NicomeBB" entry="true" type="Qnx/Elf">NicomeBB</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7/TabProject.so" entry="true" type="Qnx/Elf">TabProject.so</asset>
+       <asset path="arm/o.le-v7/NicomeBB.so" entry="true" type="Qnx/Elf">NicomeBB.so</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm-p/o.le-v7-g/TabProject" entry="true" type="Qnx/Elf">TabProject</asset>
+       <asset path="arm-p/o.le-v7-g/NicomeBB" entry="true" type="Qnx/Elf">NicomeBB</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="x86/o-g/TabProject" entry="true" type="Qnx/Elf">TabProject</asset>
+       <asset path="x86/o-g/NicomeBB" entry="true" type="Qnx/Elf">NicomeBB</asset>
     </configuration>
 
     <!-- The name that is displayed in the BlackBerry 10 application installer.
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
+    <name>Nicome for BB</name>
 
     <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade.
          Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
@@ -62,28 +63,28 @@
 
     <!-- Description, displayed in the BlackBerry 10 application installer.
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
-    <description>Nicolas Han software</description>
+    <description>The Nicome for Blackberry application</description>
 
     <!-- Copyright information. Optional. -->
     <!-- <copyright></copyright> -->
 
     <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
-    <name>NicoMe</name>
-    <icon>
-       <image>icon.png</image>
-    </icon>
     <authorId>gYAAgEyiw4KoLwjelV7hHTmeoNs</authorId>
-    <author>Nicolas Han</author>
+    <author>michaelhxf@gmail.com</author>
 
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
     <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
 
     <initialWindow>
-        <autoOrients>true</autoOrients>
+        <autoOrients>false</autoOrients>
+        <aspectRatio>portrait</aspectRatio>
         <systemChrome>none</systemChrome>
     </initialWindow>
 
     <!--  The icon for the application, which should be 114x114. -->
+    <icon>
+        <image>icon.png</image>
+    </icon>
 
     <asset path="icon.png">icon.png</asset>
     <asset path="assets">assets</asset>
@@ -92,14 +93,9 @@
     <asset path="translations" dest="qm">
         <include name="*.qm"/>
     </asset>
-    <asset path="splash.png">splash.png</asset>
 
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>
-    <permission>access_shared</permission>
-    <permission system="true">_sys_use_consumer_push</permission>
-    <permission>post_notification</permission>
-    <permission>access_internet</permission>
     <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
     <env var="CASCADES_THEME" value="bright"/>
 
