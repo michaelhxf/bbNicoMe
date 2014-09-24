@@ -57,7 +57,7 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source: "asset:///nicome.s3db"
-                    query: "UPDATE memo  SET subject = '"+ detailSubject +"', content = '"+ detailContent +"', memotypeid = "+ detailType  +" WHERE id ="+ memoId
+                    query: "UPDATE memo  SET subject = '"+ detailSubject +"', content = '"+ detailContent +"', memotypeid = "+ detailType + ", mtime="+ Date.now() +" WHERE id ="+ memoId
                 }
             ]
             
@@ -65,6 +65,7 @@ Page {
                 navigate.needRefresh=true
                 updateSource.load();
             }
+            imageSource: "asset:///images/box.png"
         },
         ActionItem {
             id: deleteAction
@@ -97,6 +98,7 @@ Page {
             onTriggered: {
                 myQmlDialog.show();
             }
+            imageSource: "asset:///images/error.png"
         }
     ]
 
@@ -204,7 +206,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Tag")
+                    text: qsTr("Tags")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right

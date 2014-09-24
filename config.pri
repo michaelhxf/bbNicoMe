@@ -36,11 +36,22 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
+        $$quote($$BASEDIR/assets/LearningAdd.qml) \
         $$quote($$BASEDIR/assets/LearningDetail.qml) \
         $$quote($$BASEDIR/assets/LearningList.qml) \
         $$quote($$BASEDIR/assets/MemoAdd.qml) \
         $$quote($$BASEDIR/assets/MemoDetail.qml) \
         $$quote($$BASEDIR/assets/MemoList.qml) \
+        $$quote($$BASEDIR/assets/images/Language_Setting.png) \
+        $$quote($$BASEDIR/assets/images/Note_Book.png) \
+        $$quote($$BASEDIR/assets/images/add.png) \
+        $$quote($$BASEDIR/assets/images/book.png) \
+        $$quote($$BASEDIR/assets/images/box.png) \
+        $$quote($$BASEDIR/assets/images/error.png) \
+        $$quote($$BASEDIR/assets/images/language.png) \
+        $$quote($$BASEDIR/assets/images/marker.png) \
+        $$quote($$BASEDIR/assets/images/refresh.png) \
+        $$quote($$BASEDIR/assets/images/star.png) \
         $$quote($$BASEDIR/assets/main.qml) \
         $$quote($$BASEDIR/assets/nicome.s3db)
 }
@@ -52,6 +63,8 @@ config_pri_source_group1 {
 
     HEADERS += $$quote($$BASEDIR/src/applicationui.hpp)
 }
+
+INCLUDEPATH += $$quote($$BASEDIR/src)
 
 CONFIG += precompile_header
 
@@ -66,7 +79,10 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../src/*.cxx) \
         $$quote($$BASEDIR/../assets/*.qml) \
         $$quote($$BASEDIR/../assets/*.js) \
-        $$quote($$BASEDIR/../assets/*.qs)
+        $$quote($$BASEDIR/../assets/*.qs) \
+        $$quote($$BASEDIR/../assets/images/*.qml) \
+        $$quote($$BASEDIR/../assets/images/*.js) \
+        $$quote($$BASEDIR/../assets/images/*.qs)
 
     HEADERS += \
         $$quote($$BASEDIR/../src/*.h) \

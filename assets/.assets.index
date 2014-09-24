@@ -1,5 +1,16 @@
 1
-7
+18
+images/add.png
+images/book.png
+images/box.png
+images/error.png
+images/language.png
+images/Language_Setting.png
+images/marker.png
+images/Note_Book.png
+images/refresh.png
+images/star.png
+LearningAdd.qml
 LearningDetail.qml
 LearningList.qml
 main.qml

@@ -5,6 +5,7 @@ TabbedPane {
     tabs: Tab {
         id: learningTab
         title: qsTr("Learning")
+        imageSource: "asset:///images/language.png"
         LearningList {
             
         }
@@ -16,6 +17,7 @@ TabbedPane {
         content: MemoList {
 
         }
+        imageSource: "asset:///images/book.png"
 
     }
 

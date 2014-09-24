@@ -112,6 +112,17 @@ NavigationPane {
                     addPage.navigate = naviPanel
                     naviPanel.push(addPage)
                 }
+                imageSource: "asset:///images/add.png"
+                shortcuts: [
+                    Shortcut {
+                        key: "a"
+                        onTriggered: {
+                            var addPage = memoAdd.createObject()
+                            addPage.navigate = naviPanel
+                            naviPanel.push(addPage)
+                        }
+                    }
+                ]
             },
             ActionItem {
                 id: refreshAction
@@ -121,6 +132,16 @@ NavigationPane {
                 onTriggered: {
                     memoDataSource.load()
                 }
+                imageSource: "asset:///images/refresh.png"
+                
+                shortcuts: [
+                    Shortcut {
+                        key: "r"
+                        onTriggered: {
+                            memoDataSource.load()
+                        }
+                    }
+                ]
             }
         ]
 

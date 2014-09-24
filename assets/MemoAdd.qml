@@ -32,7 +32,7 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source: "asset:///nicome.s3db"
-                    query: "insert into memo (subject, content, memotypeid, taglist) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "')"
+                    query: "insert into memo (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , "+ Date.now() +")"
 
                     onDataLoaded: {
                         alertToast.body = "Memo created"
@@ -50,6 +50,7 @@ Page {
             onTriggered: {
                 insertSource.load();
             }
+            imageSource: "asset:///images/box.png"
         }
     ]
 
