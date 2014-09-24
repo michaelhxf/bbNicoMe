@@ -12,37 +12,12 @@ Page {
     property string detailMTime
     property string detailTagList
     property int detailType
-    property int memoId
     property NavigationPane navigate
-
-    onDetailContentChanged: {
-        contentTA.text = detailContent
-    }
-
-    onDetailSubjectChanged: {
-        subjectTA.text = detailSubject
-    }
-
-    onDetailCTimeChanged: {
-        ctimeLA.text = detailCTime
-    }
-
-    onDetailMTimeChanged: {
-        mtimeLA.text = detailMTime
-    }
-
-    onDetailTypeChanged: {
-        typeSource.load()
-    }
-    
-    onDetailTagListChanged: {
-        taglistTA.text = detailTagList
-    }
 
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("Memo Detail")
+        title: qsTr("Memo Add")
     }
 
     actions: [
@@ -50,22 +25,37 @@ Page {
             id: saveAction
             title: qsTr("Save")
             ActionBar.placement: ActionBarPlacement.OnBar
-            
+
             attachedObjects: [
                 DataSource {
-                    id: updateSource
+                    id: insertSource
                     type: DataSourceType.Sql
                     remote: false
                     source: "asset:///nicome.s3db"
-                    query: "UPDATE memo  SET subject = '"+ detailSubject +"', content = '"+ detailContent +"', memotypeid = "+ detailType  +" WHERE id ="+ memoId
+                    query: "insert into memo (subject, content, memotypeid, taglist) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "')"
+
+                    onDataLoaded: {
+                        alertToast.body = "Memo created"
+                        alertToast.show()
+                        navigate.needRefresh=true
+                        navigate.pop()
+                    }
+                },
+                SystemToast {
+                    id: alertToast
+                    button.enabled: false
                 }
             ]
-            
+
             onTriggered: {
-                updateSource.load();
+                insertSource.load();
             }
         }
     ]
+
+    onCreationCompleted: {
+        typeSource.load()
+    }
 
     ScrollView {
         scrollViewProperties.scrollMode: ScrollMode.Vertical
@@ -128,12 +118,12 @@ Page {
 
                 DropDown {
                     id: typeDD
-                    
+
                     attachedObjects: [
                         ComponentDefinition {
                             id: dropdownOption
                             Option {
-                                
+
                             }
                         },
                         DataSource {
@@ -149,17 +139,17 @@ Page {
                                     option.text = data[i].title
                                     option.value = data[i].id
                                     typeDD.add(option)
-                                    //console.log("dd:" + detailType + " id:" + data[i].id)
-                                    if (data[i].id == detailType) {
-                                        typeDD.selectedOption = option
-                                    }
+                                }
+
+                                if (typeDD.count() > 0) {
+                                    typeDD.selectedIndex = 0;
                                 }
                             }
                         }
                     ]
 
                     onSelectedOptionChanged: {
-                        detailType= selectedOption.value
+                        detailType = selectedOption.value
                     }
                 }
 
@@ -178,6 +168,9 @@ Page {
                 }
                 TextArea {
                     id: taglistTA
+                    onTextChanged: {
+                        detailTagList = text
+                    }
                 }
 
             } //line end

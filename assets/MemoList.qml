@@ -20,6 +20,7 @@ import bb.data 1.0
 //memo list
 NavigationPane {
     id: naviPanel
+    property bool needRefresh
 
     Page {
 
@@ -75,11 +76,24 @@ NavigationPane {
                 }
             },
 
+            DataSource {
+                id: searchDataSource
+                type: DataSourceType.Sql
+                remote: false
+                source: "asset:///nicome.s3db"
+                query: "SELECT * FROM memo WHERE subject LIKE '%" + searchBar.text + "%' OR content LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
+
+                onDataLoaded: {
+                    memoDataModel.clear()
+                    memoDataModel.insertList(data)
+                }
+            },
+
             ComponentDefinition {
                 id: memoDetail
                 source: "MemoDetail.qml"
             },
-            
+
             ComponentDefinition {
                 id: memoAdd
                 source: "MemoAdd.qml"
@@ -90,12 +104,22 @@ NavigationPane {
         actions: [
             ActionItem {
                 id: addMemoAction
-                title: qsTr("New Memo");
-                ActionBar.placement:ActionBarPlacement.OnBar
-                
+                title: qsTr("New Memo")
+                ActionBar.placement: ActionBarPlacement.OnBar
+
                 onTriggered: {
                     var addPage = memoAdd.createObject()
+                    addPage.navigate = naviPanel
                     naviPanel.push(addPage)
+                }
+            },
+            ActionItem {
+                id: refreshAction
+                title: qsTr("Refresh")
+                ActionBar.placement: ActionBarPlacement.InOverflow
+
+                onTriggered: {
+                    memoDataSource.load()
                 }
             }
         ]
@@ -110,29 +134,46 @@ NavigationPane {
                     }
 
                     Label {
-                        text: qsTr("  Memo")
+                        text: qsTr(" Memo")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center
                         textStyle.fontSize: FontSize.Large
 
                     }
+                    
                     TextField {
+                        id: searchBar
                         verticalAlignment: VerticalAlignment.Center
                         hintText: qsTr("Search keyword")
-
+                        
+                        onTextChanged: {
+                            if (text.length == 0) {
+                                memoDataSource.load()
+                            } else {
+                                searchDataSource.load()
+                            }
+                        }
+                        
+                        textFormat: TextFormat.Plain
+                        inputMode: TextFieldInputMode.Text
+                        maximumLength: 36
                     }
                 }
             }
             scrollBehavior: TitleBarScrollBehavior.Sticky
+            
         }
     }
 
     onCreationCompleted: {
         memoDataSource.load()
     }
-    
+
     onPopTransitionEnded: {
-        memoDataSource.load()
+        if (needRefresh) {
+            needRefresh=false
+            memoDataSource.load()
+        }
     }
 }

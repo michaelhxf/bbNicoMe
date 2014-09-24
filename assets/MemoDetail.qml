@@ -62,6 +62,7 @@ Page {
             ]
             
             onTriggered: {
+                navigate.needRefresh=true
                 updateSource.load();
             }
         },
@@ -87,6 +88,7 @@ Page {
                     source: "asset:///nicome.s3db"
                     query: "DELETE FROM memo  WHERE id ="+ memoId
                     onDataLoaded: {
+                        navigate.needRefresh=true 
                         navigate.pop()
                     }
                 }
