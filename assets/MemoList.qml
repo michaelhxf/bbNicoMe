@@ -25,6 +25,7 @@ NavigationPane {
     Page {
 
         ListView {
+            id: listview
             dataModel: memoDataModel
 
             listItemComponents: ListItemComponent {
@@ -34,7 +35,7 @@ NavigationPane {
                     description: ListItemData.content
                 }
             }
-
+            
             onTriggered: {
                 //if (indexPath.length > 1) {
                 var chosenItem = dataModel.data(indexPath);
@@ -52,6 +53,7 @@ NavigationPane {
                 naviPanel.push(detailPage)
                 // }
             }
+            bufferedScrollingEnabled: true
 
         }
 
@@ -59,7 +61,7 @@ NavigationPane {
             GroupDataModel {
                 id: memoDataModel
                 sortingKeys: [ "ctime", "mtime", "id" ]
-                sortedAscending: true
+                sortedAscending: false
                 grouping: ItemGrouping.None
             },
 
@@ -142,6 +144,15 @@ NavigationPane {
                         }
                     }
                 ]
+            },
+            ActionItem {
+                id: selectAction
+                title: qsTr("Select")
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                
+                onTriggered: {
+                    listview.multiSelectHandler.active=true
+                }
             }
         ]
 

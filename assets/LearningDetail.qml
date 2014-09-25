@@ -12,6 +12,7 @@ Page {
     property string detailMTime
     property string detailTagList
     property string detailQIndex
+    property string detailSymbol
     property string detailDescription
     property string detailVoiceLink
     property int detailLangTypeId
@@ -27,7 +28,10 @@ Page {
     onDetailSubjectChanged: {
         subjectTA.text = detailSubject
     }
-
+    
+    onDetailSymbolChanged: {
+        symbolTA.text = detailSymbol
+    }
     onDetailCTimeChanged: {
         ctimeLA.text = detailCTime
     }
@@ -41,7 +45,7 @@ Page {
     }
 
     onDetailDescriptionChanged: {
-        descriptionTA + detailDescription
+        descriptionTA = detailDescription
     }
 
     onDetailLangTypeIdChanged: {
@@ -78,7 +82,7 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source: "asset:///nicome.s3db"
-                    query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
+                    query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', symbol = '" + detailSymbol + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
                 }
             ]
 
@@ -142,12 +146,31 @@ Page {
                 }
                 TextArea {
                     id: subjectTA
-                    minHeight: 120
+                    //minHeight: 120
                     onTextChanged: {
                         detailSubject = text
                     }
                 }
 
+            } //line end
+            
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.TopToBottom
+                }
+                Label {
+                    text: qsTr("Symbol")
+                    verticalAlignment: VerticalAlignment.Center
+                }
+                TextArea {
+                    id: symbolTA
+                    //minHeight: 120
+                    onTextChanged: {
+                        detailSymbol = text
+                    }
+                }
+            
             } //line end
 
             //line
@@ -161,7 +184,7 @@ Page {
                 }
                 TextArea {
                     id: qindexTA
-                    minHeight: 120
+                    //minHeight: 120
                     onTextChanged: {
                         detailQIndex = text
                     }
@@ -180,7 +203,7 @@ Page {
                 }
                 TextArea {
                     id: meaningTA
-                    minHeight: 240
+                    //minHeight:120
                     onTextChanged: {
                         detailMeaning = text
                     }
@@ -199,7 +222,7 @@ Page {
                 }
                 TextArea {
                     id: descriptionTA
-                    minHeight: 240
+                    //minHeight: 120
                     onTextChanged: {
                         detailDescription = text
                     }
@@ -273,6 +296,9 @@ Page {
                 }
                 TextArea {
                     id: taglistTA
+                    onTextChanged: {
+                        detailTagList=text
+                    }
                 }
 
             } //line end

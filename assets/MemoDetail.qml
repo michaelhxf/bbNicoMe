@@ -150,6 +150,7 @@ Page {
 
             //line
             Container {
+                
                 layout: StackLayout {
                     orientation: LayoutOrientation.LeftToRight
                 }

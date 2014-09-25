@@ -48,6 +48,8 @@ NavigationPane {
                 detailPage.detailMTime = chosenItem.mtime
                 detailPage.detailTagList = chosenItem.taglist
                 detailPage.detailMemoId = chosenItem.memoid
+                detailPage.detailSymbol = chosenItem.symbol
+                detailPage.detailTagList = chosenItem.taglist
                 detailPage.detailLangTypeId = chosenItem.langtypeid
                 detailPage.detailPictureId = chosenItem.pictureid
                 detailPage.detailVoiceLink = chosenItem.voicelink
