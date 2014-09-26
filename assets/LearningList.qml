@@ -32,14 +32,15 @@ NavigationPane {
                 StandardListItem {
                     title: ListItemData.subject
                     description: ListItemData.meaning
+
                 }
             }
-            
+
             onTriggered: {
                 //if (indexPath.length > 1) {
                 var chosenItem = dataModel.data(indexPath);
                 var detailPage = learningDetail.createObject()
-                
+
                 detailPage.detailSubject = chosenItem.subject
                 detailPage.detailMeaning = chosenItem.meaning
                 detailPage.detailQIndex = chosenItem.qindex
@@ -111,7 +112,7 @@ NavigationPane {
         actions: [
             ActionItem {
                 id: addLearningAction
-                title: qsTr("New Word")
+                title: qsTr("新单词")
                 ActionBar.placement: ActionBarPlacement.OnBar
                 
                 onTriggered: {
@@ -134,7 +135,7 @@ NavigationPane {
             },
             ActionItem {
                 id: refreshAction
-                title: qsTr("Refresh")
+                title: qsTr("刷新")
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 
                 onTriggered: {
@@ -163,7 +164,7 @@ NavigationPane {
                     }
                     
                     Label {
-                        text: qsTr(" Learning")
+                        text: qsTr(" 单词")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center
@@ -174,7 +175,7 @@ NavigationPane {
                     TextField {
                         id: searchBar
                         verticalAlignment: VerticalAlignment.Center
-                        hintText: qsTr("Search keyword")
+                        hintText: qsTr("搜索关键字")
                         
                         onTextChanged: {
                             if (text.length == 0) {

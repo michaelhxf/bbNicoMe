@@ -28,16 +28,16 @@ Page {
     onDetailSubjectChanged: {
         subjectTA.text = detailSubject
     }
-    
+
     onDetailSymbolChanged: {
         symbolTA.text = detailSymbol
     }
     onDetailCTimeChanged: {
-        ctimeLA.text = detailCTime
+        ctimeLA.text = Date(detailCTime)
     }
 
     onDetailMTimeChanged: {
-        mtimeLA.text = detailMTime
+        mtimeLA.text = Date(detailMTime)
     }
 
     onDetailTagListChanged: {
@@ -67,13 +67,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("Learning Detail")
+        title: qsTr("单词内容")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("保存")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -94,13 +94,15 @@ Page {
         },
         ActionItem {
             id: deleteAction
-            title: qsTr("Delete")
+            title: qsTr("删除")
             ActionBar.placement: ActionBarPlacement.InOverflow
             attachedObjects: [
                 SystemDialog {
                     id: myQmlDialog
-                    title: "Delete Warning"
-                    body: "Will DELETE this record... "
+                    title: "提醒"
+                    body: "是否删除此单词记录... "
+                    confirmButton.label: "确定"
+                    cancelButton.label: "取消"
                     onFinished: {
                         if (myQmlDialog.result == SystemUiResult.ConfirmButtonSelection) {
                             deleteSource.load()
@@ -141,7 +143,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Subject")
+                    text: qsTr("主题")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -153,14 +156,15 @@ Page {
                 }
 
             } //line end
-            
+
             //line
             Container {
                 layout: StackLayout {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Symbol")
+                    text: qsTr("音标")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -170,7 +174,7 @@ Page {
                         detailSymbol = text
                     }
                 }
-            
+
             } //line end
 
             //line
@@ -179,7 +183,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Quick Index")
+                    text: qsTr("快速索引")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -198,7 +203,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Meaning")
+                    text: qsTr("含义")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -217,7 +223,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Description")
+                    text: qsTr("备注")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -230,14 +237,14 @@ Page {
 
             } //line end
 
-
             //line
             Container {
                 layout: StackLayout {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Language")
+                    text: qsTr("语言")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -289,7 +296,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Tags")
+                    text: qsTr("标签")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -297,7 +304,7 @@ Page {
                 TextArea {
                     id: taglistTA
                     onTextChanged: {
-                        detailTagList=text
+                        detailTagList = text
                     }
                 }
 
@@ -312,7 +319,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Create Time")
+                    text: qsTr("创建时间")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -329,7 +336,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Modify Time")
+                    text: qsTr("修改时间")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right

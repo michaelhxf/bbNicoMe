@@ -17,13 +17,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("Memo Add")
+        title: qsTr("新增记事")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("保存")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -35,7 +35,7 @@ Page {
                     query: "insert into memo (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , "+ Date.now() +")"
 
                     onDataLoaded: {
-                        alertToast.body = "Memo created"
+                        alertToast.body = "记事已创建"
                         alertToast.show()
                         navigate.needRefresh=true
                         navigate.pop()
@@ -72,7 +72,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Subject")
+                    text: qsTr("主题")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -91,7 +92,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Content")
+                    text: qsTr("内容")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -111,6 +113,7 @@ Page {
                 }
                 Label {
                     text: qsTr("Type")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -162,7 +165,8 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Tag")
+                    text: qsTr("标签")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -185,7 +189,8 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Create Time")
+                    text: qsTr("创建时间")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -202,7 +207,8 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Modify Time")
+                    text: qsTr("修改时间")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right

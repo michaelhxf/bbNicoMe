@@ -54,13 +54,23 @@ NavigationPane {
                 // }
             }
             bufferedScrollingEnabled: true
+            multiSelectAction: MultiSelectActionItem {
+                title: qsTr("aaa")
+                onTriggered: {
+                }
+                multiSelectHandler: MultiSelectHandler {
+                    id: defaultSelectHandler
+
+                }
+
+            }
 
         }
 
         attachedObjects: [
             GroupDataModel {
                 id: memoDataModel
-                sortingKeys: [ "ctime", "mtime", "id" ]
+                sortingKeys: [ "mtime", "ctime" ]
                 sortedAscending: false
                 grouping: ItemGrouping.None
             },
@@ -106,7 +116,7 @@ NavigationPane {
         actions: [
             ActionItem {
                 id: addMemoAction
-                title: qsTr("New Memo")
+                title: qsTr("新建记事")
                 ActionBar.placement: ActionBarPlacement.OnBar
 
                 onTriggered: {
@@ -128,7 +138,7 @@ NavigationPane {
             },
             ActionItem {
                 id: refreshAction
-                title: qsTr("Refresh")
+                title: qsTr("刷新")
                 ActionBar.placement: ActionBarPlacement.InOverflow
 
                 onTriggered: {
@@ -147,7 +157,7 @@ NavigationPane {
             },
             ActionItem {
                 id: selectAction
-                title: qsTr("Select")
+                title: qsTr("多选")
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 
                 onTriggered: {
@@ -166,7 +176,7 @@ NavigationPane {
                     }
 
                     Label {
-                        text: qsTr(" Memo")
+                        text: qsTr(" 记事")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center
@@ -177,7 +187,7 @@ NavigationPane {
                     TextField {
                         id: searchBar
                         verticalAlignment: VerticalAlignment.Center
-                        hintText: qsTr("Search keyword")
+                        hintText: qsTr("搜索关键字")
                         
                         onTextChanged: {
                             if (text.length == 0) {

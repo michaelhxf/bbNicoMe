@@ -24,11 +24,11 @@ Page {
     }
 
     onDetailCTimeChanged: {
-        ctimeLA.text = detailCTime
+        ctimeLA.text = Date(detailCTime)
     }
 
     onDetailMTimeChanged: {
-        mtimeLA.text = detailMTime
+        mtimeLA.text = Date(detailMTime)
     }
 
     onDetailTypeChanged: {
@@ -42,13 +42,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("Memo Detail")
+        title: qsTr("记事内容")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("保存")
             ActionBar.placement: ActionBarPlacement.OnBar
             
             attachedObjects: [
@@ -69,18 +69,20 @@ Page {
         },
         ActionItem {
             id: deleteAction
-            title: qsTr("Delete")
+            title: qsTr("删除")
             ActionBar.placement: ActionBarPlacement.InOverflow
             attachedObjects: [
                 SystemDialog {
                     id: myQmlDialog
-                    title: "Delete Warning"
-                    body: "Will DELETE this record... "
+                    title: "提示"
+                    body: "是否删除本记录... "
                     onFinished: {
                         if (myQmlDialog.result == SystemUiResult.ConfirmButtonSelection){
                             deleteSource.load()
                         }
                     }
+                    confirmButton.label: "确定"
+                    cancelButton.label: "取消"
                 },
                 DataSource {
                     id: deleteSource
@@ -116,7 +118,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Subject")
+                    text: qsTr("主题")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -135,7 +138,8 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Content")
+                    text: qsTr("内容")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -156,6 +160,7 @@ Page {
                 }
                 Label {
                     text: qsTr("Type")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -207,7 +212,8 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Tags")
+                    text: qsTr("标签")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -227,7 +233,8 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Create Time")
+                    text: qsTr("创建时间")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -244,7 +251,8 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Modify Time")
+                    text: qsTr("修改时间")
+                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right

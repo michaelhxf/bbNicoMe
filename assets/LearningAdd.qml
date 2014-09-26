@@ -25,13 +25,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("Learning Detail")
+        title: qsTr("单词详细")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("保存")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -43,7 +43,7 @@ Page {
                     query: "INSERT INTO learning (subject, meaning, symbol, qindex, description, langtypeid, voicelink, ctime) values ('" + detailSubject + "' , '" + detailMeaning + "' , '" + detailSymbol +"' , '" + detailQIndex + "' , '" + detailDescription + "' , " + detailLangTypeId + " , '" + detailVoiceLink + "' , " + Date.now() + ")"
                     
                     onDataLoaded: {
-                        alertToast.body = "Word created"
+                        alertToast.body = "单词已创建"
                         alertToast.show()
                         navigate.needRefresh=true
                         navigate.pop()
@@ -81,8 +81,9 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Subject")
+                    text: qsTr("主题")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextArea {
                     id: subjectTA
@@ -100,8 +101,9 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Symbol")
+                    text: qsTr("音标")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextArea {
                     id: symbolTA
@@ -119,8 +121,9 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Quick Index")
+                    text: qsTr("快速索引")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextArea {
                     id: qindexTA
@@ -138,8 +141,9 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Meaning")
+                    text: qsTr("含义")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextArea {
                     id: meaningTA
@@ -157,8 +161,9 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Description")
+                    text: qsTr("备注")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextArea {
                     id: descriptionTA
@@ -175,8 +180,9 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Language")
+                    text: qsTr("语言")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
 
@@ -228,8 +234,9 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Tags")
+                    text: qsTr("标签")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
                 }
@@ -251,8 +258,9 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Create Time")
+                    text: qsTr("创建时间")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
                 }
@@ -268,8 +276,9 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Modify Time")
+                    text: qsTr("修改时间")
                     verticalAlignment: VerticalAlignment.Center
+                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
                 }
