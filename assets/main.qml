@@ -1,4 +1,5 @@
 import bb.cascades 1.2
+import bb.cascades.pickers 1.0
 
 TabbedPane {
     id: tabPanel
@@ -43,7 +44,16 @@ TabbedPane {
 
                 }
             }
+        },
+        FilePicker {
+            id: settingPicker
+            title: "Select App Data Folder"
+            type: FileType.Document
+            defaultType: FileType.Document
+            sourceRestriction: FilePickerSourceRestriction.PathOnly
+            directories : ["/accounts/1000/removable/sdcard/" , "/accounts/1000/shared/"]
         }
+        
     ]
 
     Menu.definition: [
@@ -53,6 +63,7 @@ TabbedPane {
                 
                 onTriggered: {
                     //helpSheet.open()
+                    settingPicker.open()
                 }
             }
 
@@ -64,8 +75,23 @@ TabbedPane {
             }
         }
     ]
+    
+    onCreationCompleted: {
+        var dbFilePath = _app.getValueFor("dbFilePath", undefined)
+        if(dbFilePath == undefined){
+            
+        }
+    }
 
     tabs: Tab {
+        id: homeTab
+        title: qsTr("Home")
+        HomePage {
+            
+        }
+    } 
+    
+    Tab {
         id: learningTab
         title: qsTr("Learning")
         imageSource: "asset:///images/language.png"

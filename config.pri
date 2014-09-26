@@ -36,12 +36,14 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
+        $$quote($$BASEDIR/assets/HomePage.qml) \
         $$quote($$BASEDIR/assets/LearningAdd.qml) \
         $$quote($$BASEDIR/assets/LearningDetail.qml) \
         $$quote($$BASEDIR/assets/LearningList.qml) \
         $$quote($$BASEDIR/assets/MemoAdd.qml) \
         $$quote($$BASEDIR/assets/MemoDetail.qml) \
         $$quote($$BASEDIR/assets/MemoList.qml) \
+        $$quote($$BASEDIR/assets/data.xml) \
         $$quote($$BASEDIR/assets/images/Language_Setting.png) \
         $$quote($$BASEDIR/assets/images/Note_Book.png) \
         $$quote($$BASEDIR/assets/images/add.png) \

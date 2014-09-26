@@ -40,6 +40,9 @@ class ApplicationUI : public QObject
 public:
     ApplicationUI();
     virtual ~ApplicationUI() {}
+    Q_INVOKABLE QString getValueFor(const QString &objectName, const QString &defaultValue);
+    Q_INVOKABLE void saveValueFor(const QString &objectName, const QString &inputValue);
+
 private slots:
     void onSystemLanguageChanged();
 private:

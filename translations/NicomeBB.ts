@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
+    <name>HomePage</name>
+    <message>
+        <location filename="../assets/HomePage.qml" line="8"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LearningAdd</name>
     <message>
         <location filename="../assets/LearningAdd.qml" line="28"/>
@@ -267,18 +275,23 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="15"/>
-        <location filename="../assets/main.qml" line="35"/>
+        <location filename="../assets/main.qml" line="16"/>
+        <location filename="../assets/main.qml" line="36"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="70"/>
+        <location filename="../assets/main.qml" line="88"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="96"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="79"/>
+        <location filename="../assets/main.qml" line="105"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>

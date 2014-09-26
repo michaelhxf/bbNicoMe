@@ -40,6 +40,9 @@ ApplicationUI::ApplicationUI() :
     // initial load
     onSystemLanguageChanged();
 
+    QCoreApplication::setOrganizationName("NicolasHan");
+    QCoreApplication::setApplicationName("NicoMeBB");
+
     // Create scene document from main.qml asset, the parent is set
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
@@ -47,6 +50,7 @@ ApplicationUI::ApplicationUI() :
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
+    qml->setContextProperty("_app", this);
     // Set created root object as the application scene
     Application::instance()->setScene(root);
 }
@@ -60,4 +64,24 @@ void ApplicationUI::onSystemLanguageChanged()
     if (m_pTranslator->load(file_name, "app/native/qm")) {
         QCoreApplication::instance()->installTranslator(m_pTranslator);
     }
+}
+
+QString ApplicationUI::getValueFor(const QString &objectName, const QString &defaultValue)
+{
+    QSettings settings;
+
+    // If no value has been saved, return the default value.
+    if (settings.value(objectName).isNull()) {
+        return defaultValue;
+    }
+
+    // Otherwise, return the value stored in the settings object.
+    return settings.value(objectName).toString();
+}
+
+void ApplicationUI::saveValueFor(const QString &objectName, const QString &inputValue)
+{
+    // A new value is saved to the application settings object.
+    QSettings settings;
+    settings.setValue(objectName, QVariant(inputValue));
 }
