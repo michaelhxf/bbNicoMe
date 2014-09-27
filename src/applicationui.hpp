@@ -18,6 +18,7 @@
 #define ApplicationUI_HPP_
 
 #include <QObject>
+#include <bb/data/DataSource>
 
 namespace bb
 {
@@ -43,9 +44,15 @@ public:
     Q_INVOKABLE QString getValueFor(const QString &objectName, const QString &defaultValue);
     Q_INVOKABLE void saveValueFor(const QString &objectName, const QString &inputValue);
 
+    Q_INVOKABLE bool exportDbFile();
+    Q_INVOKABLE void importDbFile(const QString &importFileName);
+
+
 private slots:
     void onSystemLanguageChanged();
 private:
+    QSettings settings;
+
     QTranslator* m_pTranslator;
     bb::cascades::LocaleHandler* m_pLocaleHandler;
 };

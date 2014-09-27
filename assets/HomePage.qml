@@ -8,6 +8,15 @@ NavigationPane {
     property string queryWord
     property string queryMemo
     property string queryAttendance
+    property bool needRefresh
+
+
+    onPopTransitionEnded: {
+        if (needRefresh) {
+            needRefresh = false
+            countSource.load()
+        }
+    }
 
     onCreationCompleted: {
         //
@@ -28,6 +37,7 @@ NavigationPane {
         countSource.load();
     }
 
+
     attachedObjects: [
         ComponentDefinition {
             id: newWord
@@ -44,23 +54,25 @@ NavigationPane {
         ComponentDefinition {
             id: newAttendance
         },
+
         DataSource {
             id: countSource
             remote: false
-            source: "asset:///nicome.s3db"
+            source: "asset:///nicome.s3db" //nicomeApp.getValueFor("dbFilePath", undefined)
             type: DataSourceType.Sql
 
+            //载入后
             onDataLoaded: {
-                if(query == queryWord){
-                    totalWords.text = "\t"+ data.length
+                if (query == queryWord) {
+                    totalWords.text = "\t" + data.length
                 }
-                
-                if(query == queryMemo){
-                    totalMemos.text = "\t"+ data.length
+
+                if (query == queryMemo) {
+                    totalMemos.text = "\t" + data.length
                 }
-                
-                if(query == queryAttendance){
-                    totalAttendance.text = "\t"+ data.length
+
+                if (query == queryAttendance) {
+                    totalAttendance.text = "\t" + data.length
                 }
             }
 
@@ -69,34 +81,52 @@ NavigationPane {
 
     Page {
 
+
         actions: [
             ActionItem {
                 id: newWordAction
-                title: qsTr("新单词")
+                title: qsTr("New Word")
                 imageSource: "asset:///images/language.png"
                 ActionBar.placement: ActionBarPlacement.OnBar
                 onTriggered: {
-                    navigate.push(newWord.createObject())
+                    var addPage = newWord.createObject()
+                    addPage.navigate = navigate
+                    navigate.push(addPage)
                 }
             },
             ActionItem {
                 id: newMemoAction
-                title: qsTr("新记事")
+                title: qsTr("New Memo")
                 ActionBar.placement: ActionBarPlacement.OnBar
                 onTriggered: {
-                    navigate.push(newMemo.createObject())
+                    var addPage = newMemo.createObject()
+                    addPage.navigate = navigate
+                    navigate.push(addPage)
                 }
                 imageSource: "asset:///images/book.png"
 
             },
             ActionItem {
                 id: newAttendanceAction
-                title: qsTr("新签到")
+                title: qsTr("New Attendance")
                 imageSource: "asset:///images/star.png"
                 onTriggered: {
-                    navigate.push(newAttendance.createObject())
+                    var addPage = newAttendance.createObject()
+                    addPage.navigate = navigate
+                    navigate.push(addPage)
                 }
                 ActionBar.placement: ActionBarPlacement.OnBar
+            },
+            ActionItem {
+                id: refreshAction
+                title: qsTr("Refresh")
+                imageSource: "asset:///images/refresh.png"
+
+                onTriggered: {
+                    countSource.load()
+                }
+                ActionBar.placement: ActionBarPlacement.InOverflow
+
             }
         ]
 
@@ -114,7 +144,8 @@ NavigationPane {
 
                     }
                     Label {
-                        text: "\t全部单词:"
+                        text: "\tWords:"
+                        minWidth: 120
                     }
 
                     Label {
@@ -133,7 +164,8 @@ NavigationPane {
 
                     }
                     Label {
-                        text: "\t全部记事:"
+                        text: "\tMemos:"
+                        minWidth: 120
                     }
 
                     Label {
@@ -152,7 +184,8 @@ NavigationPane {
 
                     }
                     Label {
-                        text: "\t本月勤务:"
+                        text: "\tAttendace:"
+                        minWidth: 120
                     }
 
                     Label {
@@ -160,7 +193,7 @@ NavigationPane {
                         text: "\t0"
                     }
                 }
-                
+
             }
         }
     }

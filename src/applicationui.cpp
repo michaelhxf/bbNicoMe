@@ -20,6 +20,7 @@
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
+#include <bb/data/SqlDataAccess>
 
 using namespace bb::cascades;
 
@@ -30,7 +31,8 @@ ApplicationUI::ApplicationUI() :
     m_pTranslator = new QTranslator(this);
     m_pLocaleHandler = new LocaleHandler(this);
 
-    bool res = QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this, SLOT(onSystemLanguageChanged()));
+    bool res = QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this,
+            SLOT(onSystemLanguageChanged()));
     // This is only available in Debug builds
     Q_ASSERT(res);
     // Since the variable is not used in the app, this is added to avoid a
@@ -47,10 +49,11 @@ ApplicationUI::ApplicationUI() :
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 
+    qml->setContextProperty("nicomeApp", this);
+
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
-    qml->setContextProperty("_app", this);
     // Set created root object as the application scene
     Application::instance()->setScene(root);
 }
@@ -68,7 +71,6 @@ void ApplicationUI::onSystemLanguageChanged()
 
 QString ApplicationUI::getValueFor(const QString &objectName, const QString &defaultValue)
 {
-    QSettings settings;
 
     // If no value has been saved, return the default value.
     if (settings.value(objectName).isNull()) {
@@ -81,7 +83,26 @@ QString ApplicationUI::getValueFor(const QString &objectName, const QString &def
 
 void ApplicationUI::saveValueFor(const QString &objectName, const QString &inputValue)
 {
-    // A new value is saved to the application settings object.
-    QSettings settings;
     settings.setValue(objectName, QVariant(inputValue));
 }
+
+bool ApplicationUI::exportDbFile()
+{
+    QString srcDBPath = QDir::currentPath() + "/app/native/assets/" + "nicome.s3db";
+    QString destDBPath = QDir::currentPath() + "/shared/documents/" + "nicome_backup.s3db";
+
+    if (QFile::copy(srcDBPath, destDBPath)) {
+        qDebug() << "backup successed";
+        return true;
+    } else {
+        qDebug() << "backup failed";
+        return false;;
+    }
+
+}
+
+void ApplicationUI::importDbFile(const QString &importFileName)
+{
+
+}
+

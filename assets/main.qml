@@ -1,6 +1,6 @@
 import bb.cascades 1.2
 import bb.cascades.pickers 1.0
-
+import bb.system 1.2
 
 TabbedPane {
     id: tabPanel
@@ -14,7 +14,7 @@ TabbedPane {
                     kindProperties: FreeFormTitleBarKindProperties {
                         content: Container {
                             Button {
-                                text: qsTr("关闭")
+                                text: qsTr("close")
                                 onClicked: {
                                     helpSheet.close()
                                 }
@@ -34,7 +34,7 @@ TabbedPane {
                     kindProperties: FreeFormTitleBarKindProperties {
                         content: Container {
                             Button {
-                                text: qsTr("关闭")
+                                text: qsTr("close")
                                 preferredWidth: 40
                                 onClicked: {
                                     settingSheet.close()
@@ -45,21 +45,29 @@ TabbedPane {
                     }
 
                 }
-                
+
                 Container {
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
 
                     }
                     Button {
-                        text: "导入"
+                        text: "Import"
                         onClicked: {
                         }
                     }
-                    
+
                     Button {
-                        text: "导出"
+                        text: "Export"
                         onClicked: {
+                         if( nicomeApp.exportDbFile()){
+                             alsertToast.body="backup success"
+                             alsertToast.show()
+                         }else {
+                             alsertToast.body="backup failed"
+                             alsertToast.show()
+                         }
+                            
                         }
                     }
                 }
@@ -67,27 +75,35 @@ TabbedPane {
         },
         FilePicker {
             id: settingPicker
-            title: "选择应用程序目录"
+            title: "Select Folder"
             type: FileType.Other
             defaultType: FileType.Other
+            filter: {"*.s3db"}
             sourceRestriction: FilePickerSourceRestriction.PathOnly
-            directories : ["/accounts/1000/removable/sdcard/" , "/accounts/1000/shared/"]
-            
+            directories: [ "/accounts/1000/shared/" ]
+
             onFileSelected: {
-                console.log(selectedFiles[0])
+                //nicomeApp.saveValueFor("destDBPath", selectedFiles[0])
+                //var dbFilePath = nicomeApp.getValueFor("destDBPath", undefined)
+                //console.log(dbFilePath)
             }
+            viewMode: FilePickerViewMode.Default
+        },
+        SystemToast {
+            id: alsertToast
         }
-        
+
     ]
 
     Menu.definition: [
         MenuDefinition {
             helpAction: HelpActionItem {
                 id: helpAction
-                
+
                 onTriggered: {
                     //helpSheet.open()
                     settingPicker.open()
+                    
                 }
             }
 
@@ -99,26 +115,23 @@ TabbedPane {
             }
         }
     ]
-    
+
     onCreationCompleted: {
-        var dbFilePath = _app.getValueFor("dbFilePath", undefined)
-        if(dbFilePath == undefined){
-            
-        }
+       
     }
 
     tabs: Tab {
         id: homeTab
-        title: qsTr("主页")
+        title: qsTr("Home Page")
         imageSource: "asset:///images/Language_Setting.png"
         HomePage {
-            
+
         }
-    } 
-    
+    }
+
     Tab {
         id: learningTab
-        title: qsTr("学习")
+        title: qsTr("Learning")
         imageSource: "asset:///images/language.png"
         LearningList {
 
@@ -127,39 +140,39 @@ TabbedPane {
 
     Tab {
         id: memoTab
-        title: qsTr("记事本")
+        title: qsTr("Memo")
         content: MemoList {
 
         }
         imageSource: "asset:///images/book.png"
 
     }
-    
+
     Tab {
         id: attendanceTab
-        title: qsTr("勤务表")
+        title: qsTr("Attendance")
         imageSource: "asset:///images/star.png"
 
         content: Page {
-            
+
         }
-    
+
     }
 
-//    shortcuts: [
-//        Shortcut {
-//            key: "w"
-//            onTriggered: {
-//                tabPanel.activeTab=learningTab
-//            }
-//        },
-//        Shortcut {
-//            key: "e"
-//            onTriggered: {
-//                tabPanel.activeTab=memoTab
-//            }
-//        }
-//
-//    ]
+    //    shortcuts: [
+    //        Shortcut {
+    //            key: "w"
+    //            onTriggered: {
+    //                tabPanel.activeTab=learningTab
+    //            }
+    //        },
+    //        Shortcut {
+    //            key: "e"
+    //            onTriggered: {
+    //                tabPanel.activeTab=memoTab
+    //            }
+    //        }
+    //
+    //    ]
 
 }
