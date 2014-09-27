@@ -10,15 +10,7 @@ NavigationPane {
     property string queryAttendance
     property bool needRefresh
 
-
-    onPopTransitionEnded: {
-        if (needRefresh) {
-            needRefresh = false
-            countSource.load()
-        }
-    }
-
-    onCreationCompleted: {
+    function reload() {
         //
         var querywordstr = "SELECT id from learning"
         queryWord = querywordstr
@@ -26,6 +18,7 @@ NavigationPane {
         queryMemo = querymemostr
         var queryattendancestr = "SELECT id from attendance" //where month
         queryAttendance = queryattendancestr
+
         //
         countSource.query = queryWord
         countSource.load();
@@ -33,10 +26,21 @@ NavigationPane {
         countSource.query = queryMemo
         countSource.load();
         //
-        countSource.query = queryAttendance
-        countSource.load();
+        //countSource.query = queryAttendance
+        //countSource.load();
     }
 
+    onPopTransitionEnded: {
+        if (needRefresh) {
+            needRefresh = false
+            //countSource.load()
+            reload()
+        }
+    }
+
+    onCreationCompleted: {
+        reload()
+    }
 
     attachedObjects: [
         ComponentDefinition {
@@ -58,11 +62,11 @@ NavigationPane {
         DataSource {
             id: countSource
             remote: false
-            source: "asset:///nicome.s3db" //nicomeApp.getValueFor("dbFilePath", undefined)
+            source: "file://" + nicomeApp.getDatabasePath() //"asset:///nicome.s3db" //nicomeApp.getValueFor("dbFilePath", undefined)
             type: DataSourceType.Sql
 
-            //载入后
             onDataLoaded: {
+                console.log("#load report")
                 if (query == queryWord) {
                     totalWords.text = "\t" + data.length
                 }
@@ -80,14 +84,13 @@ NavigationPane {
     ]
 
     Page {
-
-
         actions: [
             ActionItem {
                 id: newWordAction
                 title: qsTr("New Word")
                 imageSource: "asset:///images/language.png"
                 ActionBar.placement: ActionBarPlacement.OnBar
+
                 onTriggered: {
                     var addPage = newWord.createObject()
                     addPage.navigate = navigate
@@ -98,6 +101,7 @@ NavigationPane {
                 id: newMemoAction
                 title: qsTr("New Memo")
                 ActionBar.placement: ActionBarPlacement.OnBar
+
                 onTriggered: {
                     var addPage = newMemo.createObject()
                     addPage.navigate = navigate
@@ -110,22 +114,31 @@ NavigationPane {
                 id: newAttendanceAction
                 title: qsTr("New Attendance")
                 imageSource: "asset:///images/star.png"
+                ActionBar.placement: ActionBarPlacement.OnBar
+
                 onTriggered: {
                     var addPage = newAttendance.createObject()
                     addPage.navigate = navigate
                     navigate.push(addPage)
                 }
-                ActionBar.placement: ActionBarPlacement.OnBar
+
             },
             ActionItem {
                 id: refreshAction
                 title: qsTr("Refresh")
                 imageSource: "asset:///images/refresh.png"
+                ActionBar.placement: ActionBarPlacement.InOverflow
 
                 onTriggered: {
-                    countSource.load()
+                    reload()
                 }
-                ActionBar.placement: ActionBarPlacement.InOverflow
+                
+                shortcuts: Shortcut {
+                    key: "r"
+                    onTriggered: {
+                        reload()
+                    }
+                }
 
             }
         ]

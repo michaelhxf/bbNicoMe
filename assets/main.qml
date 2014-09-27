@@ -37,6 +37,7 @@ TabbedPane {
                                 text: qsTr("close")
                                 preferredWidth: 40
                                 onClicked: {
+
                                     settingSheet.close()
                                 }
                                 verticalAlignment: VerticalAlignment.Center
@@ -45,52 +46,74 @@ TabbedPane {
                     }
 
                 }
-
                 Container {
                     layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
 
                     }
-                    Button {
-                        text: "Import"
-                        onClicked: {
+
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+
+                        }
+                        Button {
+                            text: "Import"
+                            onClicked: {
+                                importPicker.open()
+                            }
+                        }
+
+                        Button {
+                            text: "Export"
+                            onClicked: {
+                                if (nicomeApp.exportDbFile("" + Date.now())) {
+                                    alertToast.body = "backup to [documents] success"
+                                    alertToast.show()
+                                } else {
+                                    alertToast.body = "backup failed"
+                                    alertToast.show()
+                                }
+
+                            }
                         }
                     }
-
                     Button {
-                        text: "Export"
+                        text: "Force Init Database"
                         onClicked: {
-                         if( nicomeApp.exportDbFile()){
-                             alsertToast.body="backup success"
-                             alsertToast.show()
-                         }else {
-                             alsertToast.body="backup failed"
-                             alsertToast.show()
-                         }
-                            
+                           if( nicomeApp.initDatabase(true)){
+                               alertToast.body = "Force Init Data success"
+                               alertToast.show()
+                           }
                         }
                     }
                 }
+
             }
         },
         FilePicker {
-            id: settingPicker
+            id: importPicker
             title: "Select Folder"
             type: FileType.Other
             defaultType: FileType.Other
-            filter: {"*.s3db"}
+            filter: {
+                "*.s3db"
+            }
             sourceRestriction: FilePickerSourceRestriction.PathOnly
             directories: [ "/accounts/1000/shared/" ]
+            viewMode: FilePickerViewMode.Default
 
             onFileSelected: {
-                //nicomeApp.saveValueFor("destDBPath", selectedFiles[0])
-                //var dbFilePath = nicomeApp.getValueFor("destDBPath", undefined)
-                //console.log(dbFilePath)
+                if (nicomeApp.importDbFile(selectedFiles[0])) {
+                    alertToast.body = "import success"
+                    alertToast.show()
+                } else {
+                    alertToast.body = "import failed"
+                    alertToast.show()
+                }
             }
-            viewMode: FilePickerViewMode.Default
         },
         SystemToast {
-            id: alsertToast
+            id: alertToast
         }
 
     ]
@@ -101,9 +124,7 @@ TabbedPane {
                 id: helpAction
 
                 onTriggered: {
-                    //helpSheet.open()
-                    settingPicker.open()
-                    
+                    helpSheet.open()
                 }
             }
 
@@ -117,7 +138,11 @@ TabbedPane {
     ]
 
     onCreationCompleted: {
-       
+        if (nicomeApp.initDatabase(false)) {
+            console.log("#init database success.\n#change database to data directory")
+        } else {
+            console.log("#init database failed.")
+        }
     }
 
     tabs: Tab {

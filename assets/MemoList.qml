@@ -79,7 +79,7 @@ NavigationPane {
                 id: memoDataSource
                 type: DataSourceType.Sql
                 remote: false
-                source: "asset:///nicome.s3db"
+                source: "file://" + nicomeApp.getDatabasePath()
                 query: "select * from memo"
 
                 onDataLoaded: {
@@ -92,7 +92,7 @@ NavigationPane {
                 id: searchDataSource
                 type: DataSourceType.Sql
                 remote: false
-                source: "asset:///nicome.s3db"
+                source: "file://" + nicomeApp.getDatabasePath()
                 query: "SELECT * FROM memo WHERE subject LIKE '%" + searchBar.text + "%' OR content LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
 
                 onDataLoaded: {
@@ -116,7 +116,7 @@ NavigationPane {
         actions: [
             ActionItem {
                 id: addMemoAction
-                title: qsTr("新建记事")
+                title: qsTr("New Memo")
                 ActionBar.placement: ActionBarPlacement.OnBar
 
                 onTriggered: {
@@ -138,7 +138,7 @@ NavigationPane {
             },
             ActionItem {
                 id: refreshAction
-                title: qsTr("刷新")
+                title: qsTr("Refresh")
                 ActionBar.placement: ActionBarPlacement.InOverflow
 
                 onTriggered: {
@@ -157,7 +157,7 @@ NavigationPane {
             },
             ActionItem {
                 id: selectAction
-                title: qsTr("多选")
+                title: qsTr("Select")
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 
                 onTriggered: {
@@ -176,7 +176,7 @@ NavigationPane {
                     }
 
                     Label {
-                        text: qsTr(" 记事")
+                        text: qsTr(" Memos")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center
@@ -187,7 +187,7 @@ NavigationPane {
                     TextField {
                         id: searchBar
                         verticalAlignment: VerticalAlignment.Center
-                        hintText: qsTr("搜索关键字")
+                        hintText: qsTr("Search keyword")
                         
                         onTextChanged: {
                             if (text.length == 0) {

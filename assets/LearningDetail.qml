@@ -67,13 +67,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("单词内容")
+        title: qsTr("Word Detail")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("保存")
+            title: qsTr("Save")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -81,7 +81,7 @@ Page {
                     id: updateSource
                     type: DataSourceType.Sql
                     remote: false
-                    source: "asset:///nicome.s3db"
+                    source:  "file://"+ nicomeApp.getDatabasePath()
                     query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', symbol = '" + detailSymbol + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
                 }
             ]
@@ -94,15 +94,15 @@ Page {
         },
         ActionItem {
             id: deleteAction
-            title: qsTr("删除")
+            title: qsTr("Delete")
             ActionBar.placement: ActionBarPlacement.InOverflow
             attachedObjects: [
                 SystemDialog {
                     id: myQmlDialog
-                    title: "提醒"
-                    body: "是否删除此单词记录... "
-                    confirmButton.label: "确定"
-                    cancelButton.label: "取消"
+                    title: "Delete"
+                    body: "Will delete this record... "
+                    confirmButton.label: "Yes"
+                    cancelButton.label: "No"
                     onFinished: {
                         if (myQmlDialog.result == SystemUiResult.ConfirmButtonSelection) {
                             deleteSource.load()
@@ -113,7 +113,7 @@ Page {
                     id: deleteSource
                     type: DataSourceType.Sql
                     remote: false
-                    source: "asset:///nicome.s3db"
+                    source:  "file://"+ nicomeApp.getDatabasePath()
                     query: "DELETE FROM learning  WHERE id =" + learningId
                     onDataLoaded: {
                         navigate.needRefresh = true
@@ -143,7 +143,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("主题")
+                    text: qsTr("Subject")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -163,7 +163,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("音标")
+                    text: qsTr("Symbol")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -183,7 +183,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("快速索引")
+                    text: qsTr("Quick Index")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -203,7 +203,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("含义")
+                    text: qsTr("Meaning")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -223,7 +223,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("备注")
+                    text: qsTr("Description")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -243,7 +243,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("语言")
+                    text: qsTr("Language")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
@@ -263,7 +263,7 @@ Page {
                         },
                         DataSource {
                             id: langTypeSource
-                            source: "asset:///nicome.s3db"
+                            source:  "file://"+ nicomeApp.getDatabasePath()
                             query: "select * from langtype"
                             remote: false
                             type: DataSourceType.Sql
@@ -296,7 +296,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("标签")
+                    text: qsTr("Tags")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -319,7 +319,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("创建时间")
+                    text: qsTr("Create Time:")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -336,7 +336,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("修改时间")
+                    text: qsTr("Modify Time:")
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right

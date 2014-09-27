@@ -83,6 +83,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/MemoAdd.qml) \
         $$quote($$BASEDIR/assets/MemoDetail.qml) \
         $$quote($$BASEDIR/assets/MemoList.qml) \
+        $$quote($$BASEDIR/assets/dbtemp/nicome.s3db) \
         $$quote($$BASEDIR/assets/images/Language_Setting.png) \
         $$quote($$BASEDIR/assets/images/Note_Book.png) \
         $$quote($$BASEDIR/assets/images/add.png) \
@@ -93,8 +94,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/marker.png) \
         $$quote($$BASEDIR/assets/images/refresh.png) \
         $$quote($$BASEDIR/assets/images/star.png) \
-        $$quote($$BASEDIR/assets/main.qml) \
-        $$quote($$BASEDIR/assets/nicome.s3db)
+        $$quote($$BASEDIR/assets/main.qml)
 }
 
 config_pri_source_group1 {
@@ -119,6 +119,9 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../assets/*.qml) \
         $$quote($$BASEDIR/../assets/*.js) \
         $$quote($$BASEDIR/../assets/*.qs) \
+        $$quote($$BASEDIR/../assets/dbtemp/*.qml) \
+        $$quote($$BASEDIR/../assets/dbtemp/*.js) \
+        $$quote($$BASEDIR/../assets/dbtemp/*.qs) \
         $$quote($$BASEDIR/../assets/images/*.qml) \
         $$quote($$BASEDIR/../assets/images/*.js) \
         $$quote($$BASEDIR/../assets/images/*.qs)

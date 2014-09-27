@@ -17,13 +17,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("新增记事")
+        title: qsTr("New Memo")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("保存")
+            title: qsTr("Save")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -31,11 +31,11 @@ Page {
                     id: insertSource
                     type: DataSourceType.Sql
                     remote: false
-                    source: "asset:///nicome.s3db"
+                    source: "file://" + nicomeApp.getDatabasePath()
                     query: "insert into memo (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , "+ Date.now() +")"
 
                     onDataLoaded: {
-                        alertToast.body = "记事已创建"
+                        alertToast.body = "New Memo created."
                         alertToast.show()
                         navigate.needRefresh=true
                         navigate.pop()
@@ -72,7 +72,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("主题")
+                    text: qsTr("Subject")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -92,7 +92,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("内容")
+                    text: qsTr("Content")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -108,6 +108,7 @@ Page {
 
             //line
             Container {
+                visible: false
                 layout: StackLayout {
                     orientation: LayoutOrientation.LeftToRight
                 }
@@ -132,7 +133,7 @@ Page {
                         },
                         DataSource {
                             id: typeSource
-                            source: "asset:///nicome.s3db"
+                            source: "file://" + nicomeApp.getDatabasePath()
                             query: "select * from memotype"
                             remote: false
                             type: DataSourceType.Sql
@@ -165,7 +166,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("标签")
+                    text: qsTr("Tags")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
@@ -189,7 +190,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("创建时间")
+                    text: qsTr("Create Time:")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
@@ -207,7 +208,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("修改时间")
+                    text: qsTr("Modify Time:")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180

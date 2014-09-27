@@ -1,5 +1,6 @@
 1
 19
+dbtemp/nicome.s3db
 HomePage.qml
 images/add.png
 images/book.png
@@ -18,4 +19,3 @@ main.qml
 MemoAdd.qml
 MemoDetail.qml
 MemoList.qml
-nicome.s3db

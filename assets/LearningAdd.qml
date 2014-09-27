@@ -25,13 +25,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("单词详细")
+        title: qsTr("New Word")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("保存")
+            title: qsTr("Save")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -39,11 +39,11 @@ Page {
                     id: updateSource
                     type: DataSourceType.Sql
                     remote: false
-                    source: "asset:///nicome.s3db"
+                    source:  "file://"+ nicomeApp.getDatabasePath()
                     query: "INSERT INTO learning (subject, meaning, symbol, qindex, description, langtypeid, voicelink, ctime) values ('" + detailSubject + "' , '" + detailMeaning + "' , '" + detailSymbol +"' , '" + detailQIndex + "' , '" + detailDescription + "' , " + detailLangTypeId + " , '" + detailVoiceLink + "' , " + Date.now() + ")"
                     
                     onDataLoaded: {
-                        alertToast.body = "单词已创建"
+                        alertToast.body = "New word created."
                         alertToast.show()
                         navigate.needRefresh=true
                         navigate.pop()
@@ -81,7 +81,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("主题")
+                    text: qsTr("Subject")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
@@ -101,7 +101,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("音标")
+                    text: qsTr("Symbol")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
@@ -121,7 +121,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("快速索引")
+                    text: qsTr("Quick Index")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
@@ -141,7 +141,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("含义")
+                    text: qsTr("Meaning")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
@@ -161,7 +161,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("备注")
+                    text: qsTr("Description")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
@@ -180,7 +180,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("语言")
+                    text: qsTr("Language")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
@@ -234,7 +234,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("标签")
+                    text: qsTr("Tags")
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
@@ -252,41 +252,7 @@ Page {
             Divider {
             }
 
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.LeftToRight
-                }
-                Label {
-                    text: qsTr("创建时间")
-                    verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
-                    minWidth: 180
-                    textStyle.textAlign: TextAlign.Right
-                }
-                Label {
-                    id: ctimeLA
-                }
 
-            } //line end
-
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.LeftToRight
-                }
-                Label {
-                    text: qsTr("修改时间")
-                    verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
-                    minWidth: 180
-                    textStyle.textAlign: TextAlign.Right
-                }
-                Label {
-                    id: mtimeLA
-                }
-
-            } //line end
         }
     }
 

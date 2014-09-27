@@ -42,13 +42,13 @@ Page {
     ////////////
 
     titleBar: TitleBar {
-        title: qsTr("记事内容")
+        title: qsTr("Memo Detail")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("保存")
+            title: qsTr("Save")
             ActionBar.placement: ActionBarPlacement.OnBar
             
             attachedObjects: [
@@ -56,7 +56,7 @@ Page {
                     id: updateSource
                     type: DataSourceType.Sql
                     remote: false
-                    source: "asset:///nicome.s3db"
+                    source: "file://" + nicomeApp.getDatabasePath()
                     query: "UPDATE memo  SET subject = '"+ detailSubject +"', content = '"+ detailContent +"', memotypeid = "+ detailType + ", mtime="+ Date.now() +" WHERE id ="+ memoId
                 }
             ]
@@ -69,26 +69,26 @@ Page {
         },
         ActionItem {
             id: deleteAction
-            title: qsTr("删除")
+            title: qsTr("Delete")
             ActionBar.placement: ActionBarPlacement.InOverflow
             attachedObjects: [
                 SystemDialog {
                     id: myQmlDialog
-                    title: "提示"
-                    body: "是否删除本记录... "
+                    title: "Delete"
+                    body: "Will delete this Record... "
                     onFinished: {
                         if (myQmlDialog.result == SystemUiResult.ConfirmButtonSelection){
                             deleteSource.load()
                         }
                     }
-                    confirmButton.label: "确定"
-                    cancelButton.label: "取消"
+                    confirmButton.label: "Yes"
+                    cancelButton.label: "No"
                 },
                 DataSource {
                     id: deleteSource
                     type: DataSourceType.Sql
                     remote: false
-                    source: "asset:///nicome.s3db"
+                    source: "file://" + nicomeApp.getDatabasePath()
                     query: "DELETE FROM memo  WHERE id ="+ memoId
                     onDataLoaded: {
                         navigate.needRefresh=true 
@@ -118,7 +118,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("主题")
+                    text: qsTr("Subject")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -138,7 +138,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("内容")
+                    text: qsTr("Content")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -154,7 +154,7 @@ Page {
 
             //line
             Container {
-                
+                visible: false
                 layout: StackLayout {
                     orientation: LayoutOrientation.LeftToRight
                 }
@@ -179,7 +179,7 @@ Page {
                         },
                         DataSource {
                             id: typeSource
-                            source: "asset:///nicome.s3db"
+                            source: "file://" + nicomeApp.getDatabasePath()
                             query: "select * from memotype"
                             remote: false
                             type: DataSourceType.Sql
@@ -212,7 +212,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("标签")
+                    text: qsTr("Tags")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
@@ -233,7 +233,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("创建时间")
+                    text: qsTr("Create Time:")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
@@ -251,7 +251,7 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("修改时间")
+                    text: qsTr("Modify Time:")
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180

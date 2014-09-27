@@ -19,6 +19,7 @@
 
 #include <QObject>
 #include <bb/data/DataSource>
+#include <QUrl>
 
 namespace bb
 {
@@ -44,8 +45,11 @@ public:
     Q_INVOKABLE QString getValueFor(const QString &objectName, const QString &defaultValue);
     Q_INVOKABLE void saveValueFor(const QString &objectName, const QString &inputValue);
 
-    Q_INVOKABLE bool exportDbFile();
-    Q_INVOKABLE void importDbFile(const QString &importFileName);
+    Q_INVOKABLE bool exportDbFile(const QString &exportTimeStamp);
+    Q_INVOKABLE bool importDbFile(const QString &importFileName);
+
+    Q_INVOKABLE bool initDatabase(bool forceInit);
+    Q_INVOKABLE QUrl getDatabasePath();
 
 
 private slots:

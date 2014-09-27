@@ -86,23 +86,61 @@ void ApplicationUI::saveValueFor(const QString &objectName, const QString &input
     settings.setValue(objectName, QVariant(inputValue));
 }
 
-bool ApplicationUI::exportDbFile()
+bool ApplicationUI::initDatabase(bool forceInit)
 {
-    QString srcDBPath = QDir::currentPath() + "/app/native/assets/" + "nicome.s3db";
-    QString destDBPath = QDir::currentPath() + "/shared/documents/" + "nicome_backup.s3db";
+    QString srcDBPath = QDir::currentPath() + "/app/native/assets/" + "dbtemp/nicome.s3db";
+    QString destDBPath = QDir::currentPath() + "/data/" + "nicome.s3db";
+
+    if (QFile::exists(destDBPath)) {
+        qDebug() << "database exist in data dir";
+        if (forceInit) {
+            QFile::remove(destDBPath);
+            if (QFile::exists(destDBPath)) {
+                qDebug() << "can't remove database in data dir";
+            } else {
+                qDebug() << "remove old database success";
+            }
+        }
+    }
 
     if (QFile::copy(srcDBPath, destDBPath)) {
-        qDebug() << "backup successed";
         return true;
     } else {
-        qDebug() << "backup failed";
-        return false;;
+        return false;
+    }
+}
+
+QUrl ApplicationUI::getDatabasePath()
+{
+    QString destDBPath = QDir::currentPath() + "/data/" + "nicome.s3db";
+    return QUrl(destDBPath);
+}
+
+bool ApplicationUI::exportDbFile(const QString &exportTimeStamp)
+{
+    QString srcDBPath = QDir::currentPath() + "/data/" + "nicome.s3db";
+    QString destDBPath = QDir::currentPath() + "/shared/documents/" + "nicome_backup_"
+            + exportTimeStamp + ".s3db";
+
+    if (QFile::copy(srcDBPath, destDBPath)) {
+        return true;
+    } else {
+        return false;
     }
 
 }
 
-void ApplicationUI::importDbFile(const QString &importFileName)
+bool ApplicationUI::importDbFile(const QString &importFileName)
 {
+    QString srcDBPath = importFileName;
+    QString destDBPath = QDir::currentPath() + "/data/" + "nicome.s3db";
 
+    QFile::remove(destDBPath);
+
+    if (QFile::copy(srcDBPath, destDBPath)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 

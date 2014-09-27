@@ -21,18 +21,17 @@ import bb.data 1.0
 NavigationPane {
     id: naviPanel
     property bool needRefresh
-    
+
     Page {
-        
+
         ListView {
             dataModel: learningDataModel
-            
+
             listItemComponents: ListItemComponent {
                 type: "item"
                 StandardListItem {
                     title: ListItemData.subject
                     description: ListItemData.meaning
-
                 }
             }
 
@@ -56,65 +55,65 @@ NavigationPane {
                 detailPage.detailVoiceLink = chosenItem.voicelink
                 detailPage.learningId = chosenItem.id
                 detailPage.navigate = naviPanel
-                
+
                 naviPanel.push(detailPage)
                 // }
             }
-        
+
         }
-        
+
         attachedObjects: [
             GroupDataModel {
                 id: learningDataModel
-                sortingKeys: [ "ctime", "mtime", "id" ]
+                sortingKeys: [ "mtime", "ctime" ]
                 sortedAscending: true
                 grouping: ItemGrouping.None
             },
-            
+
             DataSource {
                 id: learningDataSource
                 type: DataSourceType.Sql
                 remote: false
-                source: "asset:///nicome.s3db"
+                source: "file://" + nicomeApp.getDatabasePath()
                 query: "select * from learning"
-                
+
                 onDataLoaded: {
                     learningDataModel.clear()
                     learningDataModel.insertList(data)
                 }
             },
-            
+
             DataSource {
                 id: searchDataSource
                 type: DataSourceType.Sql
                 remote: false
-                source: "asset:///nicome.s3db"
+                source: "file://" + nicomeApp.getDatabasePath()
                 query: "SELECT * FROM learning WHERE subject LIKE '%" + searchBar.text + "%' OR content LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
-                
+
                 onDataLoaded: {
                     learningDataModel.clear()
                     learningDataModel.insertList(data)
                 }
             },
-            
+
             ComponentDefinition {
                 id: learningDetail
                 source: "LearningDetail.qml"
             },
-            
+
             ComponentDefinition {
                 id: learningAdd
                 source: "LearningAdd.qml"
             }
-        
+
         ]
-        
+
         actions: [
             ActionItem {
                 id: addLearningAction
-                title: qsTr("新单词")
+                title: qsTr("New Word")
                 ActionBar.placement: ActionBarPlacement.OnBar
-                
+
                 onTriggered: {
                     var addPage = learningAdd.createObject()
                     addPage.navigate = naviPanel
@@ -127,7 +126,7 @@ NavigationPane {
                         onTriggered: {
                             var addPage = learningAdd.createObject()
                             addPage.navigate = naviPanel
-                            addPage.detailMemoType = 2;//learning
+                            addPage.detailMemoType = 2; //learning
                             naviPanel.push(addPage)
                         }
                     }
@@ -135,14 +134,14 @@ NavigationPane {
             },
             ActionItem {
                 id: refreshAction
-                title: qsTr("刷新")
+                title: qsTr("Refresh")
                 ActionBar.placement: ActionBarPlacement.InOverflow
-                
+
                 onTriggered: {
                     learningDataSource.load()
                 }
                 imageSource: "asset:///images/refresh.png"
-                
+
                 shortcuts: [
                     Shortcut {
                         key: "r"
@@ -153,30 +152,30 @@ NavigationPane {
                 ]
             }
         ]
-        
+
         titleBar: TitleBar {
             kind: TitleBarKind.FreeForm
             kindProperties: FreeFormTitleBarKindProperties {
                 Container {
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
-                    
+
                     }
-                    
+
                     Label {
-                        text: qsTr(" 单词")
+                        text: qsTr(" Words")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center
                         textStyle.fontSize: FontSize.Large
-                    
+
                     }
-                    
+
                     TextField {
                         id: searchBar
                         verticalAlignment: VerticalAlignment.Center
-                        hintText: qsTr("搜索关键字")
-                        
+                        hintText: qsTr("Search keyword")
+
                         onTextChanged: {
                             if (text.length == 0) {
                                 learningDataSource.load()
@@ -184,7 +183,7 @@ NavigationPane {
                                 searchDataSource.load()
                             }
                         }
-                        
+
                         textFormat: TextFormat.Plain
                         inputMode: TextFieldInputMode.Text
                         maximumLength: 36
@@ -192,17 +191,17 @@ NavigationPane {
                 }
             }
             scrollBehavior: TitleBarScrollBehavior.Sticky
-        
+
         }
     }
-    
+
     onCreationCompleted: {
         learningDataSource.load()
     }
-    
+
     onPopTransitionEnded: {
         if (needRefresh) {
-            needRefresh=false
+            needRefresh = false
             learningDataSource.load()
         }
     }
