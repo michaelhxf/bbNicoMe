@@ -178,7 +178,7 @@ TabbedPane {
         title: qsTr("Attendance")
         imageSource: "asset:///images/star.png"
 
-        content: Page {
+        content: AttendanceList {
 
         }
 

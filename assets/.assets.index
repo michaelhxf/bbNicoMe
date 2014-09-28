@@ -1,5 +1,11 @@
 1
-19
+25
+AttendanceAdd.qml
+AttendanceDetail.qml
+AttendanceList.qml
+CustomerAdd.qml
+CustomerDetail.qml
+CustomerList.qml
 dbtemp/nicome.s3db
 HomePage.qml
 images/add.png

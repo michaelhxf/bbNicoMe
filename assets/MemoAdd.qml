@@ -35,7 +35,7 @@ Page {
                     query: "insert into memo (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , "+ Date.now() +")"
 
                     onDataLoaded: {
-                        alertToast.body = "New Memo created."
+                        alertToast.body = "New Memo record created."
                         alertToast.show()
                         navigate.needRefresh=true
                         navigate.pop()
@@ -65,7 +65,7 @@ Page {
             layout: StackLayout {
 
             }
-
+            background: Color.create("#ffdddddd")
             //line
             Container {
                 layout: StackLayout {

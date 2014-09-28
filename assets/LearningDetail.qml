@@ -45,7 +45,7 @@ Page {
     }
 
     onDetailDescriptionChanged: {
-        descriptionTA = detailDescription
+        descriptionTA.text = detailDescription
     }
 
     onDetailLangTypeIdChanged: {
@@ -81,7 +81,7 @@ Page {
                     id: updateSource
                     type: DataSourceType.Sql
                     remote: false
-                    source:  "file://"+ nicomeApp.getDatabasePath()
+                    source: "file://" + nicomeApp.getDatabasePath()
                     query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', symbol = '" + detailSymbol + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
                 }
             ]
@@ -113,7 +113,7 @@ Page {
                     id: deleteSource
                     type: DataSourceType.Sql
                     remote: false
-                    source:  "file://"+ nicomeApp.getDatabasePath()
+                    source: "file://" + nicomeApp.getDatabasePath()
                     query: "DELETE FROM learning  WHERE id =" + learningId
                     onDataLoaded: {
                         navigate.needRefresh = true
@@ -137,6 +137,7 @@ Page {
 
             }
 
+            background: Color.create("#ffdddddd")
             //line
             Container {
                 layout: StackLayout {
@@ -263,7 +264,7 @@ Page {
                         },
                         DataSource {
                             id: langTypeSource
-                            source:  "file://"+ nicomeApp.getDatabasePath()
+                            source: "file://" + nicomeApp.getDatabasePath()
                             query: "select * from langtype"
                             remote: false
                             type: DataSourceType.Sql
@@ -346,6 +347,42 @@ Page {
                 }
 
             } //line end
+            Divider {
+
+            }
+            ListView {
+                dataModel: langTagModel
+
+                onCreationCompleted: {
+                    langTagSource.load()
+                }
+
+                attachedObjects: [
+                    GroupDataModel {
+                        id: langTagModel
+                        grouping: ItemGrouping.None
+                    },
+                    DataSource {
+                        id: langTagSource
+                        type: DataSourceType.Sql
+                        remote: false
+                        source: "file://" + nicomeApp.getDatabasePath()
+                        query: "SELECT * FROM langtag"
+                        onDataLoaded: {
+                            langTagModel.clear()
+                            langTagModel.insertList(data)
+                        }
+                    }
+                ]
+                layout: GridListLayout {
+                    columnCount: 5
+
+                }
+            }
+            Divider {
+                minHeight: 100
+
+            }
         }
     }
 

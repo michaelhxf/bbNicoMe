@@ -57,6 +57,9 @@ NavigationPane {
         },
         ComponentDefinition {
             id: newAttendance
+            AttendanceAdd {
+
+            }
         },
 
         DataSource {
@@ -84,6 +87,11 @@ NavigationPane {
     ]
 
     Page {
+        
+        titleBar: TitleBar {
+            title: qsTr("Home")
+
+        }
         actions: [
             ActionItem {
                 id: newWordAction
@@ -132,7 +140,7 @@ NavigationPane {
                 onTriggered: {
                     reload()
                 }
-                
+
                 shortcuts: Shortcut {
                     key: "r"
                     onTriggered: {
@@ -150,15 +158,22 @@ NavigationPane {
                 layout: StackLayout {
 
                 }
+                ImageView {
+                    imageSource: "asset:///images/Usercard.png"
 
+                }
+                Container {
+                    minHeight: 10
+                }
                 Container {
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
 
                     }
                     Label {
-                        text: "\tWords:"
-                        minWidth: 120
+                        text: "Words:"
+                        minWidth: 180
+                        textStyle.textAlign: TextAlign.Right
                     }
 
                     Label {
@@ -177,8 +192,9 @@ NavigationPane {
 
                     }
                     Label {
-                        text: "\tMemos:"
-                        minWidth: 120
+                        text: "Memos:"
+                        minWidth: 180
+                        textStyle.textAlign: TextAlign.Right
                     }
 
                     Label {
@@ -197,8 +213,9 @@ NavigationPane {
 
                     }
                     Label {
-                        text: "\tAttendace:"
-                        minWidth: 120
+                        text: "Attendace:"
+                        minWidth: 180
+                        textStyle.textAlign: TextAlign.Right
                     }
 
                     Label {

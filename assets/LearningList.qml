@@ -163,7 +163,7 @@ NavigationPane {
                     }
 
                     Label {
-                        text: qsTr(" Words")
+                        text: qsTr(" Word")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center

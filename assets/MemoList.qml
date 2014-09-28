@@ -176,7 +176,7 @@ NavigationPane {
                     }
 
                     Label {
-                        text: qsTr(" Memos")
+                        text: qsTr(" Memo")
                         verticalAlignment: VerticalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.textAlign: TextAlign.Center

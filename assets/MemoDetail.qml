@@ -111,7 +111,7 @@ Page {
             layout: StackLayout {
 
             }
-
+            background: Color.create("#ffdddddd")
             //line
             Container {
                 layout: StackLayout {

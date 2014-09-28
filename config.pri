@@ -76,6 +76,12 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
+        $$quote($$BASEDIR/assets/AttendanceAdd.qml) \
+        $$quote($$BASEDIR/assets/AttendanceDetail.qml) \
+        $$quote($$BASEDIR/assets/AttendanceList.qml) \
+        $$quote($$BASEDIR/assets/CustomerAdd.qml) \
+        $$quote($$BASEDIR/assets/CustomerDetail.qml) \
+        $$quote($$BASEDIR/assets/CustomerList.qml) \
         $$quote($$BASEDIR/assets/HomePage.qml) \
         $$quote($$BASEDIR/assets/LearningAdd.qml) \
         $$quote($$BASEDIR/assets/LearningDetail.qml) \
@@ -86,6 +92,8 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/dbtemp/nicome.s3db) \
         $$quote($$BASEDIR/assets/images/Language_Setting.png) \
         $$quote($$BASEDIR/assets/images/Note_Book.png) \
+        $$quote($$BASEDIR/assets/images/User_group.png) \
+        $$quote($$BASEDIR/assets/images/Usercard.png) \
         $$quote($$BASEDIR/assets/images/add.png) \
         $$quote($$BASEDIR/assets/images/book.png) \
         $$quote($$BASEDIR/assets/images/box.png) \

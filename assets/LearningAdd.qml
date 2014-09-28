@@ -17,7 +17,6 @@ Page {
     property string detailVoiceLink
     property int detailLangTypeId
     property int detailPictureId
-    property int detailMemoType
     property int learningId
     property NavigationPane navigate
 
@@ -40,10 +39,12 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source:  "file://"+ nicomeApp.getDatabasePath()
-                    query: "INSERT INTO learning (subject, meaning, symbol, qindex, description, langtypeid, voicelink, ctime) values ('" + detailSubject + "' , '" + detailMeaning + "' , '" + detailSymbol +"' , '" + detailQIndex + "' , '" + detailDescription + "' , " + detailLangTypeId + " , '" + detailVoiceLink + "' , " + Date.now() + ")"
+                    query: "INSERT INTO learning (subject, meaning, symbol, qindex, description, taglist, langtypeid, voicelink, ctime) values ('"
+                    + detailSubject + "' , '" + detailMeaning + "' , '" + detailSymbol +"' , '" + detailQIndex 
+                    + "' , '" + detailDescription + "' , '" + detailTagList +"' , " + detailLangTypeId + " , '" + detailVoiceLink + "' , " + Date.now() + ")"
                     
                     onDataLoaded: {
-                        alertToast.body = "New word created."
+                        alertToast.body = "New word record created."
                         alertToast.show()
                         navigate.needRefresh=true
                         navigate.pop()
@@ -74,7 +75,7 @@ Page {
             layout: StackLayout {
 
             }
-
+            background: Color.create("#ffdddddd")
             //line
             Container {
                 layout: StackLayout {
@@ -169,6 +170,7 @@ Page {
                     id: descriptionTA
                     minHeight: 120
                     onTextChanged: {
+                        detailDescription = text
                     }
                 }
 
@@ -200,7 +202,7 @@ Page {
                         },
                         DataSource {
                             id: langTypeSource
-                            source: "asset:///nicome.s3db"
+                            source:  "file://"+ nicomeApp.getDatabasePath()
                             query: "select * from langtype"
                             remote: false
                             type: DataSourceType.Sql
@@ -251,7 +253,6 @@ Page {
 
             Divider {
             }
-
 
         }
     }
