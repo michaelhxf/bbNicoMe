@@ -20,6 +20,9 @@ Page {
     property int learningId
     property NavigationPane navigate
 
+    onDetailTagListChanged: {
+        taglistTA.text = detailTagList
+    }
 
     ////////////
 
@@ -86,8 +89,8 @@ Page {
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
-                TextArea {
-                    id: subjectTA
+                TextField {
+                    id: subjectTF
                     //minHeight: 120
                     onTextChanged: {
                         detailSubject = text
@@ -106,8 +109,8 @@ Page {
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
-                TextArea {
-                    id: symbolTA
+                TextField {
+                    id: symbolTF
                     //minHeight: 120
                     onTextChanged: {
                         detailSymbol = text
@@ -126,8 +129,8 @@ Page {
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
-                TextArea {
-                    id: qindexTA
+                TextField {
+                    id: qindexTF
                     //minHeight: 120
                     onTextChanged: {
                         detailQIndex = text
@@ -146,8 +149,8 @@ Page {
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.fontWeight: FontWeight.Bold
                 }
-                TextArea {
-                    id: meaningTA
+                TextField {
+                    id: meaningTF
                     minHeight: 120
                     onTextChanged: {
                         detailMeaning = text
@@ -252,8 +255,72 @@ Page {
             } //line end
 
             Divider {
+            
             }
-
+            Container {
+                maxHeight: 300
+                
+                ListView {
+                    dataModel: langTagModel
+                    
+                    onCreationCompleted: {
+                        langTagSource.load()
+                    }
+                    
+                    listItemComponents: ListItemComponent {
+                        Container {
+                            Label {
+                                text: ListItemData.title
+                                verticalAlignment: VerticalAlignment.Center
+                                layoutProperties: StackLayoutProperties {
+                                
+                                }
+                                horizontalAlignment: HorizontalAlignment.Center
+                            }
+                        
+                        }
+                    
+                    }
+                    
+                    onTriggered: {
+                        var chosenItem = langTagModel.data(indexPath);
+                        
+                        if (detailTagList.length > 0) {
+                            detailTagList = detailTagList + "," + chosenItem.title
+                        
+                        } else {
+                            detailTagList = chosenItem.title
+                        }
+                    
+                    }
+                    
+                    attachedObjects: [
+                        GroupDataModel {
+                            id: langTagModel
+                            grouping: ItemGrouping.None
+                        },
+                        DataSource {
+                            id: langTagSource
+                            type: DataSourceType.Sql
+                            remote: false
+                            source: "file://" + nicomeApp.getDatabasePath()
+                            query: "SELECT title FROM langtag"
+                            onDataLoaded: {
+                                langTagModel.clear()
+                                langTagModel.insertList(data)
+                            }
+                        }
+                    ]
+                    layout: GridListLayout {
+                        columnCount: 5
+                    
+                    }
+                }
+            }
+            Divider {
+                minHeight: 100
+            
+            }
         }
     }
 

@@ -22,15 +22,15 @@ Page {
     property NavigationPane navigate
 
     onDetailMeaningChanged: {
-        meaningTA.text = detailMeaning
+        meaningTF.text = detailMeaning
     }
 
     onDetailSubjectChanged: {
-        subjectTA.text = detailSubject
+        subjectTF.text = detailSubject
     }
 
     onDetailSymbolChanged: {
-        symbolTA.text = detailSymbol
+        symbolTF.text = detailSymbol
     }
     onDetailCTimeChanged: {
         ctimeLA.text = Date(detailCTime)
@@ -61,7 +61,7 @@ Page {
     }
 
     onDetailQIndexChanged: {
-        qindexTA.text = detailQIndex
+        qindexTF.text = detailQIndex
     }
 
     ////////////
@@ -82,7 +82,7 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source: "file://" + nicomeApp.getDatabasePath()
-                    query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', symbol = '" + detailSymbol + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
+                    query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', symbol = '" + detailSymbol + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', taglist='" + detailTagList + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
                 }
             ]
 
@@ -148,8 +148,8 @@ Page {
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
-                TextArea {
-                    id: subjectTA
+                TextField {
+                    id: subjectTF
                     //minHeight: 120
                     onTextChanged: {
                         detailSubject = text
@@ -168,8 +168,8 @@ Page {
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
-                TextArea {
-                    id: symbolTA
+                TextField {
+                    id: symbolTF
                     //minHeight: 120
                     onTextChanged: {
                         detailSymbol = text
@@ -188,8 +188,8 @@ Page {
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
-                TextArea {
-                    id: qindexTA
+                TextField {
+                    id: qindexTF
                     //minHeight: 120
                     onTextChanged: {
                         detailQIndex = text
@@ -208,8 +208,8 @@ Page {
                     textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
-                TextArea {
-                    id: meaningTA
+                TextField {
+                    id: meaningTF
                     //minHeight:120
                     onTextChanged: {
                         detailMeaning = text
@@ -350,39 +350,71 @@ Page {
             Divider {
 
             }
-            ListView {
-                dataModel: langTagModel
+            Container {
+                maxHeight: 300
 
-                onCreationCompleted: {
-                    langTagSource.load()
-                }
+                ListView {
+                    dataModel: langTagModel
 
-                attachedObjects: [
-                    GroupDataModel {
-                        id: langTagModel
-                        grouping: ItemGrouping.None
-                    },
-                    DataSource {
-                        id: langTagSource
-                        type: DataSourceType.Sql
-                        remote: false
-                        source: "file://" + nicomeApp.getDatabasePath()
-                        query: "SELECT * FROM langtag"
-                        onDataLoaded: {
-                            langTagModel.clear()
-                            langTagModel.insertList(data)
-                        }
+                    onCreationCompleted: {
+                        langTagSource.load()
                     }
-                ]
-                layout: GridListLayout {
-                    columnCount: 5
 
+                    listItemComponents: ListItemComponent {
+                        Container {
+                            Label {
+                                text: ListItemData.title
+                                verticalAlignment: VerticalAlignment.Center
+                                layoutProperties: StackLayoutProperties {
+
+                                }
+                                horizontalAlignment: HorizontalAlignment.Center
+                            }
+
+                        }
+
+                    }
+
+                    onTriggered: {
+                        var chosenItem = langTagModel.data(indexPath);
+
+                        if (detailTagList.length > 0) {
+                            detailTagList = detailTagList + "," + chosenItem.title
+
+                        } else {
+                            detailTagList = chosenItem.title
+                        }
+
+                    }
+
+                    attachedObjects: [
+                        GroupDataModel {
+                            id: langTagModel
+                            grouping: ItemGrouping.None
+                        },
+                        DataSource {
+                            id: langTagSource
+                            type: DataSourceType.Sql
+                            remote: false
+                            source: "file://" + nicomeApp.getDatabasePath()
+                            query: "SELECT title FROM langtag"
+                            onDataLoaded: {
+                                langTagModel.clear()
+                                langTagModel.insertList(data)
+                            }
+                        }
+                    ]
+                    layout: GridListLayout {
+                        columnCount: 5
+
+                    }
                 }
             }
             Divider {
                 minHeight: 100
 
             }
+
         }
     }
 

@@ -1,5 +1,5 @@
 1
-25
+27
 AttendanceAdd.qml
 AttendanceDetail.qml
 AttendanceList.qml
@@ -18,6 +18,8 @@ images/marker.png
 images/Note_Book.png
 images/refresh.png
 images/star.png
+images/Usercard.png
+images/User_group.png
 LearningAdd.qml
 LearningDetail.qml
 LearningList.qml

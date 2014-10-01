@@ -188,18 +188,18 @@ NavigationPane {
                         id: searchBar
                         verticalAlignment: VerticalAlignment.Center
                         hintText: qsTr("Search keyword")
-                        
-                        onTextChanged: {
-                            if (text.length == 0) {
-                                memoDataSource.load()
-                            } else {
-                                searchDataSource.load()
-                            }
-                        }
-                        
+
                         textFormat: TextFormat.Plain
                         inputMode: TextFieldInputMode.Text
                         maximumLength: 36
+                        
+                        shortcuts: Shortcut {
+                            key: "Enter"
+                            onTriggered: {
+                                searchDataSource.query ="SELECT * FROM memo WHERE subject LIKE '%" + searchBar.text + "%' OR content LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
+                                searchDataSource.load()
+                            }
+                        }
                     }
                 }
             }

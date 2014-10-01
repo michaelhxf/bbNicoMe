@@ -27,13 +27,19 @@ NavigationPane {
         ListView {
             dataModel: learningDataModel
 
-            listItemComponents: ListItemComponent {
-                type: "item"
-                StandardListItem {
-                    title: ListItemData.subject
-                    description: ListItemData.meaning
+            listItemComponents: [
+                ListItemComponent {
+                    type: "item"
+                    StandardListItem {
+                        title: ListItemData.subject
+                        description: ListItemData.meaning
+                        status: ListItemData.langtypeid
+                        imageSpaceReserved: true
+
+                    }
+
                 }
-            }
+            ]
 
             onTriggered: {
                 //if (indexPath.length > 1) {
@@ -63,6 +69,7 @@ NavigationPane {
         }
 
         attachedObjects: [
+
             GroupDataModel {
                 id: learningDataModel
                 sortingKeys: [ "mtime", "ctime" ]
@@ -88,7 +95,7 @@ NavigationPane {
                 type: DataSourceType.Sql
                 remote: false
                 source: "file://" + nicomeApp.getDatabasePath()
-                query: "SELECT * FROM learning WHERE subject LIKE '%" + searchBar.text + "%' OR content LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
+                query: "SELECT * FROM learning WHERE subject LIKE '%" + searchBar.text + "%' OR symbol LIKE '%" + searchBar.text + "%' OR meaning LIKE '%" + searchBar.text + "%' OR qindex LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
 
                 onDataLoaded: {
                     learningDataModel.clear()
@@ -176,17 +183,17 @@ NavigationPane {
                         verticalAlignment: VerticalAlignment.Center
                         hintText: qsTr("Search keyword")
 
-                        onTextChanged: {
-                            if (text.length == 0) {
-                                learningDataSource.load()
-                            } else {
-                                searchDataSource.load()
-                            }
-                        }
-
                         textFormat: TextFormat.Plain
                         inputMode: TextFieldInputMode.Text
                         maximumLength: 36
+
+                        shortcuts: Shortcut {
+                            key: "Enter"
+                            onTriggered: {
+                                searchDataSource.query = "SELECT * FROM learning WHERE subject LIKE '%" + searchBar.text + "%' OR symbol LIKE '%" + searchBar.text + "%' OR meaning LIKE '%" + searchBar.text + "%' OR qindex LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
+                                searchDataSource.load()
+                            }
+                        }
                     }
                 }
             }

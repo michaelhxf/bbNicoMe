@@ -19,42 +19,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="110"/>
+        <location filename="../assets/AttendanceAdd.qml" line="112"/>
         <source>Start Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="135"/>
+        <location filename="../assets/AttendanceAdd.qml" line="138"/>
         <source>End Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="159"/>
+        <location filename="../assets/AttendanceAdd.qml" line="164"/>
         <source>Rest Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="184"/>
-        <source>Task</source>
+        <location filename="../assets/AttendanceAdd.qml" line="191"/>
+        <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="205"/>
+        <location filename="../assets/AttendanceAdd.qml" line="248"/>
+        <source>Week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/AttendanceAdd.qml" line="420"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="227"/>
+        <location filename="../assets/AttendanceAdd.qml" line="305"/>
         <source>Customer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceAdd.qml" line="283"/>
-        <source>Office</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/AttendanceAdd.qml" line="340"/>
+        <location filename="../assets/AttendanceAdd.qml" line="361"/>
         <source>Team</source>
         <translation type="unfinished"></translation>
     </message>
@@ -77,60 +77,80 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceDetail.qml" line="109"/>
+        <location filename="../assets/AttendanceDetail.qml" line="112"/>
         <source>Start Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceDetail.qml" line="134"/>
+        <location filename="../assets/AttendanceDetail.qml" line="138"/>
         <source>End Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceDetail.qml" line="158"/>
+        <location filename="../assets/AttendanceDetail.qml" line="164"/>
         <source>Rest Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceDetail.qml" line="183"/>
-        <source>Task</source>
+        <location filename="../assets/AttendanceDetail.qml" line="191"/>
+        <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceDetail.qml" line="204"/>
+        <location filename="../assets/AttendanceDetail.qml" line="248"/>
+        <source>Week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/AttendanceDetail.qml" line="305"/>
+        <source>Customer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/AttendanceDetail.qml" line="361"/>
+        <source>Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/AttendanceDetail.qml" line="441"/>
+        <source>Create Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/AttendanceDetail.qml" line="459"/>
+        <source>Modify Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/AttendanceDetail.qml" line="420"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/AttendanceDetail.qml" line="227"/>
-        <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AttendanceList</name>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="108"/>
+        <location filename="../assets/AttendanceList.qml" line="107"/>
         <source>New Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="130"/>
+        <location filename="../assets/AttendanceList.qml" line="129"/>
         <source>Customer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="149"/>
+        <location filename="../assets/AttendanceList.qml" line="148"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="178"/>
+        <location filename="../assets/AttendanceList.qml" line="177"/>
         <source> Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="189"/>
+        <location filename="../assets/AttendanceList.qml" line="188"/>
         <source>Search keyword</source>
         <translation type="unfinished"></translation>
     </message>
@@ -196,37 +216,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="80"/>
+        <location filename="../assets/CustomerDetail.qml" line="68"/>
+        <source>Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/CustomerDetail.qml" line="98"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="103"/>
+        <location filename="../assets/CustomerDetail.qml" line="121"/>
         <source>Company</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="151"/>
+        <location filename="../assets/CustomerDetail.qml" line="169"/>
         <source>Phone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="175"/>
+        <location filename="../assets/CustomerDetail.qml" line="193"/>
         <source>FAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="197"/>
+        <location filename="../assets/CustomerDetail.qml" line="215"/>
         <source>EMail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="221"/>
+        <location filename="../assets/CustomerDetail.qml" line="239"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerDetail.qml" line="127"/>
+        <location filename="../assets/CustomerDetail.qml" line="145"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
@@ -234,27 +259,17 @@
 <context>
     <name>CustomerList</name>
     <message>
-        <location filename="../assets/CustomerList.qml" line="109"/>
+        <location filename="../assets/CustomerList.qml" line="97"/>
         <source>New Customer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerList.qml" line="131"/>
-        <source>Office</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/CustomerList.qml" line="143"/>
-        <source>Team</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/CustomerList.qml" line="176"/>
+        <location filename="../assets/CustomerList.qml" line="140"/>
         <source>Customer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/CustomerList.qml" line="155"/>
+        <location filename="../assets/CustomerList.qml" line="119"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -262,22 +277,27 @@
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../assets/HomePage.qml" line="93"/>
+        <location filename="../assets/HomePage.qml" line="92"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/HomePage.qml" line="98"/>
         <source>New Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="105"/>
+        <location filename="../assets/HomePage.qml" line="110"/>
         <source>New Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="118"/>
+        <location filename="../assets/HomePage.qml" line="123"/>
         <source>New Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="131"/>
+        <location filename="../assets/HomePage.qml" line="136"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -285,47 +305,47 @@
 <context>
     <name>LearningAdd</name>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="27"/>
+        <location filename="../assets/LearningAdd.qml" line="30"/>
         <source>New Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="33"/>
+        <location filename="../assets/LearningAdd.qml" line="36"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="85"/>
+        <location filename="../assets/LearningAdd.qml" line="88"/>
         <source>Subject</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="105"/>
+        <location filename="../assets/LearningAdd.qml" line="108"/>
         <source>Symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="125"/>
+        <location filename="../assets/LearningAdd.qml" line="128"/>
         <source>Quick Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="145"/>
+        <location filename="../assets/LearningAdd.qml" line="148"/>
         <source>Meaning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="165"/>
+        <location filename="../assets/LearningAdd.qml" line="168"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="185"/>
+        <location filename="../assets/LearningAdd.qml" line="188"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningAdd.qml" line="239"/>
+        <location filename="../assets/LearningAdd.qml" line="242"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
@@ -396,22 +416,22 @@
 <context>
     <name>LearningList</name>
     <message>
-        <location filename="../assets/LearningList.qml" line="114"/>
+        <location filename="../assets/LearningList.qml" line="121"/>
         <source>New Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningList.qml" line="137"/>
+        <location filename="../assets/LearningList.qml" line="144"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningList.qml" line="166"/>
+        <location filename="../assets/LearningList.qml" line="173"/>
         <source> Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/LearningList.qml" line="177"/>
+        <location filename="../assets/LearningList.qml" line="184"/>
         <source>Search keyword</source>
         <translation type="unfinished"></translation>
     </message>
