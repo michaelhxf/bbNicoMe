@@ -8,8 +8,12 @@ NavigationPane {
     property string queryWord
     property string queryMemo
     property string queryAttendance
+    property string randomWord
     property bool needRefresh
+    property TabbedPane tabPanel
 
+    property LearningDetail detailPage
+    
     function reload() {
         //
         var querywordstr = "SELECT id from learning"
@@ -18,6 +22,8 @@ NavigationPane {
         queryMemo = querymemostr
         var queryattendancestr = "SELECT id from attendance" //where month
         queryAttendance = queryattendancestr
+        var randomwordstr = "SELECT * FROM learning ORDER BY RANDOM() LIMIT 1"
+        randomWord = randomwordstr
 
         //
         countSource.query = queryWord
@@ -28,6 +34,9 @@ NavigationPane {
         //
         //countSource.query = queryAttendance
         //countSource.load();
+        
+        countSource.query=randomWord
+        countSource.load()
     }
 
     onPopTransitionEnded: {
@@ -36,9 +45,11 @@ NavigationPane {
             //countSource.load()
             reload()
         }
+       // page.destroy()
     }
 
     onCreationCompleted: {
+        tabPanel = navigate.parent.parent
         reload()
     }
 
@@ -61,6 +72,11 @@ NavigationPane {
 
             }
         },
+        
+        ComponentDefinition {
+            id: learningDetail
+            source: "LearningDetail.qml"
+        },
 
         DataSource {
             id: countSource
@@ -75,11 +91,33 @@ NavigationPane {
                 }
 
                 if (query == queryMemo) {
-                    totalMemos.text = "\t" + data.length
+                    totalMemos.text = data.length
                 }
 
                 if (query == queryAttendance) {
-                    totalAttendance.text = "\t" + data.length
+                    totalAttendance.text =  data.length
+                }
+                
+                if (query==randomWord){
+                    randomWordButton.text = data[0].subject
+                    var chosenItem = data[0]
+                    detailPage = learningDetail.createObject()
+                    
+                    detailPage.detailSubject = chosenItem.subject
+                    detailPage.detailMeaning = chosenItem.meaning
+                    detailPage.detailQIndex = chosenItem.qindex
+                    detailPage.detailDescription = chosenItem.description
+                    detailPage.detailCTime = chosenItem.ctime
+                    detailPage.detailMTime = chosenItem.mtime
+                    detailPage.detailTagList = chosenItem.taglist
+                    detailPage.detailMemoId = chosenItem.memoid
+                    detailPage.detailSymbol = chosenItem.symbol
+                    detailPage.detailTagList = chosenItem.taglist
+                    detailPage.detailLangTypeId = chosenItem.langtypeid
+                    detailPage.detailPictureId = chosenItem.pictureid
+                    detailPage.detailVoiceLink = chosenItem.voicelink
+                    detailPage.learningId = chosenItem.id
+                    detailPage.navigate = navigate
                 }
             }
 
@@ -87,7 +125,7 @@ NavigationPane {
     ]
 
     Page {
-        
+
         titleBar: TitleBar {
             title: qsTr("Home")
 
@@ -103,6 +141,7 @@ NavigationPane {
                     var addPage = newWord.createObject()
                     addPage.navigate = navigate
                     navigate.push(addPage)
+                    addPage.needFocus = true
                 }
             },
             ActionItem {
@@ -114,6 +153,7 @@ NavigationPane {
                     var addPage = newMemo.createObject()
                     addPage.navigate = navigate
                     navigate.push(addPage)
+                    addPage.needFocus = true
                 }
                 imageSource: "asset:///images/book.png"
 
@@ -143,9 +183,9 @@ NavigationPane {
 
                 shortcuts: Shortcut {
                     key: "r"
-                    onTriggered: {
-                        reload()
-                    }
+                    //onTriggered: {
+                    //    reload()
+                   // }
                 }
 
             }
@@ -154,31 +194,99 @@ NavigationPane {
         ///content
         ScrollView {
             Container {
-
                 layout: StackLayout {
 
                 }
-                ImageView {
-                    imageSource: "asset:///images/Usercard.png"
 
-                }
                 Container {
-                    minHeight: 10
+                    layout: StackLayout {
+                        orientation: LayoutOrientation.LeftToRight
+
+                    }
+                    Button {
+                        imageSource: "asset:///images/language.png"
+                        text: qsTr("Learning")
+                        minWidth: 240
+                        onClicked: {
+
+                            tabPanel.activeTab = tabPanel.tabs[1]
+                        }
+                    }
+
+                    Button {
+                        imageSource: "asset:///images/book.png"
+                        text: qsTr("Memo")
+                        minWidth: 240
+
+                        onClicked: {
+                            tabPanel.activeTab = tabPanel.tabs[2]
+                        }
+                    }
+
+                    Button {
+                        imageSource: "asset:///images/star.png"
+                        text: qsTr("Attendance")
+                        minWidth: 240
+
+                        onClicked: {
+                            tabPanel.activeTab = tabPanel.tabs[3]
+                        }
+                    }
+                }
+
+                Container {
+                    minHeight: 40
                 }
                 Container {
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
 
                     }
-                    Label {
-                        text: "Words:"
-                        minWidth: 180
-                        textStyle.textAlign: TextAlign.Right
+                    verticalAlignment: VerticalAlignment.Center
+                    horizontalAlignment: HorizontalAlignment.Center
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+
+                        }
+                        Label {
+                            text: "Word:"
+                            //minWidth: 180
+                            textStyle.textAlign: TextAlign.Right
+                        }
+                        Container {
+                            minWidth: 10
+                        }
+
+                        Label {
+                            id: totalWords
+                            text: "0"
+                        }
                     }
 
-                    Label {
-                        id: totalWords
-                        text: "\t0"
+                    Container {
+                        minWidth: 80
+                    }
+
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+
+                        }
+                        Label {
+                            text: "Memo:"
+                            //minWidth: 180
+                            textStyle.textAlign: TextAlign.Right
+                        }
+
+                        Container {
+                            minWidth: 10
+                        }
+
+                        Label {
+                            id: totalMemos
+                            text: "0"
+                        }
                     }
                 }
 
@@ -191,37 +299,54 @@ NavigationPane {
                         orientation: LayoutOrientation.LeftToRight
 
                     }
-                    Label {
-                        text: "Memos:"
-                        minWidth: 180
-                        textStyle.textAlign: TextAlign.Right
-                    }
-
-                    Label {
-                        id: totalMemos
-                        text: "\t0"
-                    }
-                }
-
-                Divider {
-
-                }
-
-                Container {
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
-
-                    }
+                    verticalAlignment: VerticalAlignment.Center
+                    horizontalAlignment: HorizontalAlignment.Center
                     Label {
                         text: "Attendace:"
                         minWidth: 180
                         textStyle.textAlign: TextAlign.Right
                     }
+                    Container {
+                        minWidth: 10
+                    }
 
                     Label {
                         id: totalAttendance
-                        text: "\t0"
+                        text: "0"
                     }
+                }
+                
+                Divider {
+                    
+                }
+                
+                
+                Container {
+                    minHeight: 80
+                    layout: StackLayout {
+                        orientation: LayoutOrientation.LeftToRight
+
+                    }
+                    verticalAlignment: VerticalAlignment.Center
+                    horizontalAlignment: HorizontalAlignment.Center
+                    Button {
+                        id: randomWordButton
+                        text: "none"
+                        layoutProperties: StackLayoutProperties {
+
+                        }
+                        verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Center
+                        
+                        onClicked: {
+                            navigate.push(detailPage)
+                        }
+                    }
+                    
+                }
+                
+                Divider {
+                    
                 }
 
             }

@@ -128,11 +128,11 @@ NavigationPane {
                 shortcuts: [
                     Shortcut {
                         key: "a"
-                        onTriggered: {
-                            var addPage = memoAdd.createObject()
-                            addPage.navigate = naviPanel
-                            naviPanel.push(addPage)
-                        }
+//                        onTriggered: {
+//                            var addPage = memoAdd.createObject()
+//                            addPage.navigate = naviPanel
+//                            naviPanel.push(addPage)
+//                        }
                     }
                 ]
             },
@@ -149,9 +149,9 @@ NavigationPane {
                 shortcuts: [
                     Shortcut {
                         key: "r"
-                        onTriggered: {
-                            memoDataSource.load()
-                        }
+//                        onTriggered: {
+//                            memoDataSource.load()
+//                        }
                     }
                 ]
             },

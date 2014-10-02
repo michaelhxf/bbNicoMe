@@ -33,11 +33,15 @@ Page {
         symbolTF.text = detailSymbol
     }
     onDetailCTimeChanged: {
-        ctimeLA.text = Date(detailCTime)
+        var _date = new Date()
+        _date.setTime(Number(detailCTime))
+        ctimeLA.text = Qt.formatDateTime(_date, "ddd yyyy-MM-dd  hh:mmAP")
     }
 
     onDetailMTimeChanged: {
-        mtimeLA.text = Date(detailMTime)
+        var _date = new Date()
+        _date.setTime(Number(detailMTime))
+        mtimeLA.text = Qt.formatDateTime(_date, "ddd yyyy-MM-dd  hh:mmAP")
     }
 
     onDetailTagListChanged: {
@@ -83,11 +87,16 @@ Page {
                     remote: false
                     source: "file://" + nicomeApp.getDatabasePath()
                     query: "UPDATE learning  SET subject = '" + detailSubject + "', meaning = '" + detailMeaning + "', symbol = '" + detailSymbol + "', description = '" + detailDescription + "', qindex = '" + detailQIndex + "', taglist='" + detailTagList + "', voicelink = '" + detailVoiceLink + "', langtypeid = " + detailLangTypeId + ", mtime = " + Date.now() + " WHERE id =" + learningId
+                },
+                SystemToast {
+                    id: saveToast
+                    body: "Update complite."
                 }
             ]
 
             onTriggered: {
                 navigate.needRefresh = true
+                saveToast.show()
                 updateSource.load();
             }
             imageSource: "asset:///images/box.png"
@@ -145,7 +154,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Subject")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -164,8 +172,26 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
+                    text: qsTr("Meaning")
+                    verticalAlignment: VerticalAlignment.Center
+                }
+                TextField {
+                    id: meaningTF
+                    //minHeight:120
+                    onTextChanged: {
+                        detailMeaning = text
+                    }
+                }
+
+            } //line end
+
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.TopToBottom
+                }
+                Label {
                     text: qsTr("Symbol")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -185,7 +211,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Quick Index")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -204,28 +229,7 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("Meaning")
-                    textStyle.fontWeight: FontWeight.Bold
-                    verticalAlignment: VerticalAlignment.Center
-                }
-                TextField {
-                    id: meaningTF
-                    //minHeight:120
-                    onTextChanged: {
-                        detailMeaning = text
-                    }
-                }
-
-            } //line end
-
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
-                }
-                Label {
                     text: qsTr("Description")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -245,7 +249,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Language")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -312,42 +315,6 @@ Page {
             } //line end
 
             Divider {
-            }
-
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.LeftToRight
-                }
-                Label {
-                    text: qsTr("Create Time:")
-                    verticalAlignment: VerticalAlignment.Center
-                    minWidth: 180
-                    textStyle.textAlign: TextAlign.Right
-                }
-                Label {
-                    id: ctimeLA
-                }
-
-            } //line end
-
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.LeftToRight
-                }
-                Label {
-                    text: qsTr("Modify Time:")
-                    verticalAlignment: VerticalAlignment.Center
-                    minWidth: 180
-                    textStyle.textAlign: TextAlign.Right
-                }
-                Label {
-                    id: mtimeLA
-                }
-
-            } //line end
-            Divider {
 
             }
             Container {
@@ -390,6 +357,7 @@ Page {
                     attachedObjects: [
                         GroupDataModel {
                             id: langTagModel
+                            sortedAscending: false
                             grouping: ItemGrouping.None
                         },
                         DataSource {
@@ -397,7 +365,7 @@ Page {
                             type: DataSourceType.Sql
                             remote: false
                             source: "file://" + nicomeApp.getDatabasePath()
-                            query: "SELECT title FROM langtag"
+                            query: "SELECT title FROM langtag LIMIT 10"
                             onDataLoaded: {
                                 langTagModel.clear()
                                 langTagModel.insertList(data)
@@ -410,6 +378,44 @@ Page {
                     }
                 }
             }
+
+            Divider {
+            }
+
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                Label {
+                    text: qsTr("Create Time:")
+                    verticalAlignment: VerticalAlignment.Center
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
+                }
+                Label {
+                    id: ctimeLA
+                }
+
+            } //line end
+
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                Label {
+                    text: qsTr("Modify Time:")
+                    verticalAlignment: VerticalAlignment.Center
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
+                }
+                Label {
+                    id: mtimeLA
+                }
+
+            } //line end
+
             Divider {
                 minHeight: 100
 

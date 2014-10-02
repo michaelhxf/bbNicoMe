@@ -19,12 +19,19 @@ Page {
     property int detailPictureId
     property int learningId
     property NavigationPane navigate
+    property bool needFocus
 
     onDetailTagListChanged: {
         taglistTA.text = detailTagList
     }
+    
+    onNeedFocusChanged: {
+        subjectTF.requestFocus()
+    }
+    
 
     ////////////
+    
 
     titleBar: TitleBar {
         title: qsTr("New Word")
@@ -70,7 +77,7 @@ Page {
     onCreationCompleted: {
         langTypeSource.load()
     }
-
+    
     ScrollView {
         scrollViewProperties.scrollMode: ScrollMode.Vertical
 
@@ -87,7 +94,6 @@ Page {
                 Label {
                     text: qsTr("Subject")
                     verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextField {
                     id: subjectTF
@@ -105,9 +111,28 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
+                    text: qsTr("Meaning")
+                    verticalAlignment: VerticalAlignment.Center
+                }
+                TextField {
+                    id: meaningTF
+                    minHeight: 120
+                    onTextChanged: {
+                        detailMeaning = text
+                    }
+                }
+            
+            } //line end
+
+            
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.TopToBottom
+                }
+                Label {
                     text: qsTr("Symbol")
                     verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextField {
                     id: symbolTF
@@ -127,7 +152,6 @@ Page {
                 Label {
                     text: qsTr("Quick Index")
                     verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextField {
                     id: qindexTF
@@ -139,26 +163,7 @@ Page {
 
             } //line end
 
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
-                }
-                Label {
-                    text: qsTr("Meaning")
-                    verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
-                }
-                TextField {
-                    id: meaningTF
-                    minHeight: 120
-                    onTextChanged: {
-                        detailMeaning = text
-                    }
-                }
-
-            } //line end
-
+           
             //line
             Container {
                 layout: StackLayout {
@@ -167,7 +172,6 @@ Page {
                 Label {
                     text: qsTr("Description")
                     verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
                 }
                 TextArea {
                     id: descriptionTA
@@ -187,7 +191,6 @@ Page {
                 Label {
                     text: qsTr("Language")
                     verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
 
@@ -241,7 +244,6 @@ Page {
                 Label {
                     text: qsTr("Tags")
                     verticalAlignment: VerticalAlignment.Center
-                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
                 }
@@ -297,6 +299,7 @@ Page {
                     attachedObjects: [
                         GroupDataModel {
                             id: langTagModel
+                            sortedAscending: false
                             grouping: ItemGrouping.None
                         },
                         DataSource {
@@ -304,7 +307,7 @@ Page {
                             type: DataSourceType.Sql
                             remote: false
                             source: "file://" + nicomeApp.getDatabasePath()
-                            query: "SELECT title FROM langtag"
+                            query: "SELECT title FROM langtag LIMIT 10"
                             onDataLoaded: {
                                 langTagModel.clear()
                                 langTagModel.insertList(data)

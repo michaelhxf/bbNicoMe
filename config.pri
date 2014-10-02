@@ -89,6 +89,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/MemoAdd.qml) \
         $$quote($$BASEDIR/assets/MemoDetail.qml) \
         $$quote($$BASEDIR/assets/MemoList.qml) \
+        $$quote($$BASEDIR/assets/MonthList.qml) \
         $$quote($$BASEDIR/assets/dbtemp/nicome.s3db) \
         $$quote($$BASEDIR/assets/images/Language_Setting.png) \
         $$quote($$BASEDIR/assets/images/Note_Book.png) \

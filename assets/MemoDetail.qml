@@ -24,13 +24,17 @@ Page {
     }
 
     onDetailCTimeChanged: {
-        ctimeLA.text = Date(detailCTime)
+        var _date = new Date()
+        _date.setTime(Number(detailCTime))
+        ctimeLA.text = Qt.formatDateTime(_date,"ddd yyyy.MM.dd hh:mmAP")
     }
-
+    
     onDetailMTimeChanged: {
-        mtimeLA.text = Date(detailMTime)
+        var _date = new Date()
+        _date.setTime(Number(detailMTime))
+        mtimeLA.text = Qt.formatDateTime(_date,"ddd yyyy.MM.dd hh:mmAP")
     }
-
+    
     onDetailTypeChanged: {
         typeSource.load()
     }
@@ -58,11 +62,16 @@ Page {
                     remote: false
                     source: "file://" + nicomeApp.getDatabasePath()
                     query: "UPDATE memo  SET subject = '"+ detailSubject +"', content = '"+ detailContent +"', memotypeid = "+ detailType + ", mtime="+ Date.now() +" WHERE id ="+ memoId
+                },
+                SystemToast {
+                    id: saveToast
+                    body: "Update complite."
                 }
             ]
             
             onTriggered: {
                 navigate.needRefresh=true
+                saveToast.show()
                 updateSource.load();
             }
             imageSource: "asset:///images/box.png"
@@ -119,7 +128,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Subject")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -139,7 +147,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Content")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -160,7 +167,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Type")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -213,7 +219,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Tags")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -234,7 +239,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Create Time:")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -252,7 +256,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Modify Time:")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right

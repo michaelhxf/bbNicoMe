@@ -13,7 +13,11 @@ Page {
     property string detailTagList
     property int detailType
     property NavigationPane navigate
-
+    property bool needFocus
+    
+    onNeedFocusChanged: {
+        subjectTA.requestFocus()
+    }
     ////////////
 
     titleBar: TitleBar {
@@ -73,7 +77,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Subject")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -93,7 +96,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Content")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {
@@ -114,7 +116,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Type")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -167,7 +168,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Tags")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -184,41 +184,6 @@ Page {
             Divider {
             }
 
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.LeftToRight
-                }
-                Label {
-                    text: qsTr("Create Time:")
-                    textStyle.fontWeight: FontWeight.Bold
-                    verticalAlignment: VerticalAlignment.Center
-                    minWidth: 180
-                    textStyle.textAlign: TextAlign.Right
-                }
-                Label {
-                    id: ctimeLA
-                }
-
-            } //line end
-
-            //line
-            Container {
-                layout: StackLayout {
-                    orientation: LayoutOrientation.LeftToRight
-                }
-                Label {
-                    text: qsTr("Modify Time:")
-                    textStyle.fontWeight: FontWeight.Bold
-                    verticalAlignment: VerticalAlignment.Center
-                    minWidth: 180
-                    textStyle.textAlign: TextAlign.Right
-                }
-                Label {
-                    id: mtimeLA
-                }
-
-            } //line end
         }
     }
 

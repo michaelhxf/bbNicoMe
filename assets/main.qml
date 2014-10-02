@@ -143,6 +143,7 @@ TabbedPane {
         } else {
             console.log("#init database failed.")
         }
+        homeTab.tabPanel = tabPanel
     }
 
     tabs: Tab {

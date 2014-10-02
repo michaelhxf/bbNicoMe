@@ -30,12 +30,90 @@ NavigationPane {
             listItemComponents: [
                 ListItemComponent {
                     type: "item"
-                    StandardListItem {
-                        title: ListItemData.subject
-                        description: ListItemData.meaning
-                        status: ListItemData.langtypeid
-                        imageSpaceReserved: true
+                    //                    StandardListItem {
+                    //                        title: ListItemData.subject
+                    //                        description: ListItemData.meaning
+                    //                        status: (ListItemData.mtime>ListItemData.ctime)?ListItemData.mtime:ListItemData.ctime
+                    //                        imageSpaceReserved: true
+                    //
+                    //                    }
 
+                    CustomListItem {
+
+                        Container {
+                            layout: StackLayout {
+                                orientation: LayoutOrientation.LeftToRight
+
+                            }
+
+                            Container {
+                                minHeight: 100
+                                minWidth: 120
+
+                                layout: StackLayout {
+
+                                }
+                                verticalAlignment: VerticalAlignment.Center
+                                horizontalAlignment: HorizontalAlignment.Center
+                                layoutProperties: StackLayoutProperties {
+
+                                }
+
+                                Container {
+                                    layout: StackLayout {
+
+                                    }
+                                    minHeight: 100
+                                    minWidth: 80
+                                    background: (ListItemData.langtypeid == 1) ? Color.create("#200000ff") : Color.create("#2000ff00")
+                                    verticalAlignment: VerticalAlignment.Center
+                                    horizontalAlignment: HorizontalAlignment.Center
+                                    Label {
+                                        text: (ListItemData.langtypeid == 1) ? "J" : "E"
+                                        minHeight: 100
+                                        minWidth: 80
+                                        textStyle.fontSize: FontSize.XLarge
+                                        textStyle.color: Color.White
+                                        textStyle.textAlign: TextAlign.Center
+                                        layoutProperties: StackLayoutProperties {
+
+                                        }
+                                        verticalAlignment: VerticalAlignment.Center
+                                        horizontalAlignment: HorizontalAlignment.Center
+                                        textStyle.fontWeight: FontWeight.Bold
+                                    }
+                                }
+
+                            }
+
+                            Container {
+                                layout: StackLayout {
+
+                                }
+                                Label {
+                                    text: ListItemData.symbol
+                                    maxHeight: 24
+                                    textStyle.fontWeight: FontWeight.Normal
+                                    textStyle.fontSize: FontSize.Small
+                                    textStyle.color: Color.Gray
+
+                                }
+                                Label {
+                                    text: ListItemData.subject
+                                    textStyle.fontSize: FontSize.Medium
+                                    textStyle.fontWeight: FontWeight.Normal
+                                    textStyle.color: Color.Black
+
+                                }
+                                Label {
+                                    text: ListItemData.meaning
+                                    textStyle.fontWeight: FontWeight.Normal
+                                    textStyle.fontSize: FontSize.Small
+                                    textStyle.color: Color.Gray
+                                    maxHeight: 36
+                                }
+                            }
+                        }
                     }
 
                 }
@@ -73,7 +151,7 @@ NavigationPane {
             GroupDataModel {
                 id: learningDataModel
                 sortingKeys: [ "mtime", "ctime" ]
-                sortedAscending: true
+                sortedAscending: false
                 grouping: ItemGrouping.None
             },
 
@@ -125,17 +203,18 @@ NavigationPane {
                     var addPage = learningAdd.createObject()
                     addPage.navigate = naviPanel
                     naviPanel.push(addPage)
+                    addPage.needFocus = true
                 }
                 imageSource: "asset:///images/add.png"
                 shortcuts: [
                     Shortcut {
                         key: "a"
-                        onTriggered: {
-                            var addPage = learningAdd.createObject()
-                            addPage.navigate = naviPanel
-                            addPage.detailMemoType = 2; //learning
-                            naviPanel.push(addPage)
-                        }
+//                        onTriggered: {
+//                            var addPage = learningAdd.createObject()
+//                            addPage.navigate = naviPanel
+//                            addPage.detailMemoType = 2; //learning
+//                            naviPanel.push(addPage)
+//                        }
                     }
                 ]
             },
@@ -152,9 +231,9 @@ NavigationPane {
                 shortcuts: [
                     Shortcut {
                         key: "r"
-                        onTriggered: {
-                            learningDataSource.load()
-                        }
+//                        onTriggered: {
+//                            learningDataSource.load()
+//                        }
                     }
                 ]
             }
@@ -211,5 +290,6 @@ NavigationPane {
             needRefresh = false
             learningDataSource.load()
         }
+        page.destroy()
     }
 }
