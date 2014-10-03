@@ -150,10 +150,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Subject")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -169,10 +171,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Meaning")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -188,10 +192,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Symbol")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -207,10 +213,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Quick Index")
+                    text: qsTr("Quick")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -226,10 +234,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Description")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {

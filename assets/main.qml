@@ -179,26 +179,20 @@ TabbedPane {
         title: qsTr("Attendance")
         imageSource: "asset:///images/star.png"
 
-        content: AttendanceList {
+        content: MonthList {
 
         }
 
     }
+    
+    Tab {
+        id: taskTab
+        title: qsTr("Task")
+        
+        content: TaskList {
+            
+        }
+    }
 
-    //    shortcuts: [
-    //        Shortcut {
-    //            key: "w"
-    //            onTriggered: {
-    //                tabPanel.activeTab=learningTab
-    //            }
-    //        },
-    //        Shortcut {
-    //            key: "e"
-    //            onTriggered: {
-    //                tabPanel.activeTab=memoTab
-    //            }
-    //        }
-    //
-    //    ]
 
 }

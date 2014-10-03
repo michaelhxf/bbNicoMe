@@ -123,16 +123,12 @@ NavigationPane {
                     var addPage = memoAdd.createObject()
                     addPage.navigate = naviPanel
                     naviPanel.push(addPage)
+                    addPage.needFocus = true
                 }
                 imageSource: "asset:///images/add.png"
                 shortcuts: [
                     Shortcut {
                         key: "a"
-//                        onTriggered: {
-//                            var addPage = memoAdd.createObject()
-//                            addPage.navigate = naviPanel
-//                            naviPanel.push(addPage)
-//                        }
                     }
                 ]
             },

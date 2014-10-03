@@ -35,6 +35,7 @@ Page {
 
     titleBar: TitleBar {
         title: qsTr("New Word")
+
     }
 
     actions: [
@@ -48,10 +49,8 @@ Page {
                     id: updateSource
                     type: DataSourceType.Sql
                     remote: false
-                    source:  "file://"+ nicomeApp.getDatabasePath()
-                    query: "INSERT INTO learning (subject, meaning, symbol, qindex, description, taglist, langtypeid, voicelink, ctime) values ('"
-                    + detailSubject + "' , '" + detailMeaning + "' , '" + detailSymbol +"' , '" + detailQIndex 
-                    + "' , '" + detailDescription + "' , '" + detailTagList +"' , " + detailLangTypeId + " , '" + detailVoiceLink + "' , " + Date.now() + ")"
+                    source: "file://" + nicomeApp.getDatabasePath()
+                    query: "INSERT INTO learning (subject, meaning, symbol, qindex, description, taglist, langtypeid, voicelink, ctime) values ('" + detailSubject + "' , '" + detailMeaning + "' , '" + detailSymbol + "' , '" + detailQIndex + "' , '" + detailDescription + "' , '" + detailTagList + "' , " + detailLangTypeId + " , '" + detailVoiceLink + "' , " + Date.now() + ")"
                     
                     onDataLoaded: {
                         alertToast.body = "New word record created."
@@ -89,10 +88,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Subject")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -108,10 +109,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Meaning")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -128,10 +131,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Symbol")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -147,10 +152,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Quick Index")
+                    text: qsTr("Quick")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
@@ -167,10 +174,12 @@ Page {
             //line
             Container {
                 layout: StackLayout {
-                    orientation: LayoutOrientation.TopToBottom
+                    orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
                     text: qsTr("Description")
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextArea {

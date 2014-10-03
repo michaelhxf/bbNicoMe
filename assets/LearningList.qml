@@ -30,13 +30,6 @@ NavigationPane {
             listItemComponents: [
                 ListItemComponent {
                     type: "item"
-                    //                    StandardListItem {
-                    //                        title: ListItemData.subject
-                    //                        description: ListItemData.meaning
-                    //                        status: (ListItemData.mtime>ListItemData.ctime)?ListItemData.mtime:ListItemData.ctime
-                    //                        imageSpaceReserved: true
-                    //
-                    //                    }
 
                     CustomListItem {
 
@@ -160,7 +153,7 @@ NavigationPane {
                 type: DataSourceType.Sql
                 remote: false
                 source: "file://" + nicomeApp.getDatabasePath()
-                query: "select * from learning"
+                query: "select * from learning LIMIT 50"
 
                 onDataLoaded: {
                     learningDataModel.clear()
@@ -173,7 +166,7 @@ NavigationPane {
                 type: DataSourceType.Sql
                 remote: false
                 source: "file://" + nicomeApp.getDatabasePath()
-                query: "SELECT * FROM learning WHERE subject LIKE '%" + searchBar.text + "%' OR symbol LIKE '%" + searchBar.text + "%' OR meaning LIKE '%" + searchBar.text + "%' OR qindex LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%'"
+                query: "SELECT * FROM learning WHERE subject LIKE '%" + searchBar.text + "%' OR symbol LIKE '%" + searchBar.text + "%' OR meaning LIKE '%" + searchBar.text + "%' OR qindex LIKE '%" + searchBar.text + "%' OR taglist LIKE '%" + searchBar.text + "%' LIMIT 50"
 
                 onDataLoaded: {
                     learningDataModel.clear()
@@ -209,12 +202,12 @@ NavigationPane {
                 shortcuts: [
                     Shortcut {
                         key: "a"
-//                        onTriggered: {
-//                            var addPage = learningAdd.createObject()
-//                            addPage.navigate = naviPanel
-//                            addPage.detailMemoType = 2; //learning
-//                            naviPanel.push(addPage)
-//                        }
+                        //                        onTriggered: {
+                        //                            var addPage = learningAdd.createObject()
+                        //                            addPage.navigate = naviPanel
+                        //                            addPage.detailMemoType = 2; //learning
+                        //                            naviPanel.push(addPage)
+                        //                        }
                     }
                 ]
             },
@@ -231,9 +224,9 @@ NavigationPane {
                 shortcuts: [
                     Shortcut {
                         key: "r"
-//                        onTriggered: {
-//                            learningDataSource.load()
-//                        }
+                        //                        onTriggered: {
+                        //                            learningDataSource.load()
+                        //                        }
                     }
                 ]
             }
@@ -273,6 +266,10 @@ NavigationPane {
                                 searchDataSource.load()
                             }
                         }
+                    }
+
+                    Container {
+                        minWidth: 1
                     }
                 }
             }

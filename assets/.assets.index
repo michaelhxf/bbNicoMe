@@ -1,5 +1,5 @@
 1
-28
+31
 AttendanceAdd.qml
 AttendanceDetail.qml
 AttendanceList.qml
@@ -27,4 +27,7 @@ main.qml
 MemoAdd.qml
 MemoDetail.qml
 MemoList.qml
+MonthAdd.qml
+MonthDetail.qml
 MonthList.qml
+TaskList.qml

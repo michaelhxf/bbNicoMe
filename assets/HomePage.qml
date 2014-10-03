@@ -5,8 +5,11 @@ import bb.cascades.datamanager 1.2
 NavigationPane {
     id: navigate
 
-    property string queryWord
+    property string jpWord
+    property string engWord
+    property string cnWord
     property string queryMemo
+    property string queryTask
     property string queryAttendance
     property string randomWord
     property bool needRefresh
@@ -16,17 +19,32 @@ NavigationPane {
     
     function reload() {
         //
-        var querywordstr = "SELECT id from learning"
-        queryWord = querywordstr
+        var jpwordstr = "SELECT id from learning WHERE langtypeid=1"
+        jpWord = jpwordstr
+        
+        var engwordstr = "SELECT id from learning WHERE langtypeid=2"
+        engWord = engwordstr
+        
+        var cnwordstr = "SELECT id from learning WHERE langtypeid=3"
+        cnWord = cnwordstr
+        
         var querymemostr = "SELECT id from memo"
         queryMemo = querymemostr
+        
         var queryattendancestr = "SELECT id from attendance" //where month
         queryAttendance = queryattendancestr
+        
         var randomwordstr = "SELECT * FROM learning ORDER BY RANDOM() LIMIT 1"
         randomWord = randomwordstr
 
         //
-        countSource.query = queryWord
+        countSource.query = jpWord
+        countSource.load();
+        //
+        countSource.query = engWord
+        countSource.load();
+        //
+        countSource.query = cnWord
         countSource.load();
         //
         countSource.query = queryMemo
@@ -86,8 +104,16 @@ NavigationPane {
 
             onDataLoaded: {
                 console.log("#load report")
-                if (query == queryWord) {
-                    totalWords.text = "\t" + data.length
+                if (query == jpWord) {
+                    jplWordLA.text = data.length
+                }
+                
+                if (query == engWord) {
+                    engWordLA.text =  data.length
+                }
+                
+                if (query == cnWord) {
+                    cnWordLA.text =  data.length
                 }
 
                 if (query == queryMemo) {
@@ -183,9 +209,6 @@ NavigationPane {
 
                 shortcuts: Shortcut {
                     key: "r"
-                    //onTriggered: {
-                    //    reload()
-                   // }
                 }
 
             }
@@ -250,7 +273,7 @@ NavigationPane {
 
                         }
                         Label {
-                            text: "Word:"
+                            text: "Japanese:"
                             //minWidth: 180
                             textStyle.textAlign: TextAlign.Right
                         }
@@ -259,7 +282,7 @@ NavigationPane {
                         }
 
                         Label {
-                            id: totalWords
+                            id: jplWordLA
                             text: "0"
                         }
                     }
@@ -274,7 +297,7 @@ NavigationPane {
 
                         }
                         Label {
-                            text: "Memo:"
+                            text: "English:"
                             //minWidth: 180
                             textStyle.textAlign: TextAlign.Right
                         }
@@ -284,7 +307,7 @@ NavigationPane {
                         }
 
                         Label {
-                            id: totalMemos
+                            id: engWordLA
                             text: "0"
                         }
                     }
@@ -297,22 +320,53 @@ NavigationPane {
                 Container {
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
-
+                    
                     }
                     verticalAlignment: VerticalAlignment.Center
                     horizontalAlignment: HorizontalAlignment.Center
-                    Label {
-                        text: "Attendace:"
-                        minWidth: 180
-                        textStyle.textAlign: TextAlign.Right
-                    }
                     Container {
-                        minWidth: 10
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        
+                        }
+                        Label {
+                            text: "Memo:"
+                            //minWidth: 180
+                            textStyle.textAlign: TextAlign.Right
+                        }
+                        Container {
+                            minWidth: 10
+                        }
+                        
+                        Label {
+                            id: totalMemo
+                            text: "0"
+                        }
                     }
-
-                    Label {
-                        id: totalAttendance
-                        text: "0"
+                    
+                    Container {
+                        minWidth: 80
+                    }
+                    
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        
+                        }
+                        Label {
+                            text: "Attendance:"
+                            //minWidth: 180
+                            textStyle.textAlign: TextAlign.Right
+                        }
+                        
+                        Container {
+                            minWidth: 10
+                        }
+                        
+                        Label {
+                            id: totalAttendance
+                            text: "0"
+                        }
                     }
                 }
                 
@@ -335,6 +389,8 @@ NavigationPane {
                         layoutProperties: StackLayoutProperties {
 
                         }
+                        minHeight: 100
+                        minWidth: 600
                         verticalAlignment: VerticalAlignment.Center
                         horizontalAlignment: HorizontalAlignment.Center
                         
