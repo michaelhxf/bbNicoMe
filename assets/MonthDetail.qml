@@ -7,15 +7,20 @@ Page {
     property NavigationPane navigate
     
     property string detailTitle
-    property string detailNo
+    property string detailYear
+    property string detailMonth
     property string monthId
     
 
     onDetailTitleChanged: {
         titleTF.text = detailTitle
     }
-    onDetailNoChanged: {
-        noTF.text = detailNo
+    onDetailYearChanged: {
+        yearTF.text = detailYear
+    }
+    
+    onDetailMonthChanged: {
+        monthTF.text = detailMonth
     }
 
     titleBar: TitleBar {
@@ -46,6 +51,7 @@ Page {
                 navigate.needRefresh = true
                 saveToast.show()
                 updateSource.load();
+                navigate.pop()
             }
             imageSource: "asset:///images/box.png"
         },
@@ -118,17 +124,36 @@ Page {
                     orientation: LayoutOrientation.TopToBottom
                 }
                 Label {
-                    text: qsTr("No")
+                    text: qsTr("Year")
                     verticalAlignment: VerticalAlignment.Center
                 }
                 TextField {
-                    id: noTF
+                    id: yearTF
                     onTextChanged: {
-                        detailNo = text
+                        detailYear = text
                     }
                     inputMode: TextFieldInputMode.Pin
                 }
 
+            } //line end
+            
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.TopToBottom
+                }
+                Label {
+                    text: qsTr("Month")
+                    verticalAlignment: VerticalAlignment.Center
+                }
+                TextField {
+                    id: monthTF
+                    onTextChanged: {
+                        detailMonth = text
+                    }
+                    inputMode: TextFieldInputMode.Pin
+                }
+            
             } //line end
         }
     }

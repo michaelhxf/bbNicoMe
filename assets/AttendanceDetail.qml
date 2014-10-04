@@ -19,31 +19,91 @@ Page {
     property int customerid
     property int weektypeid
     property int worktypeid
+    property int monthid
     property int attendanceId
     property NavigationPane navigate
 
     ////////////
+    onDetailRecordDateChanged: {
+        var _date = new Date()
+        _date.setTime(detailRecordDate)
+        recordDatePicker.value = _date
+    }
+
+    onDetailStartTimeChanged: {
+        var _date = new Date()
+        _date.setTime(detailStartTime)
+        startTimePicker.value = _date
+    }
+
+    onDetailEndTimeChanged: {
+        var _date = new Date()
+        _date.setTime(detailEndTime)
+        endTimePicker.value = _date
+    }
+
+    onDetailRestTimeChanged: {
+        var _date = new Date()
+        _date.setTime(detailRestTime)
+        restTimePicker.value = _date
+    }
+
+    onWorktypeidChanged: {
+        worktypeSource.load()
+    }
+
+    onWeektypeidChanged: {
+        weektypeSource.load()
+    }
+
+    onCustomeridChanged: {
+        customerSource.load()
+    }
+
+    onTeamidChanged: {
+        teamSource.load()
+    }
+
+    onDetailCTimeChanged: {
+        var _date = new Date()
+        _date.setTime(Number(detailCTime))
+        ctimeLA.text = Qt.formatDateTime(_date, "ddd yyyy-MM-dd  hh:mmAP")
+    }
+
+    onDetailMTimeChanged: {
+        var _date = new Date()
+        _date.setTime(Number(detailMTime))
+        mtimeLA.text = Qt.formatDateTime(_date, "ddd yyyy-MM-dd  hh:mmAP")
+    }
+
+    onDetailDescriptionChanged: {
+        descriptionTA.text = detailDescription
+    }
+
+    //    onDetailTaskChanged: {
+    //
+    //    }
 
     titleBar: TitleBar {
-        title: qsTr("New Attendance")
+        title: qsTr("Attendance Detail")
     }
 
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("Update")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
                 DataSource {
-                    id: insertSource
+                    id: updateSource
                     type: DataSourceType.Sql
                     remote: false
                     source: "file://" + nicomeApp.getDatabasePath()
-                    query: "insert into attendance (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , " + Date.now() + ")"
+                    query: "UPDATE attendance SET recorddate=" + detailRecordDate + ", starttime=" + detailStartTime + " , endtime=" + detailEndTime + " , resttime=" + detailRestTime + " , description='" + detailDescription + "' , weektypeid=" + weektypeid + " , worktypeid=" + worktypeid + " , customerid=" + customerid + " , monthid=" + monthid + ", ctime=" + Date.now() + "  WHERE id=" + attendanceId
 
                     onDataLoaded: {
-                        alertToast.body = "New Attendance record created."
+                        alertToast.body = "Update success."
                         alertToast.show()
                         navigate.needRefresh = true
                         navigate.pop()
@@ -56,7 +116,7 @@ Page {
             ]
 
             onTriggered: {
-                insertSource.load();
+                updateSource.load();
             }
             imageSource: "asset:///images/box.png"
         }
@@ -81,7 +141,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Date")
-                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
 
@@ -93,12 +152,9 @@ Page {
                     id: recordDatePicker
                     mode: DateTimePickerMode.Date
                     onValueChanged: {
-                        detailRecordDate = value
+                        detailRecordDate = value.valueOf()
                     }
 
-                }
-                Button {
-                    preferredWidth: 20
                 }
 
             } //line end
@@ -112,19 +168,15 @@ Page {
                     text: qsTr("Start Time")
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 DateTimePicker {
                     id: startTimePicker
                     onValueChanged: {
-                        detailStartTime = value
+                        detailStartTime = value.valueOf()
                     }
                     mode: DateTimePickerMode.Time
 
-                }
-                Button {
-                    preferredWidth: 20
                 }
 
             } //line end
@@ -139,19 +191,15 @@ Page {
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
 
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 DateTimePicker {
                     id: endTimePicker
                     onValueChanged: {
-                        detailEndTime = value
+                        detailEndTime = value.valueOf()
                     }
                     mode: DateTimePickerMode.Time
 
-                }
-                Button {
-                    preferredWidth: 20
                 }
 
             } //line end
@@ -165,19 +213,15 @@ Page {
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
 
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                 }
                 DateTimePicker {
                     id: restTimePicker
                     onValueChanged: {
-                        detailRestTime = value
+                        detailRestTime = value.valueOf()
                     }
                     mode: DateTimePickerMode.Time
 
-                }
-                Button {
-                    preferredWidth: 20
                 }
 
             } //line end
@@ -189,7 +233,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Work")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
@@ -219,6 +262,10 @@ Page {
                                     option.text = data[i].title
                                     option.value = data[i].id
                                     worktypeDD.add(option)
+
+                                    if (data[i].id == worktypeid) {
+                                        worktypeDD.selectedOption = option
+                                    }
                                 }
 
                                 if (worktypeDD.count() > 0) {
@@ -246,7 +293,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Week")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
@@ -276,6 +322,10 @@ Page {
                                     option.text = data[i].title
                                     option.value = data[i].id
                                     weektypeDD.add(option)
+
+                                    if (data[i].id == weektypeid) {
+                                        weektypeDD.selectedOption = option
+                                    }
                                 }
 
                                 if (weektypeDD.count() > 0) {
@@ -303,7 +353,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Customer")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
@@ -333,6 +382,10 @@ Page {
                                     option.text = data[i].name
                                     option.value = data[i].id
                                     customerDD.add(option)
+
+                                    if (data[i].id == customerid) {
+                                        customerDD.selectedOption = option
+                                    }
                                 }
 
                                 if (customerDD.count() > 0) {
@@ -359,7 +412,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Team")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 200
                     textStyle.textAlign: TextAlign.Right
@@ -389,6 +441,10 @@ Page {
                                     option.text = data[i].name
                                     option.value = data[i].id
                                     teamDD.add(option)
+
+                                    if (data[i].id == teamid) {
+                                        teamDD.selectedOption = option
+                                    }
                                 }
 
                                 if (teamDD.count() > 0) {
@@ -418,7 +474,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Description")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.textAlign: TextAlign.Right
                 }
@@ -431,7 +486,7 @@ Page {
                 }
 
             } //line end
-            
+
             //line
             Container {
                 layout: StackLayout {
@@ -439,7 +494,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Create Time:")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -447,9 +501,9 @@ Page {
                 Label {
                     id: ctimeLA
                 }
-            
+
             } //line end
-            
+
             //line
             Container {
                 layout: StackLayout {
@@ -457,7 +511,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Modify Time:")
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     minWidth: 180
                     textStyle.textAlign: TextAlign.Right
@@ -465,7 +518,7 @@ Page {
                 Label {
                     id: mtimeLA
                 }
-            
+
             } //line end
         }
     }

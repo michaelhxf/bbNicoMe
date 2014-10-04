@@ -77,7 +77,7 @@ Page {
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("Update")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -98,6 +98,7 @@ Page {
                 navigate.needRefresh = true
                 saveToast.show()
                 updateSource.load();
+                navigate.pop()
             }
             imageSource: "asset:///images/box.png"
         },

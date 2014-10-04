@@ -73,6 +73,7 @@ Page {
                 navigate.needRefresh=true
                 saveToast.show()
                 updateSource.load();
+                navigate.pop()
             }
             imageSource: "asset:///images/box.png"
         },

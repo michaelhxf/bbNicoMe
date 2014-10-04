@@ -15,9 +15,53 @@ Page {
     property string detailCTime
     property string detailMTime
     
-    property int memoId
+    property string memoId
     property int customerId
     property NavigationPane navigate
+    
+    
+    //////
+    
+    onDetailNameChanged: {
+        customerNameTF.text = detailName
+    }
+    
+    onDetailCompanyChanged: {
+        customerCompanyTF.text = detailCompany
+    }
+    
+    onDetailCTimeChanged: {
+        var _date = new Date()
+        _date.setTime(Number(detailCTime))
+        ctimeLA.text = Qt.formatDateTime(_date,"ddd yyyy.MM.dd hh:mmAP")
+    }
+    
+    onDetailMTimeChanged: {
+        var _date = new Date()
+        _date.setTime(Number(detailMTime))
+        mtimeLA.text = Qt.formatDateTime(_date,"ddd yyyy.MM.dd hh:mmAP")
+    }
+    
+    onDetailDescriptionChanged: {
+        descriptionTF.text = detailDescription
+    }
+    
+    onDetailEmailChanged: {
+        emailTF.text = detailEmail
+    }
+    
+    onDetailFaxChanged: {
+        faxTF.text = detailFax
+    }
+    
+    onDetailLocationChanged: {
+        locationTF.text = detailLocation
+    }
+    
+    onDetailPhoneChanged: {
+        phoneTF.text = detailPhone
+    }
+    
 
     ////////////
 
@@ -28,7 +72,7 @@ Page {
     actions: [
         ActionItem {
             id: saveAction
-            title: qsTr("Save")
+            title: qsTr("Update")
             ActionBar.placement: ActionBarPlacement.OnBar
 
             attachedObjects: [
@@ -37,13 +81,13 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source: "file://" + nicomeApp.getDatabasePath()
-                    query: "insert into attendance (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , "+ Date.now() +")"
+                    query: "UPDATE customer"
+                    //fixme
 
                     onDataLoaded: {
-                        alertToast.body = "New Customer record created."
+                        alertToast.body = "update success."
                         alertToast.show()
                         navigate.needRefresh=true
-                        navigate.pop()
                     }
                 },
                 SystemToast {
@@ -53,8 +97,7 @@ Page {
                 
                 ComponentDefinition {
                     id: teamList
-                    ///fixme
-                    source: "CustomerList.qml"
+                    source: "TeamList.qml"
                 }
             ]
 
@@ -71,9 +114,10 @@ Page {
             onTriggered: {
                 var addPage = teamList.createObject()
                 addPage.navigate = navigate
+                addPage.customerId = customerId
                 navigate.push(addPage)
             }
-            imageSource: "asset:///images/User_group.png"
+            imageSource: "asset:///images/1412395077_config-users.png"
         }
     ]
 
@@ -97,7 +141,6 @@ Page {
                 Label {
                     text: qsTr("Name")
                     textStyle.textAlign: TextAlign.Right
-                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 200
                     verticalAlignment: VerticalAlignment.Center
                     horizontalAlignment: HorizontalAlignment.Right
@@ -120,7 +163,6 @@ Page {
                 Label {
                     text: qsTr("Company")
                     textStyle.textAlign: TextAlign.Right
-                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 200
                     verticalAlignment: VerticalAlignment.Center
                     horizontalAlignment: HorizontalAlignment.Right
@@ -136,6 +178,28 @@ Page {
             
             } //line end
             
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                Label {
+                    text: qsTr("Location")
+                    textStyle.textAlign: TextAlign.Right
+                    minWidth: 200
+                    verticalAlignment: VerticalAlignment.Center
+                    horizontalAlignment: HorizontalAlignment.Right
+                }
+                
+                TextField {
+                    id: locationTF
+                    
+                    onTextChanged: {
+                        detailLocation = text
+                    }
+                }
+            
+            } //line end
+            
             //line
             Container {
                 layout: StackLayout {
@@ -143,7 +207,6 @@ Page {
                 }
                 Label {
                     text: qsTr("Description")
-                    textStyle.fontWeight: FontWeight.Bold
                     textStyle.textAlign: TextAlign.Right
                     minWidth: 200
                     verticalAlignment: VerticalAlignment.Center
@@ -168,7 +231,6 @@ Page {
                 Label {
                     text: qsTr("Phone")
                     textStyle.textAlign: TextAlign.Right
-                    textStyle.fontWeight: FontWeight.Bold
                     minWidth: 200
                     verticalAlignment: VerticalAlignment.Center
                     horizontalAlignment: HorizontalAlignment.Right
@@ -192,7 +254,6 @@ Page {
                 Label {
                     text: qsTr("FAX")
                     minWidth: 200
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.textAlign: TextAlign.Right
                 }
@@ -214,7 +275,6 @@ Page {
                 Label {
                     text: qsTr("EMail")
                     minWidth: 200
-                    textStyle.fontWeight: FontWeight.Bold
                     verticalAlignment: VerticalAlignment.Center
                     textStyle.textAlign: TextAlign.Right
                 }
@@ -227,8 +287,6 @@ Page {
                 }
             
             } //line end
-            
-
 
             //line
             Container {
@@ -236,56 +294,33 @@ Page {
                     orientation: LayoutOrientation.LeftToRight
                 }
                 Label {
-                    text: qsTr("Memo")
-                    textStyle.fontWeight: FontWeight.Bold
+                    text: qsTr("Create Time:")
                     verticalAlignment: VerticalAlignment.Center
-                    minWidth: 200
+                    minWidth: 180
                     textStyle.textAlign: TextAlign.Right
-
                 }
-
-                DropDown {
-                    id: customerDD
-
-                    attachedObjects: [
-                        ComponentDefinition {
-                            id: customerOption
-                            Option {
-
-                            }
-                        },
-                        DataSource {
-                            id: customerSource
-                            source: "file://" + nicomeApp.getDatabasePath()
-                            query: "select id,name from customer"
-                            remote: false
-                            type: DataSourceType.Sql
-
-                            onDataLoaded: {
-                                for (var i = 0; i < data.length; i ++) {
-                                    var option = customerOption.createObject();
-                                    option.text = data[i].name
-                                    option.value = data[i].id
-                                    customerDD.add(option)
-                                }
-
-                                if (customerDD.count() > 0) {
-                                    customerDD.selectedIndex = 0;
-                                }
-                            }
-                        }
-                    ]
-
-                    onSelectedOptionChanged: {
-                        customerId = selectedOption.value
-                    }
+                Label {
+                    id: ctimeLA
                 }
-                onCreationCompleted: {
-                    customerSource.load()
-                }
-
+            
             } //line end
-
+            
+            //line
+            Container {
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                Label {
+                    text: qsTr("Modify Time:")
+                    verticalAlignment: VerticalAlignment.Center
+                    minWidth: 180
+                    textStyle.textAlign: TextAlign.Right
+                }
+                Label {
+                    id: mtimeLA
+                }
+            
+            } //line end
         }
     }
 

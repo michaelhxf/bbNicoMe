@@ -19,9 +19,15 @@ Page {
     property int customerid
     property int weektypeid
     property int worktypeid
-    property int attendanceId
-    property NavigationPane navigate
+    property int memoid
 
+    property int monthid
+    property NavigationPane navigate
+    property bool needFocus
+
+    onNeedFocusChanged: {
+        recordDatePicker.requestFocus();
+    }
     ////////////
 
     titleBar: TitleBar {
@@ -40,7 +46,7 @@ Page {
                     type: DataSourceType.Sql
                     remote: false
                     source: "file://" + nicomeApp.getDatabasePath()
-                    query: "insert into attendance (subject, content, memotypeid, taglist, ctime) values ('" + detailSubject + "', '" + detailContent + "', " + detailType + " , '" + detailTagList + "' , " + Date.now() + ")"
+                    query: "insert into attendance (recorddate, starttime, endtime, resttime, description, teamid,  customerid, weektypeid, worktypeid, monthid, ctime) values (" + detailRecordDate + ", " + detailStartTime + ", " + detailEndTime + " , " + detailRestTime + ", '" + detailDescription + "', " + teamid + " , " + customerid + " , " + weektypeid + " , " + worktypeid + " , " + monthid + " , " + Date.now() + ")"
 
                     onDataLoaded: {
                         alertToast.body = "New Attendance record created."
@@ -56,6 +62,14 @@ Page {
             ]
 
             onTriggered: {
+                
+                detailRecordDate = recordDatePicker.value.valueOf()
+                detailStartTime = startTimePicker.value.valueOf()
+                detailEndTime = endTimePicker.value.valueOf()
+                detailRestTime = restTimePicker.value.valueOf()
+                
+                console.log(insertSource.query)
+                
                 insertSource.load();
             }
             imageSource: "asset:///images/box.png"
@@ -93,7 +107,7 @@ Page {
                     id: recordDatePicker
                     mode: DateTimePickerMode.Date
                     onValueChanged: {
-                        detailRecordDate = value
+                        detailRecordDate = value.valueOf()
                     }
 
                 }
@@ -118,7 +132,7 @@ Page {
                 DateTimePicker {
                     id: startTimePicker
                     onValueChanged: {
-                        detailStartTime = value
+                        detailStartTime = value.valueOf()
                     }
                     mode: DateTimePickerMode.Time
 
@@ -145,7 +159,7 @@ Page {
                 DateTimePicker {
                     id: endTimePicker
                     onValueChanged: {
-                        detailEndTime = value
+                        detailEndTime = value.valueOf()
                     }
                     mode: DateTimePickerMode.Time
 
@@ -171,7 +185,7 @@ Page {
                 DateTimePicker {
                     id: restTimePicker
                     onValueChanged: {
-                        detailRestTime = value
+                        detailRestTime = value.valueOf()
                     }
                     mode: DateTimePickerMode.Time
 

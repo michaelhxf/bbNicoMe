@@ -28,8 +28,8 @@ Page {
         listItemComponents: ListItemComponent {
             type: "item"
             StandardListItem {
-                title: ListItemData.subject
-                description: ListItemData.content
+                title: ListItemData.name
+                description: ListItemData.company
             }
         }
 
@@ -49,7 +49,7 @@ Page {
             detailPage.detailMTime = chosenItem.mtime
 
             detailPage.memoId = chosenItem.memoid
-            detailPage.customerId = chosenItem.customerid
+            detailPage.customerId = chosenItem.id
             detailPage.navigate = navigate
 
             navigate.push(detailPage)

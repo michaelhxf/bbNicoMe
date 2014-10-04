@@ -93,7 +93,93 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/MonthDetail.qml) \
         $$quote($$BASEDIR/assets/MonthList.qml) \
         $$quote($$BASEDIR/assets/TaskList.qml) \
+        $$quote($$BASEDIR/assets/TeamAdd.qml) \
+        $$quote($$BASEDIR/assets/TeamList.qml) \
         $$quote($$BASEDIR/assets/dbtemp/nicome.s3db) \
+        $$quote($$BASEDIR/assets/images/1412394983_preferences-system-time.png) \
+        $$quote($$BASEDIR/assets/images/1412394989_system-software-update.png) \
+        $$quote($$BASEDIR/assets/images/1412395012_stock_task.png) \
+        $$quote($$BASEDIR/assets/images/1412395015_preferences-contact-list.png) \
+        $$quote($$BASEDIR/assets/images/1412395031_emblem-people.png) \
+        $$quote($$BASEDIR/assets/images/1412395034_package-purge.png) \
+        $$quote($$BASEDIR/assets/images/1412395045_application-pgp-signature.png) \
+        $$quote($$BASEDIR/assets/images/1412395051_stock_mail-filters-apply.png) \
+        $$quote($$BASEDIR/assets/images/1412395069_gnome-fs-loading-icon.png) \
+        $$quote($$BASEDIR/assets/images/1412395077_config-users.png) \
+        $$quote($$BASEDIR/assets/images/1412395079_openofficeorg-draw.png) \
+        $$quote($$BASEDIR/assets/images/1412395087_old-edit-find-replace.png) \
+        $$quote($$BASEDIR/assets/images/1412395089_podcast-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395096_gtk-edit.png) \
+        $$quote($$BASEDIR/assets/images/1412395105_image-x-photo-cd.png) \
+        $$quote($$BASEDIR/assets/images/1412395108_stock_new-24h-appointment.png) \
+        $$quote($$BASEDIR/assets/images/1412395116_gnome-settings-theme.png) \
+        $$quote($$BASEDIR/assets/images/1412395118_gnumeric.png) \
+        $$quote($$BASEDIR/assets/images/1412395128_gnome-sticky-notes-applet.png) \
+        $$quote($$BASEDIR/assets/images/1412395131_document-save-as.png) \
+        $$quote($$BASEDIR/assets/images/1412395139_gnome-session-switch.png) \
+        $$quote($$BASEDIR/assets/images/1412395141_galternatives.png) \
+        $$quote($$BASEDIR/assets/images/1412395152_dialog-warning.png) \
+        $$quote($$BASEDIR/assets/images/1412395154_emblem-symbolic-link.png) \
+        $$quote($$BASEDIR/assets/images/1412395167_package-installed-updated.png) \
+        $$quote($$BASEDIR/assets/images/1412395173_user-group-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395180_orange-folder.png) \
+        $$quote($$BASEDIR/assets/images/1412395186_gnome-session-halt.png) \
+        $$quote($$BASEDIR/assets/images/1412395193_window-close.png) \
+        $$quote($$BASEDIR/assets/images/1412395198_stock_cell-phone.png) \
+        $$quote($$BASEDIR/assets/images/1412395207_emblem-money.png) \
+        $$quote($$BASEDIR/assets/images/1412395213_human-trashcan_full-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395215_human-user-trash.png) \
+        $$quote($$BASEDIR/assets/images/1412395223_gtk-about.png) \
+        $$quote($$BASEDIR/assets/images/1412395225_preferences-system-power-management.png) \
+        $$quote($$BASEDIR/assets/images/1412395228_ktip.png) \
+        $$quote($$BASEDIR/assets/images/1412395235_manilla-address-book-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395238_preferences-plugin.png) \
+        $$quote($$BASEDIR/assets/images/1412395245_orange-address-book-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395250_document-open-recent.png) \
+        $$quote($$BASEDIR/assets/images/1412395254_cairo-clock.png) \
+        $$quote($$BASEDIR/assets/images/1412395270_stock_lock-open.png) \
+        $$quote($$BASEDIR/assets/images/1412395272_accessories-dictionary.png) \
+        $$quote($$BASEDIR/assets/images/1412395275_view-sort-ascending.png) \
+        $$quote($$BASEDIR/assets/images/1412395280_contact-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395285_orange-folder-locked.png) \
+        $$quote($$BASEDIR/assets/images/1412395298_package_network.png) \
+        $$quote($$BASEDIR/assets/images/1412395300_object-flip-horizontal.png) \
+        $$quote($$BASEDIR/assets/images/1412395302_gnome-power-statistics.png) \
+        $$quote($$BASEDIR/assets/images/1412395314_document-properties.png) \
+        $$quote($$BASEDIR/assets/images/1412395316_gnome-help.png) \
+        $$quote($$BASEDIR/assets/images/1412395319_config-date.png) \
+        $$quote($$BASEDIR/assets/images/1412395333_gtk-zoom-100.png) \
+        $$quote($$BASEDIR/assets/images/1412395335_kaddressbook.png) \
+        $$quote($$BASEDIR/assets/images/1412395337_new-go-bottom.png) \
+        $$quote($$BASEDIR/assets/images/1412395345_manilla-folder-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395356_sticky-notes.png) \
+        $$quote($$BASEDIR/assets/images/1412395358_stock_lock.png) \
+        $$quote($$BASEDIR/assets/images/1412395359_system-help.png) \
+        $$quote($$BASEDIR/assets/images/1412395361_kblogger.png) \
+        $$quote($$BASEDIR/assets/images/1412395382_dialog-error.png) \
+        $$quote($$BASEDIR/assets/images/1412395384_repeat.png) \
+        $$quote($$BASEDIR/assets/images/1412395386_edit-clear.png) \
+        $$quote($$BASEDIR/assets/images/1412395388_network-server-database.png) \
+        $$quote($$BASEDIR/assets/images/1412395389_old-view-refresh.png) \
+        $$quote($$BASEDIR/assets/images/1412395401_document-edit.png) \
+        $$quote($$BASEDIR/assets/images/1412395411_old-go-top.png) \
+        $$quote($$BASEDIR/assets/images/1412395413_appointment-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395430_old-edit-find.png) \
+        $$quote($$BASEDIR/assets/images/1412395466_stock_mail.png) \
+        $$quote($$BASEDIR/assets/images/1412395468_lincity-ng.png) \
+        $$quote($$BASEDIR/assets/images/1412395494_kwalletmanager.png) \
+        $$quote($$BASEDIR/assets/images/1412395520_insert-object.png) \
+        $$quote($$BASEDIR/assets/images/1412395522_kde-folder-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395532_old-edit-redo.png) \
+        $$quote($$BASEDIR/assets/images/1412395534_utilities-file-archiver.png) \
+        $$quote($$BASEDIR/assets/images/1412395548_mac-user-trash.png) \
+        $$quote($$BASEDIR/assets/images/1412395573_mac-trashcan_full-new.png) \
+        $$quote($$BASEDIR/assets/images/1412395575_googleearth-icon.png) \
+        $$quote($$BASEDIR/assets/images/1412395599_crack-attack.png) \
+        $$quote($$BASEDIR/assets/images/1412395614_media-floppy.png) \
+        $$quote($$BASEDIR/assets/images/1412395652_x-office-address-book.png) \
+        $$quote($$BASEDIR/assets/images/1412395708_view-sort-descending.png) \
+        $$quote($$BASEDIR/assets/images/Customer_Male.png) \
         $$quote($$BASEDIR/assets/images/Language_Setting.png) \
         $$quote($$BASEDIR/assets/images/Note_Book.png) \
         $$quote($$BASEDIR/assets/images/User_group.png) \
@@ -101,11 +187,13 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/add.png) \
         $$quote($$BASEDIR/assets/images/book.png) \
         $$quote($$BASEDIR/assets/images/box.png) \
+        $$quote($$BASEDIR/assets/images/calendar-month.png) \
         $$quote($$BASEDIR/assets/images/error.png) \
         $$quote($$BASEDIR/assets/images/language.png) \
         $$quote($$BASEDIR/assets/images/marker.png) \
         $$quote($$BASEDIR/assets/images/refresh.png) \
         $$quote($$BASEDIR/assets/images/star.png) \
+        $$quote($$BASEDIR/assets/images/widget-factory.png) \
         $$quote($$BASEDIR/assets/main.qml)
 }
 

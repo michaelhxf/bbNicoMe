@@ -10,7 +10,7 @@ NavigationPane {
     Page {
 
         titleBar: TitleBar {
-            title: qsTr("Attendance Month")
+            title: qsTr("Month Collection")
         }
 
         Container {
@@ -22,30 +22,33 @@ NavigationPane {
                     StandardListItem {
                         title: ListItemData.title
                         imageSpaceReserved: true
+                        imageSource: "asset:///images/1412395180_orange-folder.png"
                         // status: attendance count
-                       
+
                     }
                 }
 
                 onTriggered: {
 
                     var choseItem = monthModel.data(indexPath)
-                    var detailPage = monthDetail.createObject()
-
-                    detailPage.detailTitle = choseItem.title
-                    detailPage.detailNo = choseItem.no
+                    var detailPage = attendanceList.createObject()
+                    
                     detailPage.monthId = choseItem.id
+                    detailPage.detailTitle = choseItem.title
+                    detailPage.detailYear = choseItem.year
+                    detailPage.detailMonth = choseItem.month
                     detailPage.navigate = navigate
 
                     navigate.push(detailPage);
+                    detailPage.needRefresh = true
                 }
             }
         }
 
         attachedObjects: [
             ComponentDefinition {
-                id: monthDetail
-                MonthDetail {
+                id: attendanceList
+                AttendanceList {
 
                 }
             },
@@ -54,6 +57,10 @@ NavigationPane {
                 MonthAdd {
 
                 }
+            },
+            ComponentDefinition {
+                id: custList
+                source: "CustomerList.qml"
             },
             GroupDataModel {
                 id: monthModel
@@ -82,7 +89,7 @@ NavigationPane {
         actions: [
             ActionItem {
                 id: addMemoAction
-                title: qsTr("New Month")
+                title: qsTr("New Month Collection")
                 ActionBar.placement: ActionBarPlacement.OnBar
 
                 onTriggered: {
@@ -97,6 +104,20 @@ NavigationPane {
                         key: "a"
                     }
                 ]
+            },
+            ActionItem {
+                id: custListAction
+                title: qsTr("Customer")
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                imageSource: "asset:///images/Customer_Male.png"
+                onTriggered: {
+                    var addPage = custList.createObject()
+                    addPage.navigate = navigate
+                    navigate.push(addPage)
+                }
+                shortcuts: Shortcut {
+                    key: "c"
+                }
             },
             ActionItem {
                 id: refreshAction

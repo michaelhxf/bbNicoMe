@@ -61,6 +61,7 @@ TabbedPane {
                             onClicked: {
                                 importPicker.open()
                             }
+                            imageSource: "asset:///images/1412395337_new-go-bottom.png"
                         }
 
                         Button {
@@ -75,6 +76,7 @@ TabbedPane {
                                 }
 
                             }
+                            imageSource: "asset:///images/1412395532_old-edit-redo.png"
                         }
                     }
                     Button {
@@ -85,6 +87,7 @@ TabbedPane {
                                alertToast.show()
                            }
                         }
+                        imageSource: "asset:///images/1412395152_dialog-warning.png"
                     }
                 }
 
@@ -143,13 +146,12 @@ TabbedPane {
         } else {
             console.log("#init database failed.")
         }
-        homeTab.tabPanel = tabPanel
     }
 
     tabs: Tab {
         id: homeTab
         title: qsTr("Home Page")
-        imageSource: "asset:///images/Language_Setting.png"
+        imageSource: "asset:///images/1412395468_lincity-ng.png"
         HomePage {
 
         }
@@ -177,7 +179,7 @@ TabbedPane {
     Tab {
         id: attendanceTab
         title: qsTr("Attendance")
-        imageSource: "asset:///images/star.png"
+        imageSource: "asset:///images/1412394983_preferences-system-time.png"
 
         content: MonthList {
 
@@ -192,6 +194,7 @@ TabbedPane {
         content: TaskList {
             
         }
+        imageSource: "asset:///images/1412395012_stock_task.png"
     }
 
 

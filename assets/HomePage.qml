@@ -19,23 +19,13 @@ NavigationPane {
     
     function reload() {
         //
-        var jpwordstr = "SELECT id from learning WHERE langtypeid=1"
-        jpWord = jpwordstr
+        jpWord = "SELECT id from learning WHERE langtypeid=1"
+        engWord = "SELECT id from learning WHERE langtypeid=2"
+        cnWord = "SELECT id from learning WHERE langtypeid=3"
+        queryMemo = "SELECT id from memo"
+        queryAttendance = "SELECT id from attendance" //where month
         
-        var engwordstr = "SELECT id from learning WHERE langtypeid=2"
-        engWord = engwordstr
-        
-        var cnwordstr = "SELECT id from learning WHERE langtypeid=3"
-        cnWord = cnwordstr
-        
-        var querymemostr = "SELECT id from memo"
-        queryMemo = querymemostr
-        
-        var queryattendancestr = "SELECT id from attendance" //where month
-        queryAttendance = queryattendancestr
-        
-        var randomwordstr = "SELECT * FROM learning ORDER BY RANDOM() LIMIT 1"
-        randomWord = randomwordstr
+        randomWord = "SELECT * FROM learning ORDER BY RANDOM() LIMIT 1"
 
         //
         countSource.query = jpWord
@@ -44,8 +34,8 @@ NavigationPane {
         countSource.query = engWord
         countSource.load();
         //
-        countSource.query = cnWord
-        countSource.load();
+        //countSource.query = cnWord
+        //countSource.load();
         //
         countSource.query = queryMemo
         countSource.load();
@@ -117,7 +107,7 @@ NavigationPane {
                 }
 
                 if (query == queryMemo) {
-                    totalMemos.text = data.length
+                    totalMemo.text = data.length
                 }
 
                 if (query == queryAttendance) {
@@ -187,7 +177,7 @@ NavigationPane {
             ActionItem {
                 id: newAttendanceAction
                 title: qsTr("New Attendance")
-                imageSource: "asset:///images/star.png"
+                imageSource: "asset:///images/1412394983_preferences-system-time.png"
                 ActionBar.placement: ActionBarPlacement.OnBar
 
                 onTriggered: {
@@ -247,7 +237,7 @@ NavigationPane {
                     }
 
                     Button {
-                        imageSource: "asset:///images/star.png"
+                        imageSource: "asset:///images/1412394983_preferences-system-time.png"
                         text: qsTr("Attendance")
                         minWidth: 240
 
