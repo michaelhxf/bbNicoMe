@@ -100,7 +100,7 @@ Page {
             type: DataSourceType.Sql
             remote: false
             source: "file://" + nicomeApp.getDatabasePath()
-            query: "select * from attendance WHERE monthid=" + monthId
+            query: "select * from attendance WHERE monthid=" + monthId + " ORDER BY mtime DESC, ctime DESC  LIMIT 40"
 
             onDataLoaded: {
                 attendanceDataModel.clear()

@@ -23,7 +23,7 @@ NavigationPane {
                         title: ListItemData.title
                         imageSpaceReserved: true
                         imageSource: "asset:///images/1412395180_orange-folder.png"
-                        // status: attendance count
+                        status: ListItemData.cnt
 
                     }
                 }
@@ -73,7 +73,7 @@ NavigationPane {
                 type: DataSourceType.Sql
                 remote: false
                 source: "file://" + nicomeApp.getDatabasePath()
-                query: "SELECT * FROM month LIMIT 12"
+                query: "select month.*,(select count() from attendance where attendance.monthid=month.id) AS cnt from month LIMIT 12"
 
                 onDataLoaded: {
                     monthModel.clear()
