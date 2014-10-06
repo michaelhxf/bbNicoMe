@@ -143,7 +143,7 @@ NavigationPane {
 
             GroupDataModel {
                 id: learningDataModel
-                sortingKeys: [ "mtime", "ctime" ]
+                sortingKeys: ["mtime","ctime"]
                 sortedAscending: false
                 grouping: ItemGrouping.None
             },
@@ -153,7 +153,7 @@ NavigationPane {
                 type: DataSourceType.Sql
                 remote: false
                 source: "file://" + nicomeApp.getDatabasePath()
-                query: "select * from learning LIMIT 50"
+                query: "select * from learning ORDER BY ctime DESC , mtime DESC  LIMIT 40"
 
                 onDataLoaded: {
                     learningDataModel.clear()
