@@ -40,8 +40,8 @@ NavigationPane {
         countSource.query = queryMemo
         countSource.load();
         //
-        //countSource.query = queryAttendance
-        //countSource.load();
+        countSource.query = queryAttendance
+        countSource.load();
         
         countSource.query=randomWord
         countSource.load()
@@ -115,7 +115,7 @@ NavigationPane {
                 }
                 
                 if (query==randomWord){
-                    randomWordButton.text = data[0].subject
+                    randomWordLA.text = data[0].subject
                     var chosenItem = data[0]
                     detailPage = learningDetail.createObject()
                     
@@ -373,14 +373,24 @@ NavigationPane {
                     }
                     verticalAlignment: VerticalAlignment.Center
                     horizontalAlignment: HorizontalAlignment.Center
+                    Label {
+                        id: randomWordLA
+                        textStyle.fontSize: FontSize.Large
+                        textStyle.textAlign: TextAlign.Right
+                        verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Center
+                        layoutProperties: StackLayoutProperties {
+
+                        }
+                    }
                     Button {
                         id: randomWordButton
-                        text: "none"
+                        text: ">"
                         layoutProperties: StackLayoutProperties {
 
                         }
                         minHeight: 100
-                        minWidth: 600
+                        maxWidth: 100
                         verticalAlignment: VerticalAlignment.Center
                         horizontalAlignment: HorizontalAlignment.Center
                         

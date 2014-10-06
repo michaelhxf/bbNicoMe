@@ -81,11 +81,27 @@ TabbedPane {
                     }
                     Button {
                         text: "Force Init Database"
+
+                        attachedObjects: [
+                            SystemDialog {
+                                id: finitdbDialog
+                                title: "Force Init Database"
+                                body: "This operation will clear all data... "
+                                onFinished: {
+                                    if (finitdbDialog.result == SystemUiResult.ConfirmButtonSelection) {
+                                        if (nicomeApp.initDatabase(true)) {
+                                            alertToast.body = "Force Init Data success"
+                                            alertToast.show()
+                                        }
+                                    }
+                                }
+                                confirmButton.label: "Yes"
+                                cancelButton.label: "No"
+                            }
+                        ]
+
                         onClicked: {
-                           if( nicomeApp.initDatabase(true)){
-                               alertToast.body = "Force Init Data success"
-                               alertToast.show()
-                           }
+                            finitdbDialog.show()
                         }
                         imageSource: "asset:///images/1412395152_dialog-warning.png"
                     }
@@ -186,16 +202,15 @@ TabbedPane {
         }
 
     }
-    
+
     Tab {
         id: taskTab
         title: qsTr("Task")
-        
+
         content: TaskList {
-            
+
         }
         imageSource: "asset:///images/1412395012_stock_task.png"
     }
-
 
 }

@@ -3,7 +3,6 @@ import bb.data 1.0
 import bb.system 1.2
 
 Page {
-    id: addPage
     ///properties
 
     property string detailRecordDate
@@ -119,6 +118,42 @@ Page {
                 updateSource.load();
             }
             imageSource: "asset:///images/box.png"
+        },
+        ActionItem {
+            id: deleteAction
+            title: qsTr("Delete")
+            ActionBar.placement: ActionBarPlacement.OnBar
+            attachedObjects: [
+                SystemDialog {
+                    id: myQmlDialog
+                    title: "Delete"
+                    body: "Will delete this Record... "
+                    onFinished: {
+                        if (myQmlDialog.result == SystemUiResult.ConfirmButtonSelection) {
+                            deleteSource.load()
+                        }
+                    }
+                    confirmButton.label: "Yes"
+                    cancelButton.label: "No"
+                },
+                DataSource {
+                    id: deleteSource
+                    type: DataSourceType.Sql
+                    remote: false
+                    source: "file://" + nicomeApp.getDatabasePath()
+                    query: "DELETE FROM attendance  WHERE id =" + attendanceId
+                    onDataLoaded: {
+                        navigate.needRefresh = true
+                        navigate.pop()
+                    }
+                }
+            ]
+            imageSource: "asset:///images/error.png"
+            
+            onTriggered: {
+                myQmlDialog.show()
+                
+            }
         }
     ]
 
