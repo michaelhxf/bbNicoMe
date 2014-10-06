@@ -80,6 +80,12 @@ NavigationPane {
 
             }
         },
+        ComponentDefinition {
+            id: searchWord
+            SearchWord {
+            
+            }
+        },
         
         ComponentDefinition {
             id: learningDetail
@@ -186,6 +192,25 @@ NavigationPane {
                     navigate.push(addPage)
                 }
 
+            },
+            ActionItem {
+                id: searchwordAction
+                title: qsTr("Search Word Online")
+                imageSource: "asset:///images/1412395069_gnome-fs-loading-icon.png"
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                
+                shortcuts: Shortcut {
+                    key: "s"
+
+                }
+                
+                onTriggered: {
+                    var swoPage = searchWord.createObject()
+                    swoPage.navigate = navigate
+                    navigate.push(swoPage)
+                    swoPage.needFocus = true
+                }
+            
             },
             ActionItem {
                 id: refreshAction

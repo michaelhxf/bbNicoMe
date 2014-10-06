@@ -282,42 +282,47 @@
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../assets/HomePage.qml" line="146"/>
+        <location filename="../assets/HomePage.qml" line="152"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="152"/>
+        <location filename="../assets/HomePage.qml" line="158"/>
         <source>New Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="165"/>
+        <location filename="../assets/HomePage.qml" line="171"/>
         <source>New Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="179"/>
+        <location filename="../assets/HomePage.qml" line="185"/>
         <source>New Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="192"/>
+        <location filename="../assets/HomePage.qml" line="198"/>
+        <source>Search Word Online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/HomePage.qml" line="217"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="221"/>
+        <location filename="../assets/HomePage.qml" line="246"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="231"/>
+        <location filename="../assets/HomePage.qml" line="256"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="241"/>
+        <location filename="../assets/HomePage.qml" line="266"/>
         <source>Attendance</source>
         <translation type="unfinished"></translation>
     </message>
@@ -641,6 +646,14 @@
     <message>
         <location filename="../assets/MonthList.qml" line="124"/>
         <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchWord</name>
+    <message>
+        <location filename="../assets/SearchWord.qml" line="149"/>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
