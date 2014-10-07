@@ -427,10 +427,19 @@ NavigationPane {
                 }
                 
                 Divider {
-                    
+
                 }
 
             }
         }
+
+        shortcuts: [
+            Shortcut {
+                key: "q"
+                onTriggered: {
+                    countSource.query = randomWord
+                    countSource.load()
+                }
+            }]
     }
 }
