@@ -43,8 +43,8 @@ NavigationPane {
         countSource.query = queryAttendance
         countSource.load();
         
-        countSource.query=randomWord
-        countSource.load()
+        //countSource.query=randomWord
+        //countSource.load()
     }
 
     onPopTransitionEnded: {

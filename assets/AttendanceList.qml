@@ -32,8 +32,10 @@ Page {
     }
 
     onNeedRefreshChanged: {
-        if (monthId != 0)
+        if (monthId != 0) {
+            attendanceDataModel.clear()
             attendanceDataSource.load()
+        }
     }
 
     ListView {
@@ -100,7 +102,7 @@ Page {
             type: DataSourceType.Sql
             remote: false
             source: "file://" + nicomeApp.getDatabasePath()
-            query: "select * from attendance WHERE monthid=" + monthId + " ORDER BY mtime DESC, ctime DESC  LIMIT 40"
+            query: "select * from attendance WHERE monthid=" + monthId + " ORDER BY recorddate LIMIT 40"
 
             onDataLoaded: {
                 attendanceDataModel.clear()

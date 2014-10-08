@@ -135,17 +135,17 @@
 <context>
     <name>AttendanceList</name>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="131"/>
+        <location filename="../assets/AttendanceList.qml" line="133"/>
         <source>New Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="151"/>
+        <location filename="../assets/AttendanceList.qml" line="153"/>
         <source>Month Detail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/AttendanceList.qml" line="167"/>
+        <location filename="../assets/AttendanceList.qml" line="169"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>

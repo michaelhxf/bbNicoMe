@@ -16,8 +16,8 @@ Container {
             verticalAlignment: VerticalAlignment.Bottom
             
             Container {
-                preferredWidth: 300
-                preferredHeight: 42
+                preferredWidth: 330
+                preferredHeight: 30
                 background: Color.create("#121212")
                 layout: DockLayout {}
                 
@@ -25,10 +25,13 @@ Container {
                     objectName: "TheLabel"
                     horizontalAlignment: HorizontalAlignment.Center
                     verticalAlignment: VerticalAlignment.Center
-                    text: "QML"
+                    text: "Nicolas Han"
                     textStyle.color: Color.create("#ebebeb")
                     textStyle.fontSize: FontSize.PointValue
                     textStyle.fontSizeValue: 6
+                    layoutProperties: StackLayoutProperties {
+
+                    }
                 }
             }
         }
