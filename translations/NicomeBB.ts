@@ -652,7 +652,7 @@
 <context>
     <name>SearchWord</name>
     <message>
-        <location filename="../assets/SearchWord.qml" line="149"/>
+        <location filename="../assets/SearchWord.qml" line="195"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>

@@ -93,6 +93,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/MonthDetail.qml) \
         $$quote($$BASEDIR/assets/MonthList.qml) \
         $$quote($$BASEDIR/assets/SearchWord.qml) \
+        $$quote($$BASEDIR/assets/SearchWordDetail.qml) \
         $$quote($$BASEDIR/assets/TaskList.qml) \
         $$quote($$BASEDIR/assets/TeamAdd.qml) \
         $$quote($$BASEDIR/assets/TeamList.qml) \

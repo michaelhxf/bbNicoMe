@@ -11,7 +11,7 @@ Page {
         keywordTF.requestFocus()
     }
 
-    ScrollView {
+    Container {
         Container {
 
             //tools bar
@@ -46,7 +46,6 @@ Page {
                     ]
 
                     layoutProperties: StackLayoutProperties {
-                        spaceQuota: -1.0
 
                     }
                     verticalAlignment: VerticalAlignment.Center
@@ -56,7 +55,6 @@ Page {
                 TextField {
                     id: keywordTF
                     layoutProperties: StackLayoutProperties {
-                        spaceQuota: -1.0
 
                     }
                     verticalAlignment: VerticalAlignment.Center
@@ -76,11 +74,47 @@ Page {
                     id: resultList
                     dataModel: searchModel
 
+                    onTriggered: {
+                        var detailPage = searchWordDetail.createObject()
+                        var chosenItem = searchModel.data(indexPath)
+
+                        if (chosenItem.Word != null && chosenItem.Word != "" && chosenItem.Word != undefined) {
+                            detailPage.word = chosenItem.Word
+                        }
+
+                        if (chosenItem.Comment != null && chosenItem.Comment != "" && chosenItem.Comment != undefined) {
+                            detailPage.comment = chosenItem.Comment
+                        }
+
+                        if (chosenItem.PinYin != null && chosenItem.PinYin != "" && chosenItem.PinYin != undefined) {
+                            detailPage.pinyin = chosenItem.PinYin
+                        }
+
+                        if (chosenItem.Tone != null && chosenItem.Tone != "" && chosenItem.Tone != undefined) {
+                            detailPage.tone = chosenItem.Tone
+                        }
+                        if (chosenItem.Pronounce != null && chosenItem.Pronounce != "" && chosenItem.Pronounce != undefined) {
+                            detailPage.pronounce = chosenItem.Pronounce
+                        }
+
+                        if (chosenItem.TtsUrl != null && chosenItem.TtsUrl != "" && chosenItem.TtsUrl != undefined) {
+                            detailPage.ttsurl = chosenItem.TtsUrl
+                        }
+
+                        if (chosenItem.PronounceJp != null && chosenItem.PronounceJp != "" && chosenItem.PronounceJp != undefined) {
+                            detailPage.pronouncejp = chosenItem.PronounceJp
+                        }
+
+                        navigate.push(detailPage)
+                    }
+
                     listItemComponents: [
                         ListItemComponent {
                             type: "item"
                             CustomListItem {
                                 id: resultItem
+                                maxHeight: 400
+
                                 Container {
                                     layout: StackLayout {
 
@@ -106,11 +140,12 @@ Page {
                                 }
                             }
                         }
+
                     ]
                 }
             }
             Divider {
-                
+
             }
 
         }
@@ -132,6 +167,11 @@ Page {
                 searchModel.insertList(data)
                 myQmlToast.cancel()
             }
+            
+            onError: {
+                searchModel.clear()
+                myQmlToast.cancel()
+            }
         },
         SystemToast {
             id: myQmlToast
@@ -140,7 +180,13 @@ Page {
             button.enabled: false
             //button.label: "Undo"
             //button.enabled: true
-        }   
+        },
+        ComponentDefinition {
+            id: searchWordDetail
+            SearchWordDetail {
+
+            }
+        }
     ]
 
     actions: [
@@ -166,7 +212,7 @@ Page {
                     searchSource.source = url
                     searchSource.load()
                 }
-                
+
                 myQmlToast.show()
             }
         }

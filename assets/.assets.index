@@ -1,5 +1,5 @@
 1
-120
+121
 AttendanceAdd.qml
 AttendanceDetail.qml
 AttendanceList.qml
@@ -117,6 +117,7 @@ MonthAdd.qml
 MonthDetail.qml
 MonthList.qml
 SearchWord.qml
+SearchWordDetail.qml
 TaskList.qml
 TeamAdd.qml
 TeamList.qml
