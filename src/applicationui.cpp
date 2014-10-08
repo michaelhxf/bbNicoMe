@@ -21,6 +21,8 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
 #include <bb/data/SqlDataAccess>
+#include <bb/cascades/SceneCover>
+#include <bb/cascades/Container>
 
 using namespace bb::cascades;
 
@@ -56,6 +58,20 @@ ApplicationUI::ApplicationUI() :
 
     // Set created root object as the application scene
     Application::instance()->setScene(root);
+
+
+    //cover
+    QmlDocument *qmlCover = QmlDocument::create("asset:///AppCover.qml").parent(
+            this);
+
+    if (!qmlCover->hasErrors()) {
+        // Create the QML Container from using the QMLDocument.
+        Container *coverContainer = qmlCover->createRootObject<Container>();
+
+        // Create a SceneCover and set the application cover
+        SceneCover *sceneCover = SceneCover::create().content(coverContainer);
+        Application::instance()->setCover(sceneCover);
+    }
 }
 
 void ApplicationUI::onSystemLanguageChanged()

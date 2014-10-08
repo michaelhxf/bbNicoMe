@@ -76,6 +76,7 @@ simulator {
 
 config_pri_assets {
     OTHER_FILES += \
+        $$quote($$BASEDIR/assets/AppCover.qml) \
         $$quote($$BASEDIR/assets/AttendanceAdd.qml) \
         $$quote($$BASEDIR/assets/AttendanceDetail.qml) \
         $$quote($$BASEDIR/assets/AttendanceList.qml) \
