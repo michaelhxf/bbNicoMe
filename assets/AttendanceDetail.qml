@@ -122,7 +122,7 @@ Page {
         ActionItem {
             id: deleteAction
             title: qsTr("Delete")
-            ActionBar.placement: ActionBarPlacement.OnBar
+            ActionBar.placement: ActionBarPlacement.InOverflow
             attachedObjects: [
                 SystemDialog {
                     id: myQmlDialog
@@ -303,9 +303,9 @@ Page {
                                     }
                                 }
 
-                                if (worktypeDD.count() > 0) {
-                                    worktypeDD.selectedIndex = 0;
-                                }
+//                                if (worktypeDD.count() > 0) {
+//                                    worktypeDD.selectedIndex = worktypeid;
+//                                }
                             }
                         }
                     ]
@@ -362,10 +362,10 @@ Page {
                                         weektypeDD.selectedOption = option
                                     }
                                 }
-
-                                if (weektypeDD.count() > 0) {
-                                    weektypeDD.selectedIndex = 0;
-                                }
+//
+//                                if (weektypeDD.count() > 0) {
+//                                    weektypeDD.selectedIndex = weektypeid;
+//                                }
                             }
                         }
                     ]
@@ -422,10 +422,10 @@ Page {
                                         customerDD.selectedOption = option
                                     }
                                 }
-
-                                if (customerDD.count() > 0) {
-                                    customerDD.selectedIndex = 0;
-                                }
+//
+//                                if (customerDD.count() > 0) {
+//                                    customerDD.selectedIndex = customerid;
+//                                }
                             }
                         }
                     ]
@@ -481,10 +481,10 @@ Page {
                                         teamDD.selectedOption = option
                                     }
                                 }
-
-                                if (teamDD.count() > 0) {
-                                    teamDD.selectedIndex = 0;
-                                }
+//
+//                                if (teamDD.count() > 0) {
+//                                    teamDD.selectedIndex = teamid;
+//                                }
                             }
                         }
                     ]

@@ -11,6 +11,9 @@ NavigationPane {
     property string queryMemo
     property string queryTask
     property string queryAttendance
+    property string querySentence
+    property string queryJX
+    
     property string randomWord
     property bool needRefresh
     property TabbedPane tabPanel
@@ -24,6 +27,9 @@ NavigationPane {
         cnWord = "SELECT id from learning WHERE langtypeid=3"
         queryMemo = "SELECT id from memo"
         queryAttendance = "SELECT id from attendance" //where month
+        querySentence = "SELECT id FROM learning WHERE taglist LIKE \"%句子%\""
+        queryJX = "SELECT id FROM learning WHERE taglist LIKE \"%句型%\""
+        
         
         randomWord = "SELECT * FROM learning ORDER BY RANDOM() LIMIT 1"
 
@@ -41,6 +47,12 @@ NavigationPane {
         countSource.load();
         //
         countSource.query = queryAttendance
+        countSource.load();
+        //
+        countSource.query = querySentence
+        countSource.load();
+        //
+        countSource.query = queryJX
         countSource.load();
         
         //countSource.query=randomWord
@@ -119,7 +131,12 @@ NavigationPane {
                 if (query == queryAttendance) {
                     totalAttendance.text =  data.length
                 }
-                
+                if (query == querySentence) {
+                    sentenceLA.text =  data.length
+                }
+                if (query == queryJX) {
+                    jxLA.text =  data.length
+                }
                 if (query==randomWord){
                     randomWordLA.text = data[0].subject
                     var chosenItem = data[0]
@@ -330,6 +347,63 @@ NavigationPane {
 
                 Divider {
 
+                }
+                
+                Container {
+                    layout: StackLayout {
+                        orientation: LayoutOrientation.LeftToRight
+                    
+                    }
+                    verticalAlignment: VerticalAlignment.Center
+                    horizontalAlignment: HorizontalAlignment.Center
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        
+                        }
+                        Label {
+                            text: "Sentence:"
+                            //minWidth: 180
+                            textStyle.textAlign: TextAlign.Right
+                        }
+                        Container {
+                            minWidth: 10
+                        }
+                        
+                        Label {
+                            id: sentenceLA
+                            text: "0"
+                        }
+                    }
+                    
+                    Container {
+                        minWidth: 80
+                    }
+                    
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        
+                        }
+                        Label {
+                            text: "JX:"
+                            //minWidth: 180
+                            textStyle.textAlign: TextAlign.Right
+                        }
+                        
+                        Container {
+                            minWidth: 10
+                        }
+                        
+                        Label {
+                            id: jxLA
+                            text: "0"
+                        }
+                    }
+                }
+                
+                Divider {
+                
                 }
 
                 Container {

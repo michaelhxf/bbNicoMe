@@ -19,6 +19,9 @@ TabbedPane {
                                     helpSheet.close()
                                 }
                                 verticalAlignment: VerticalAlignment.Center
+                                layoutProperties: StackLayoutProperties {
+
+                                }
                             }
                         }
                     }
@@ -41,6 +44,9 @@ TabbedPane {
                                     settingSheet.close()
                                 }
                                 verticalAlignment: VerticalAlignment.Center
+                                layoutProperties: StackLayoutProperties {
+
+                                }
                             }
                         }
                     }

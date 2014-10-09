@@ -329,7 +329,7 @@ Page {
 
             }
             Container {
-                maxHeight: 300
+                maxHeight: 400
 
                 ListView {
                     dataModel: langTagModel
@@ -376,7 +376,7 @@ Page {
                             type: DataSourceType.Sql
                             remote: false
                             source: "file://" + nicomeApp.getDatabasePath()
-                            query: "SELECT title FROM langtag LIMIT 10"
+                            query: "SELECT title FROM langtag LIMIT 15"
                             onDataLoaded: {
                                 langTagModel.clear()
                                 langTagModel.insertList(data)
