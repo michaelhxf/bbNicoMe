@@ -282,47 +282,42 @@
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../assets/HomePage.qml" line="169"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/HomePage.qml" line="175"/>
+        <location filename="../assets/HomePage.qml" line="177"/>
         <source>New Word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="188"/>
+        <location filename="../assets/HomePage.qml" line="190"/>
         <source>New Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="202"/>
+        <location filename="../assets/HomePage.qml" line="204"/>
         <source>New Attendance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="215"/>
+        <location filename="../assets/HomePage.qml" line="217"/>
         <source>Search Word Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="234"/>
+        <location filename="../assets/HomePage.qml" line="236"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="263"/>
+        <location filename="../assets/HomePage.qml" line="265"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="273"/>
+        <location filename="../assets/HomePage.qml" line="275"/>
         <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/HomePage.qml" line="283"/>
+        <location filename="../assets/HomePage.qml" line="285"/>
         <source>Attendance</source>
         <translation type="unfinished"></translation>
     </message>

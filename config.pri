@@ -99,6 +99,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/TeamAdd.qml) \
         $$quote($$BASEDIR/assets/TeamList.qml) \
         $$quote($$BASEDIR/assets/dbtemp/nicome.s3db) \
+        $$quote($$BASEDIR/assets/home.html) \
         $$quote($$BASEDIR/assets/images/1412394983_preferences-system-time.png) \
         $$quote($$BASEDIR/assets/images/1412394989_system-software-update.png) \
         $$quote($$BASEDIR/assets/images/1412395012_stock_task.png) \
@@ -197,6 +198,40 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/images/refresh.png) \
         $$quote($$BASEDIR/assets/images/star.png) \
         $$quote($$BASEDIR/assets/images/widget-factory.png) \
+        $$quote($$BASEDIR/assets/js/jquery.min.js) \
+        $$quote($$BASEDIR/assets/libchart/adapters/standalone-framework.js) \
+        $$quote($$BASEDIR/assets/libchart/adapters/standalone-framework.src.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts-3d.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts-3d.src.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts-all.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts-more.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts-more.src.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts.js) \
+        $$quote($$BASEDIR/assets/libchart/highcharts.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/canvas-tools.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/canvas-tools.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/data.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/data.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/drilldown.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/drilldown.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/exporting.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/exporting.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/funnel.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/funnel.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/heatmap.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/heatmap.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/no-data-to-display.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/no-data-to-display.src.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/solid-gauge.js) \
+        $$quote($$BASEDIR/assets/libchart/modules/solid-gauge.src.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/dark-blue.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/dark-green.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/dark-unica.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/gray.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/grid-light.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/grid.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/sand-signika.js) \
+        $$quote($$BASEDIR/assets/libchart/themes/skies.js) \
         $$quote($$BASEDIR/assets/main.qml)
 }
 
@@ -227,7 +262,22 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../assets/dbtemp/*.qs) \
         $$quote($$BASEDIR/../assets/images/*.qml) \
         $$quote($$BASEDIR/../assets/images/*.js) \
-        $$quote($$BASEDIR/../assets/images/*.qs)
+        $$quote($$BASEDIR/../assets/images/*.qs) \
+        $$quote($$BASEDIR/../assets/js/*.qml) \
+        $$quote($$BASEDIR/../assets/js/*.js) \
+        $$quote($$BASEDIR/../assets/js/*.qs) \
+        $$quote($$BASEDIR/../assets/libchart/*.qml) \
+        $$quote($$BASEDIR/../assets/libchart/*.js) \
+        $$quote($$BASEDIR/../assets/libchart/*.qs) \
+        $$quote($$BASEDIR/../assets/libchart/adapters/*.qml) \
+        $$quote($$BASEDIR/../assets/libchart/adapters/*.js) \
+        $$quote($$BASEDIR/../assets/libchart/adapters/*.qs) \
+        $$quote($$BASEDIR/../assets/libchart/modules/*.qml) \
+        $$quote($$BASEDIR/../assets/libchart/modules/*.js) \
+        $$quote($$BASEDIR/../assets/libchart/modules/*.qs) \
+        $$quote($$BASEDIR/../assets/libchart/themes/*.qml) \
+        $$quote($$BASEDIR/../assets/libchart/themes/*.js) \
+        $$quote($$BASEDIR/../assets/libchart/themes/*.qs)
 
     HEADERS += \
         $$quote($$BASEDIR/../src/*.h) \

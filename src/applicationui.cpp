@@ -59,12 +59,12 @@ ApplicationUI::ApplicationUI() :
     // Set created root object as the application scene
     Application::instance()->setScene(root);
 
-
     //cover
-    QmlDocument *qmlCover = QmlDocument::create("asset:///AppCover.qml").parent(
-            this);
+    QmlDocument *qmlCover = QmlDocument::create("asset:///AppCover.qml").parent(this);
 
     if (!qmlCover->hasErrors()) {
+        qmlCover->setContextProperty("nicomeApp", this);
+
         // Create the QML Container from using the QMLDocument.
         Container *coverContainer = qmlCover->createRootObject<Container>();
 
@@ -158,5 +158,32 @@ bool ApplicationUI::importDbFile(const QString &importFileName)
     } else {
         return false;
     }
+}
+QString ApplicationUI::getChartHTML()
+{
+    QString htmlPath = QDir::currentPath() + "/app/native/assets/home.html";
+
+//    QString resultText;
+//    QString line;
+//    QFile textfile(htmlPath);
+//    qDebug() << "File size: " + textfile.size();
+//
+//    if (textfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//        QTextStream stream(&textfile);
+//
+//        do {
+//            line = stream.readLine();
+//            resultText += line;
+//            qDebug()<<line;
+//
+//        } while (!line.isNull());
+//    }
+//
+//    textfile.close();
+//
+//    resultText = resultText.replace("@@@",dataStr);
+
+    return htmlPath;
+
 }
 

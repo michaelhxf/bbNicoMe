@@ -1,0 +1,68 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+        <script src="./libchart/highcharts.js"></script>
+        <script src="./libchart/highcharts-3d.js"></script>
+        <script src="./libchart/themes/sand-signika.js"></script>
+        
+		<script type="text/javascript">
+$(document).ready(function() {
+      wordchart = {
+        chart: {
+            renderTo: 'container',
+            plotBackgroundColor: null,
+            type: "pie",
+            //plotBorderWidth: 1,//null,
+            plotShadow: true,
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: ''
+        },
+        plotOptions: {
+            pie: {
+                //allowPointSelect: true,
+                cursor: 'pointer',
+                depth:35,
+                innerSize: 100,
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>:<br> {point.y} ',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor),
+                        fontSize:'20px'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Learning Record',
+           data:[]
+        }]
+
+    }
+
+    chart = new Highcharts.Chart(wordchart);
+    });
+
+    
+
+
+		</script>
+	</head>
+	<body>
+
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+	</body>
+</html>

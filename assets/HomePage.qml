@@ -5,72 +5,82 @@ import bb.cascades.datamanager 1.2
 NavigationPane {
     id: navigate
 
-    property string jpWord
-    property string engWord
-    property string cnWord
+    property string queryJpWord
+    //property string queryEngWord
+    //property string queryCnWord
     property string queryMemo
-    property string queryTask
+    //property string queryTask
     property string queryAttendance
     property string querySentence
     property string queryJX
-    
+
+    property int jpcount
+    property int memocount
+    property int attendancecount
+    property int sentencecount
+    property int jxcount
+
     property string randomWord
     property bool needRefresh
     property TabbedPane tabPanel
 
     property LearningDetail detailPage
-    
-    function reload() {
+
+    function reloadCount() {
         //
-        jpWord = "SELECT id from learning WHERE langtypeid=1"
-        engWord = "SELECT id from learning WHERE langtypeid=2"
-        cnWord = "SELECT id from learning WHERE langtypeid=3"
-        queryMemo = "SELECT id from memo"
-        queryAttendance = "SELECT id from attendance" //where month
+        queryJpWord = "SELECT id from learning WHERE langtypeid=1"
+        //queryEngWord = "SELECT id from learning WHERE langtypeid=2"
+        //queryCnWord = "SELECT id from learning WHERE langtypeid=3"
+        //queryMemo = "SELECT id from memo"
+        //queryAttendance = "SELECT id from attendance" //where month
         querySentence = "SELECT id FROM learning WHERE taglist LIKE \"%句子%\""
         queryJX = "SELECT id FROM learning WHERE taglist LIKE \"%句型%\""
-        
-        
+
         randomWord = "SELECT * FROM learning ORDER BY RANDOM() LIMIT 1"
 
         //
-        countSource.query = jpWord
+        countSource.query = queryJpWord
         countSource.load();
         //
-        countSource.query = engWord
-        countSource.load();
+        //countSource.query = queryEngWord
+        //countSource.load();
         //
         //countSource.query = cnWord
         //countSource.load();
         //
-        countSource.query = queryMemo
-        countSource.load();
+        //countSource.query = queryMemo
+        //countSource.load();
         //
-        countSource.query = queryAttendance
-        countSource.load();
+        //countSource.query = queryAttendance
+        //countSource.load();
         //
         countSource.query = querySentence
         countSource.load();
         //
         countSource.query = queryJX
         countSource.load();
-        
+
         //countSource.query=randomWord
         //countSource.load()
+
+        //finally show the chart
+        var datastr = "chart.series[0].setData([['Other' ," + (jpcount - jxcount -sentencecount) + "],[ 'Sentence', " + sentencecount + " ] , [ 'Jx', "+jxcount+"]], true)"
+        chartView.evaluateJavaScript(datastr)
     }
 
     onPopTransitionEnded: {
         if (needRefresh) {
             needRefresh = false
             //countSource.load()
-            reload()
+            reloadCount()
         }
-       // page.destroy()
+        // page.destroy()
     }
 
     onCreationCompleted: {
         tabPanel = navigate.parent.parent
-        reload()
+        chartView.loadFile(nicomeApp.getChartHTML())
+        reloadCount()
     }
 
     attachedObjects: [
@@ -95,10 +105,10 @@ NavigationPane {
         ComponentDefinition {
             id: searchWord
             SearchWord {
-            
+
             }
         },
-        
+
         ComponentDefinition {
             id: learningDetail
             source: "LearningDetail.qml"
@@ -111,37 +121,29 @@ NavigationPane {
             type: DataSourceType.Sql
 
             onDataLoaded: {
-                console.log("#load report")
-                if (query == jpWord) {
-                    jplWordLA.text = data.length
-                }
-                
-                if (query == engWord) {
-                    engWordLA.text =  data.length
-                }
-                
-                if (query == cnWord) {
-                    cnWordLA.text =  data.length
+                //console.log("#load report")
+                if (query == queryJpWord) {
+                    jpcount = data.length
                 }
 
                 if (query == queryMemo) {
-                    totalMemo.text = data.length
+                    memocount = data.length
                 }
 
                 if (query == queryAttendance) {
-                    totalAttendance.text =  data.length
+                    attendancecount = data.length
                 }
                 if (query == querySentence) {
-                    sentenceLA.text =  data.length
+                    sentencecount = data.length
                 }
                 if (query == queryJX) {
-                    jxLA.text =  data.length
+                    jxcount = data.length
                 }
-                if (query==randomWord){
+                if (query == randomWord) {
                     randomWordLA.text = data[0].subject
                     var chosenItem = data[0]
                     detailPage = learningDetail.createObject()
-                    
+
                     detailPage.detailSubject = chosenItem.subject
                     detailPage.detailMeaning = chosenItem.meaning
                     detailPage.detailQIndex = chosenItem.qindex
@@ -165,10 +167,10 @@ NavigationPane {
 
     Page {
 
-        titleBar: TitleBar {
-            title: qsTr("Home")
-
-        }
+        //        titleBar: TitleBar {
+        //            title: qsTr("Home")
+        //
+        //        }
         actions: [
             ActionItem {
                 id: newWordAction
@@ -215,19 +217,19 @@ NavigationPane {
                 title: qsTr("Search Word Online")
                 imageSource: "asset:///images/1412395069_gnome-fs-loading-icon.png"
                 ActionBar.placement: ActionBarPlacement.InOverflow
-                
+
                 shortcuts: Shortcut {
                     key: "s"
 
                 }
-                
+
                 onTriggered: {
                     var swoPage = searchWord.createObject()
                     swoPage.navigate = navigate
                     navigate.push(swoPage)
                     swoPage.needFocus = true
                 }
-            
+
             },
             ActionItem {
                 id: refreshAction
@@ -236,7 +238,7 @@ NavigationPane {
                 ActionBar.placement: ActionBarPlacement.InOverflow
 
                 onTriggered: {
-                    reload()
+                    reloadCount()
                 }
 
                 shortcuts: Shortcut {
@@ -247,7 +249,7 @@ NavigationPane {
         ]
 
         ///content
-        ScrollView {
+        Container {
             Container {
                 layout: StackLayout {
 
@@ -289,181 +291,21 @@ NavigationPane {
                     }
                 }
 
-                Container {
-                    minHeight: 40
+                Divider {
+
                 }
-                Container {
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
 
-                    }
-                    verticalAlignment: VerticalAlignment.Center
-                    horizontalAlignment: HorizontalAlignment.Center
-                    Container {
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.LeftToRight
+                WebView {
+                    id: chartView
+                    minHeight: 400
+                    html: "loading chart..."
 
-                        }
-                        Label {
-                            text: "Japanese:"
-                            //minWidth: 180
-                            textStyle.textAlign: TextAlign.Right
-                        }
-                        Container {
-                            minWidth: 10
-                        }
-
-                        Label {
-                            id: jplWordLA
-                            text: "0"
-                        }
-                    }
-
-                    Container {
-                        minWidth: 80
-                    }
-
-                    Container {
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.LeftToRight
-
-                        }
-                        Label {
-                            text: "English:"
-                            //minWidth: 180
-                            textStyle.textAlign: TextAlign.Right
-                        }
-
-                        Container {
-                            minWidth: 10
-                        }
-
-                        Label {
-                            id: engWordLA
-                            text: "0"
-                        }
-                    }
                 }
 
                 Divider {
 
                 }
-                
-                Container {
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
-                    
-                    }
-                    verticalAlignment: VerticalAlignment.Center
-                    horizontalAlignment: HorizontalAlignment.Center
-                    Container {
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.LeftToRight
-                        
-                        }
-                        Label {
-                            text: "Sentence:"
-                            //minWidth: 180
-                            textStyle.textAlign: TextAlign.Right
-                        }
-                        Container {
-                            minWidth: 10
-                        }
-                        
-                        Label {
-                            id: sentenceLA
-                            text: "0"
-                        }
-                    }
-                    
-                    Container {
-                        minWidth: 80
-                    }
-                    
-                    Container {
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.LeftToRight
-                        
-                        }
-                        Label {
-                            text: "JX:"
-                            //minWidth: 180
-                            textStyle.textAlign: TextAlign.Right
-                        }
-                        
-                        Container {
-                            minWidth: 10
-                        }
-                        
-                        Label {
-                            id: jxLA
-                            text: "0"
-                        }
-                    }
-                }
-                
-                Divider {
-                
-                }
 
-                Container {
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
-                    
-                    }
-                    verticalAlignment: VerticalAlignment.Center
-                    horizontalAlignment: HorizontalAlignment.Center
-                    Container {
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.LeftToRight
-                        
-                        }
-                        Label {
-                            text: "Memo:"
-                            //minWidth: 180
-                            textStyle.textAlign: TextAlign.Right
-                        }
-                        Container {
-                            minWidth: 10
-                        }
-                        
-                        Label {
-                            id: totalMemo
-                            text: "0"
-                        }
-                    }
-                    
-                    Container {
-                        minWidth: 80
-                    }
-                    
-                    Container {
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.LeftToRight
-                        
-                        }
-                        Label {
-                            text: "Attendance:"
-                            //minWidth: 180
-                            textStyle.textAlign: TextAlign.Right
-                        }
-                        
-                        Container {
-                            minWidth: 10
-                        }
-                        
-                        Label {
-                            id: totalAttendance
-                            text: "0"
-                        }
-                    }
-                }
-                
-                Divider {
-                    
-                }
-                
-                
                 Container {
                     minHeight: 80
                     layout: StackLayout {
@@ -492,14 +334,14 @@ NavigationPane {
                         maxWidth: 100
                         verticalAlignment: VerticalAlignment.Center
                         horizontalAlignment: HorizontalAlignment.Center
-                        
+
                         onClicked: {
                             navigate.push(detailPage)
                         }
                     }
-                    
+
                 }
-                
+
                 Divider {
 
                 }
@@ -514,6 +356,7 @@ NavigationPane {
                     countSource.query = randomWord
                     countSource.load()
                 }
-            }]
+            }
+        ]
     }
 }

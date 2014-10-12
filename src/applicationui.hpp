@@ -50,6 +50,7 @@ public:
 
     Q_INVOKABLE bool initDatabase(bool forceInit);
     Q_INVOKABLE QUrl getDatabasePath();
+    Q_INVOKABLE QString getChartHTML();
 
 
 private slots:
